@@ -46,46 +46,17 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
-
     if (mobileOpen) {
-      html.setAttribute("data-lenis-prevent", "");
-      html.style.overflow = "hidden";
-      html.style.touchAction = "none";
-      body.style.overflow = "hidden";
-      body.style.position = "fixed";
-      body.style.top = `-${window.scrollY}px`;
-      body.style.left = "0";
-      body.style.right = "0";
+      document.documentElement.classList.add("overflow-hidden", "touch-none");
+      document.body.classList.add("overflow-hidden");
     } else {
-      const scrollY = body.style.top;
-      html.removeAttribute("data-lenis-prevent");
-      html.style.overflow = "";
-      html.style.touchAction = "";
-      body.style.overflow = "";
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      if (scrollY) {
-        window.scrollTo(0, -parseInt(scrollY || "0"));
-      }
+      document.documentElement.classList.remove("overflow-hidden", "touch-none");
+      document.body.classList.remove("overflow-hidden");
     }
 
     return () => {
-      const scrollY = body.style.top;
-      html.removeAttribute("data-lenis-prevent");
-      html.style.overflow = "";
-      html.style.touchAction = "";
-      body.style.overflow = "";
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      if (scrollY) {
-        window.scrollTo(0, -parseInt(scrollY || "0"));
-      }
+      document.documentElement.classList.remove("overflow-hidden", "touch-none");
+      document.body.classList.remove("overflow-hidden");
     };
   }, [mobileOpen]);
 
