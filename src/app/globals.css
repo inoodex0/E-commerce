@@ -127,9 +127,4 @@
   html {
     @apply font-sans;
   }
-  html.mobile-nav-open,
-  html.mobile-nav-open body {
-    @apply overflow-hidden touch-none;
-    overscroll-behavior: none;
-  }
 }
