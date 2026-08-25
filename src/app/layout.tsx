@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "@/components/ui/shared/Navbar";
+import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
+import GsapProvider from "@/components/shared/GsapProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,7 +26,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScrollProvider>
+          <GsapProvider>
+            <Navbar />
+            {children}
+          </GsapProvider>
+        </SmoothScrollProvider>
+      </body>
     </html>
   );
 }
