@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useState } from "react";
 import {
   Search,
   Heart,
@@ -13,169 +12,377 @@ import {
   ChevronDown,
 } from "lucide-react";
 
+/* =========================================================
+   TYPES
+========================================================= */
+
+type DropdownType = "categories" | "deals" | "about" | null;
+
+/* =========================================================
+   DATA
+========================================================= */
+
 const categories = [
-  { label: "Bags & Backpacks", href: "/categories/bags-backpacks" },
-  { label: "Watches", href: "/categories/watches" },
-  { label: "Jewelry", href: "/categories/jewelry" },
-  { label: "Sunglasses", href: "/categories/sunglasses" },
-  { label: "Belts & Wallets", href: "/categories/belts-wallets" },
-  { label: "Scarves & Hats", href: "/categories/scarves-hats" },
+  {
+    label: "Watches",
+    href: "/categories/watches",
+  },
+  {
+    label: "Bags",
+    href: "/categories/bags",
+  },
+  {
+    label: "Wallets",
+    href: "/categories/wallets",
+  },
+  {
+    label: "Sunglasses",
+    href: "/categories/sunglasses",
+  },
+  {
+    label: "Jewelry",
+    href: "/categories/jewelry",
+  },
+  {
+    label: "Belts",
+    href: "/categories/belts",
+  },
+  {
+    label: "Perfumes",
+    href: "/categories/perfumes",
+  },
+  {
+    label: "Tech Accessories",
+    href: "/categories/tech-accessories",
+  },
 ];
 
 const deals = [
-  { label: "Discount Products", href: "/deals/discount-products" },
-  { label: "Flash Sale", href: "/deals/flash-sale" },
-  { label: "Coupons", href: "/deals/coupons" },
+  {
+    label: "Discount Products",
+    href: "/deals/discount-products",
+  },
+  {
+    label: "Flash Sale",
+    href: "/deals/flash-sale",
+  },
+  {
+    label: "Coupons",
+    href: "/deals/coupons",
+  },
 ];
 
 const aboutLinks = [
-  { label: "About Us", href: "/about" },
-  { label: "Our Story", href: "/our-story" },
-  { label: "Why Choose Us", href: "/why-choose-us" },
+  {
+    label: "About Us",
+    href: "/about",
+  },
+  {
+    label: "Our Story",
+    href: "/our-story",
+  },
+  {
+    label: "Why Choose Us",
+    href: "/why-choose-us",
+  },
 ];
 
-export default function Navbar() {
-  const headerRef = useRef<HTMLElement>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
-  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+/* =========================================================
+   COMPONENT
+========================================================= */
 
-  const closeMobile = () => {
+export default function Navbar() {
+  /* =======================================================
+     STATES
+  ======================================================== */
+
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const [desktopDropdown, setDesktopDropdown] =
+    useState<DropdownType>(null);
+
+  const [mobileDropdown, setMobileDropdown] =
+    useState<DropdownType>(null);
+
+  /* =======================================================
+     CLOSE MOBILE MENU
+  ======================================================== */
+
+  const closeMobileMenu = () => {
     setMobileOpen(false);
     setMobileDropdown(null);
   };
 
+  /* =======================================================
+     MOBILE BODY SCROLL LOCK
+  ======================================================== */
+
   useEffect(() => {
     if (mobileOpen) {
-      document.documentElement.classList.add("overflow-hidden", "touch-none");
-      document.body.classList.add("overflow-hidden");
+      document.body.style.overflow = "hidden";
     } else {
-      document.documentElement.classList.remove("overflow-hidden", "touch-none");
-      document.body.classList.remove("overflow-hidden");
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.documentElement.classList.remove("overflow-hidden", "touch-none");
-      document.body.classList.remove("overflow-hidden");
+      document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
+  /* =======================================================
+     ESCAPE KEY
+  ======================================================== */
+
   useEffect(() => {
-    if (!headerRef.current) return;
-
-    const navLinks = headerRef.current.querySelectorAll<HTMLElement>(
-      ".group, button[aria-label], [aria-label]"
-    );
-
-    gsap.fromTo(
-      headerRef.current,
-      { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
-    );
-
-    gsap.fromTo(
-      navLinks,
-      { y: -10, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.05,
-        ease: "power2.out",
-        delay: 0.3,
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMobileMenu();
+        setDesktopDropdown(null);
       }
-    );
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, []);
 
-  return (
-    <header
-      ref={headerRef}
-      className="sticky top-0 z-50 w-full bg-[#FBF8F3] opacity-0 shadow-[0_1px_0_rgba(23,20,18,0.06)]"
-    >
-      <nav className="border-b border-[#E7E1D8] bg-[#FBF8F3]">
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 lg:h-[72px] lg:px-8">
+  /* =======================================================
+     TOGGLE MOBILE DROPDOWN
+  ======================================================== */
 
-          {/* LOGO */}
+  const toggleMobileDropdown = (dropdown: DropdownType) => {
+    setMobileDropdown((current) =>
+      current === dropdown ? null : dropdown
+    );
+  };
+
+  /* =======================================================
+     RETURN
+  ======================================================== */
+
+  return (
+    <header className="sticky top-0 z-50 w-full bg-white">
+      {/* =====================================================
+          ANNOUNCEMENT BAR
+      ====================================================== */}
+
+      <div className="bg-neutral-950 px-4 py-2.5 text-center text-[10px] font-medium uppercase tracking-[0.2em] text-white sm:text-[11px]">
+        Free Shipping on Orders Over ৳5,000
+      </div>
+
+      {/* =====================================================
+          MAIN NAVBAR
+      ====================================================== */}
+
+      <nav className="border-b border-neutral-200 bg-white">
+        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 lg:px-8">
+
+          {/* =================================================
+              LOGO
+          ================================================== */}
+
           <Link
             href="/"
-            className="shrink-0 font-serif text-xl font-semibold tracking-[0.2em] text-[#171412] lg:text-2xl lg:tracking-[0.28em]"
+            className="shrink-0 text-[21px] font-semibold tracking-[0.2em] text-neutral-950 transition-opacity duration-300 hover:opacity-70 sm:text-2xl"
           >
             NOVARA
           </Link>
 
-          {/* DESKTOP NAV */}
+          {/* =================================================
+              DESKTOP NAVIGATION
+          ================================================== */}
+
           <div className="hidden items-center gap-6 lg:flex xl:gap-8">
-            <Link href="/" className="group relative py-7 text-[13px] font-medium tracking-wide text-[#171412]">
+
+            {/* -------------------------------------------------
+                HOME
+            -------------------------------------------------- */}
+
+            <Link
+              href="/"
+              className="group relative py-7 text-[13px] font-medium tracking-wide text-neutral-900"
+            >
               Home
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#A9814D] transition-all duration-300 group-hover:w-full" />
+
+              <span className="absolute bottom-0 left-0 h-px w-0 bg-neutral-950 transition-all duration-300 group-hover:w-full" />
             </Link>
 
-            <Link href="/shop" className="group relative py-7 text-[13px] font-medium tracking-wide text-[#171412]">
+            {/* -------------------------------------------------
+                SHOP
+            -------------------------------------------------- */}
+
+            <Link
+              href="/shop"
+              className="group relative py-7 text-[13px] font-medium tracking-wide text-neutral-900"
+            >
               Shop
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#A9814D] transition-all duration-300 group-hover:w-full" />
+
+              <span className="absolute bottom-0 left-0 h-px w-0 bg-neutral-950 transition-all duration-300 group-hover:w-full" />
             </Link>
 
-            {/* Categories Dropdown */}
+            {/* =================================================
+                CATEGORIES
+            ================================================== */}
+
             <div
               className="relative"
-              onMouseEnter={() => setDesktopDropdown("categories")}
-              onMouseLeave={() => setDesktopDropdown(null)}
+              onMouseEnter={() =>
+                setDesktopDropdown("categories")
+              }
+              onMouseLeave={() =>
+                setDesktopDropdown(null)
+              }
             >
               <button
                 type="button"
-                className="flex items-center gap-1.5 py-7 text-[13px] font-medium tracking-wide text-[#171412]"
+                className="flex items-center gap-1.5 py-7 text-[13px] font-medium tracking-wide text-neutral-900"
               >
                 Categories
-                <ChevronDown size={14} strokeWidth={1.7} className={`text-[#A9814D] transition-transform duration-200 ${desktopDropdown === "categories" ? "rotate-180" : ""}`} />
+
+                <ChevronDown
+                  size={14}
+                  strokeWidth={1.7}
+                  className={`transition-transform duration-200 ${
+                    desktopDropdown === "categories"
+                      ? "rotate-180"
+                      : ""
+                  }`}
+                />
               </button>
-              <div className={`absolute left-1/2 top-full w-[680px] -translate-x-1/2 pt-3 transition-all duration-200 ${desktopDropdown === "categories" ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}`}>
-                <div className="border border-[#E7E1D8] bg-white p-8 shadow-xl shadow-[#171412]/5">
-                  <div className="mb-6">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#A9814D]">Shop By Category</p>
-                    <h3 className="mt-2 font-serif text-xl font-medium text-[#171412]">Explore Our Accessories</h3>
+
+              {/* Categories Mega Menu */}
+
+              <div
+                className={`absolute left-1/2 top-full w-[680px] -translate-x-1/2 pt-3 transition-all duration-200 ${
+                  desktopDropdown === "categories"
+                    ? "visible translate-y-0 opacity-100"
+                    : "invisible -translate-y-2 opacity-0"
+                }`}
+              >
+                <div className="border border-neutral-200 bg-white p-8 shadow-xl">
+
+                  {/* Heading */}
+
+                  <div className="mb-7">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Shop By Category
+                    </p>
+
+                    <h3 className="mt-2 text-xl font-medium text-neutral-950">
+                      Explore Accessories
+                    </h3>
                   </div>
+
+                  {/* Categories */}
+
                   <div className="grid grid-cols-3 gap-x-10 gap-y-6">
                     {categories.map((category) => (
-                      <Link key={category.href} href={category.href} className="group">
-                        <span className="text-sm font-medium text-[#171412] transition-colors group-hover:text-[#A9814D]">{category.label}</span>
-                        <span className="mt-2 block h-px w-0 bg-[#A9814D] transition-all duration-300 group-hover:w-full" />
+                      <Link
+                        key={category.href}
+                        href={category.href}
+                        className="group"
+                      >
+                        <span className="text-sm font-medium text-neutral-800 transition-colors duration-300 group-hover:text-neutral-500">
+                          {category.label}
+                        </span>
+
+                        <span className="mt-2 block h-px w-0 bg-neutral-950 transition-all duration-300 group-hover:w-full" />
                       </Link>
                     ))}
                   </div>
-                  <div className="mt-8 border-t border-[#E7E1D8] pt-6">
-                    <Link href="/categories" className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#171412] transition-colors hover:text-[#A9814D]">
-                      View All Categories →
+
+                  {/* View All */}
+
+                  <div className="mt-8 border-t border-neutral-200 pt-6">
+                    <Link
+                      href="/categories"
+                      className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-900"
+                    >
+                      View All Categories
+
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
 
-            <Link href="/new-arrivals" className="group relative py-7 text-[13px] font-medium tracking-wide text-[#171412]">
+            {/* -------------------------------------------------
+                NEW ARRIVALS
+            -------------------------------------------------- */}
+
+            <Link
+              href="/new-arrivals"
+              className="group relative py-7 text-[13px] font-medium tracking-wide text-neutral-900"
+            >
               New Arrivals
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#A9814D] transition-all duration-300 group-hover:w-full" />
+
+              <span className="absolute bottom-0 left-0 h-px w-0 bg-neutral-950 transition-all duration-300 group-hover:w-full" />
             </Link>
 
-            {/* Deals Dropdown */}
+            {/* =================================================
+                DEALS / OFFERS
+            ================================================== */}
+
             <div
               className="relative"
-              onMouseEnter={() => setDesktopDropdown("deals")}
-              onMouseLeave={() => setDesktopDropdown(null)}
+              onMouseEnter={() =>
+                setDesktopDropdown("deals")
+              }
+              onMouseLeave={() =>
+                setDesktopDropdown(null)
+              }
             >
-              <button type="button" className="flex items-center gap-1.5 py-7 text-[13px] font-medium tracking-wide text-[#171412]">
-                Deals
-                <ChevronDown size={14} strokeWidth={1.7} className={`text-[#A9814D] transition-transform duration-200 ${desktopDropdown === "deals" ? "rotate-180" : ""}`} />
+              <button
+                type="button"
+                className="flex items-center gap-1.5 py-7 text-[13px] font-medium tracking-wide text-neutral-900"
+              >
+                Deals / Offers
+
+                <ChevronDown
+                  size={14}
+                  strokeWidth={1.7}
+                  className={`transition-transform duration-200 ${
+                    desktopDropdown === "deals"
+                      ? "rotate-180"
+                      : ""
+                  }`}
+                />
               </button>
-              <div className={`absolute left-1/2 top-full w-[280px] -translate-x-1/2 pt-3 transition-all duration-200 ${desktopDropdown === "deals" ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}`}>
-                <div className="border border-[#E7E1D8] bg-white p-5 shadow-xl shadow-[#171412]/5">
+
+              {/* Deals Dropdown */}
+
+              <div
+                className={`absolute left-1/2 top-full w-[290px] -translate-x-1/2 pt-3 transition-all duration-200 ${
+                  desktopDropdown === "deals"
+                    ? "visible translate-y-0 opacity-100"
+                    : "invisible -translate-y-2 opacity-0"
+                }`}
+              >
+                <div className="border border-neutral-200 bg-white p-5 shadow-xl">
+
                   <div className="mb-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#A9814D]">Special Offers</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Special Offers
+                    </p>
                   </div>
+
                   <div className="space-y-1">
                     {deals.map((deal) => (
-                      <Link key={deal.href} href={deal.href} className="group flex items-center justify-between px-3 py-3 text-sm font-medium text-[#171412] transition-colors hover:bg-[#FBF8F3]">
+                      <Link
+                        key={deal.href}
+                        href={deal.href}
+                        className="group flex items-center justify-between px-3 py-3 text-sm font-medium text-neutral-800 transition-colors duration-300 hover:bg-neutral-50"
+                      >
                         {deal.label}
-                        <span className="translate-x-[-5px] text-[#A9814D] opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">→</span>
+
+                        <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                          →
+                        </span>
                       </Link>
                     ))}
                   </div>
@@ -183,26 +390,65 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* About Dropdown */}
+            {/* =================================================
+                ABOUT
+            ================================================== */}
+
             <div
               className="relative"
-              onMouseEnter={() => setDesktopDropdown("about")}
-              onMouseLeave={() => setDesktopDropdown(null)}
+              onMouseEnter={() =>
+                setDesktopDropdown("about")
+              }
+              onMouseLeave={() =>
+                setDesktopDropdown(null)
+              }
             >
-              <button type="button" className="flex items-center gap-1.5 py-7 text-[13px] font-medium tracking-wide text-[#171412]">
+              <button
+                type="button"
+                className="flex items-center gap-1.5 py-7 text-[13px] font-medium tracking-wide text-neutral-900"
+              >
                 About
-                <ChevronDown size={14} strokeWidth={1.7} className={`text-[#A9814D] transition-transform duration-200 ${desktopDropdown === "about" ? "rotate-180" : ""}`} />
+
+                <ChevronDown
+                  size={14}
+                  strokeWidth={1.7}
+                  className={`transition-transform duration-200 ${
+                    desktopDropdown === "about"
+                      ? "rotate-180"
+                      : ""
+                  }`}
+                />
               </button>
-              <div className={`absolute left-1/2 top-full w-[280px] -translate-x-1/2 pt-3 transition-all duration-200 ${desktopDropdown === "about" ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}`}>
-                <div className="border border-[#E7E1D8] bg-white p-5 shadow-xl shadow-[#171412]/5">
+
+              {/* About Dropdown */}
+
+              <div
+                className={`absolute left-1/2 top-full w-[290px] -translate-x-1/2 pt-3 transition-all duration-200 ${
+                  desktopDropdown === "about"
+                    ? "visible translate-y-0 opacity-100"
+                    : "invisible -translate-y-2 opacity-0"
+                }`}
+              >
+                <div className="border border-neutral-200 bg-white p-5 shadow-xl">
+
                   <div className="mb-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#A9814D]">Discover Our Brand</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Discover Our Brand
+                    </p>
                   </div>
+
                   <div className="space-y-1">
                     {aboutLinks.map((item) => (
-                      <Link key={item.href} href={item.href} className="group flex items-center justify-between px-3 py-3 text-sm font-medium text-[#171412] transition-colors hover:bg-[#FBF8F3]">
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="group flex items-center justify-between px-3 py-3 text-sm font-medium text-neutral-800 transition-colors duration-300 hover:bg-neutral-50"
+                      >
                         {item.label}
-                        <span className="translate-x-[-5px] text-[#A9814D] opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">→</span>
+
+                        <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                          →
+                        </span>
                       </Link>
                     ))}
                   </div>
@@ -210,168 +456,466 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link href="/contact" className="group relative py-7 text-[13px] font-medium tracking-wide text-[#171412]">
+            {/* -------------------------------------------------
+                CONTACT
+            -------------------------------------------------- */}
+
+            <Link
+              href="/contact"
+              className="group relative py-7 text-[13px] font-medium tracking-wide text-neutral-900"
+            >
               Contact
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#A9814D] transition-all duration-300 group-hover:w-full" />
+
+              <span className="absolute bottom-0 left-0 h-px w-0 bg-neutral-950 transition-all duration-300 group-hover:w-full" />
             </Link>
           </div>
 
-          {/* DESKTOP ACTIONS */}
+          {/* =================================================
+              DESKTOP ACTIONS
+          ================================================== */}
+
           <div className="hidden items-center gap-5 lg:flex">
-            <Link href="/search" aria-label="Search" className="text-[#171412] transition-colors hover:text-[#A9814D]">
-              <Search size={19} strokeWidth={1.6} />
+
+            {/* Search */}
+
+            <Link
+              href="/search"
+              aria-label="Search"
+              className="text-neutral-800 transition-all duration-300 hover:-translate-y-0.5 hover:text-neutral-500"
+            >
+              <Search
+                size={19}
+                strokeWidth={1.6}
+              />
             </Link>
-            <Link href="/wishlist" aria-label="Wishlist" className="relative text-[#171412] transition-colors hover:text-[#A9814D]">
-              <Heart size={19} strokeWidth={1.6} />
-              <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#A9814D] px-1 text-[9px] text-white">0</span>
+
+            {/* Wishlist */}
+
+            <Link
+              href="/wishlist"
+              aria-label="Wishlist"
+              className="relative text-neutral-800 transition-all duration-300 hover:-translate-y-0.5 hover:text-neutral-500"
+            >
+              <Heart
+                size={19}
+                strokeWidth={1.6}
+              />
+
+              <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-neutral-950 px-1 text-[9px] text-white">
+                0
+              </span>
             </Link>
-            <Link href="/cart" aria-label="Cart" className="relative text-[#171412] transition-colors hover:text-[#A9814D]">
-              <ShoppingBag size={20} strokeWidth={1.6} />
-              <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#A9814D] px-1 text-[9px] text-white">0</span>
+
+            {/* Cart */}
+
+            <Link
+              href="/cart"
+              aria-label="Shopping Cart"
+              className="relative text-neutral-800 transition-all duration-300 hover:-translate-y-0.5 hover:text-neutral-500"
+            >
+              <ShoppingBag
+                size={20}
+                strokeWidth={1.6}
+              />
+
+              <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-neutral-950 px-1 text-[9px] text-white">
+                0
+              </span>
             </Link>
-            <Link href="/account" aria-label="Account" className="text-[#171412] transition-colors hover:text-[#A9814D]">
-              <User size={19} strokeWidth={1.6} />
+
+            {/* Account */}
+
+            <Link
+              href="/account"
+              aria-label="Account"
+              className="text-neutral-800 transition-all duration-300 hover:-translate-y-0.5 hover:text-neutral-500"
+            >
+              <User
+                size={19}
+                strokeWidth={1.6}
+              />
             </Link>
           </div>
 
-          {/* MOBILE ACTIONS */}
+          {/* =================================================
+              MOBILE ACTIONS
+          ================================================== */}
+
           <div className="flex items-center gap-4 lg:hidden">
-            <Link href="/search" aria-label="Search" className="text-[#171412]">
-              <Search size={20} strokeWidth={1.7} />
+
+            {/* Search */}
+
+            <Link
+              href="/search"
+              aria-label="Search"
+              className="transition-transform duration-300 active:scale-90"
+            >
+              <Search
+                size={20}
+                strokeWidth={1.7}
+              />
             </Link>
-            <Link href="/cart" aria-label="Cart" className="relative text-[#171412]">
-              <ShoppingBag size={20} strokeWidth={1.7} />
-              <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#A9814D] px-1 text-[9px] text-white">0</span>
+
+            {/* Cart */}
+
+            <Link
+              href="/cart"
+              aria-label="Shopping Cart"
+              className="relative transition-transform duration-300 active:scale-90"
+            >
+              <ShoppingBag
+                size={20}
+                strokeWidth={1.7}
+              />
+
+              <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-neutral-950 px-1 text-[9px] text-white">
+                0
+              </span>
             </Link>
-            <button type="button" aria-label="Open menu" onClick={() => setMobileOpen(true)}>
-              <Menu size={22} strokeWidth={1.7} className="text-[#171412]" />
+
+            {/* Hamburger */}
+
+            <button
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen(true)}
+              className="transition-transform duration-300 active:scale-90"
+            >
+              <Menu
+                size={23}
+                strokeWidth={1.7}
+              />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* MOBILE MENU DRAWER */}
+      {/* =====================================================
+          MOBILE MENU OVERLAY
+      ====================================================== */}
+
       <div
-        data-lenis-prevent
-        className={`fixed inset-0 z-[60] lg:hidden ${mobileOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-[100] lg:hidden ${
+          mobileOpen
+            ? "pointer-events-auto"
+            : "pointer-events-none"
+        }`}
       >
-        {/* Overlay */}
+
+        {/* ---------------------------------------------------
+            BACKDROP
+        ---------------------------------------------------- */}
+
         <div
-          onClick={closeMobile}
-          data-lenis-prevent
-          className={`absolute inset-0 bg-[#171412]/40 transition-opacity duration-300 ${mobileOpen ? "opacity-100" : "opacity-0"}`}
+          onClick={closeMobileMenu}
+          className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ease-out ${
+            mobileOpen
+              ? "opacity-100"
+              : "opacity-0"
+          }`}
         />
 
-        {/* Drawer */}
-        <div
-          data-lenis-prevent
-          className={`absolute right-0 top-0 h-full w-[85%] max-w-sm overflow-y-auto bg-[#FBF8F3] px-6 py-6 transition-transform duration-300 ease-out ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
+        {/* ---------------------------------------------------
+            MOBILE DRAWER
+        ---------------------------------------------------- */}
+
+        <aside
+          aria-hidden={!mobileOpen}
+          className={`fixed right-0 top-0 h-dvh w-[88%] max-w-sm overflow-y-auto overscroll-contain bg-white shadow-2xl transition-transform duration-300 ease-out ${
+            mobileOpen
+              ? "translate-x-0"
+              : "translate-x-full"
+          }`}
         >
-          {/* Drawer Header */}
-          <div className="flex items-center justify-between border-b border-[#E7E1D8] pb-6">
-            <Link href="/" onClick={closeMobile} className="font-serif text-xl font-semibold tracking-[0.2em] text-[#171412]">
+
+          {/* =================================================
+              DRAWER HEADER
+          ================================================== */}
+
+          <div className="sticky top-0 z-10 flex h-[76px] items-center justify-between border-b border-neutral-200 bg-white px-6">
+
+            <Link
+              href="/"
+              onClick={closeMobileMenu}
+              className="text-xl font-semibold tracking-[0.18em]"
+            >
               NOVARA
             </Link>
-            <button type="button" aria-label="Close menu" onClick={closeMobile} className="text-[#171412]">
-              <X size={23} strokeWidth={1.6} />
+
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={closeMobileMenu}
+              className="transition-transform duration-300 active:rotate-90"
+            >
+              <X
+                size={24}
+                strokeWidth={1.6}
+              />
             </button>
           </div>
 
-          {/* Mobile Navigation Links */}
-          <div className="mt-6">
-            <Link href="/" onClick={closeMobile} className="block border-b border-[#E7E1D8] py-4 text-[15px] font-medium text-[#171412]">
+          {/* =================================================
+              MOBILE NAVIGATION
+          ================================================== */}
+
+          <div className="px-6 pb-10">
+
+            {/* -------------------------------------------------
+                HOME
+            -------------------------------------------------- */}
+
+            <Link
+              href="/"
+              onClick={closeMobileMenu}
+              className="block border-b border-neutral-100 py-4 text-sm font-medium"
+            >
               Home
             </Link>
-            <Link href="/shop" onClick={closeMobile} className="block border-b border-[#E7E1D8] py-4 text-[15px] font-medium text-[#171412]">
+
+            {/* -------------------------------------------------
+                SHOP
+            -------------------------------------------------- */}
+
+            <Link
+              href="/shop"
+              onClick={closeMobileMenu}
+              className="block border-b border-neutral-100 py-4 text-sm font-medium"
+            >
               Shop
             </Link>
 
-            {/* Categories */}
-            <div className="border-b border-[#E7E1D8]">
+            {/* =================================================
+                CATEGORIES ACCORDION
+            ================================================== */}
+
+            <div className="border-b border-neutral-100">
+
               <button
                 type="button"
-                onClick={() => setMobileDropdown(mobileDropdown === "categories" ? null : "categories")}
-                className="flex w-full items-center justify-between py-4 text-[15px] font-medium text-[#171412]"
+                aria-expanded={
+                  mobileDropdown === "categories"
+                }
+                onClick={() =>
+                  toggleMobileDropdown("categories")
+                }
+                className="flex w-full items-center justify-between py-4 text-left text-sm font-medium"
               >
                 Categories
-                <ChevronDown size={17} className={`text-[#A9814D] transition-transform ${mobileDropdown === "categories" ? "rotate-180" : ""}`} />
+
+                <ChevronDown
+                  size={17}
+                  strokeWidth={1.7}
+                  className={`transition-transform duration-300 ${
+                    mobileDropdown === "categories"
+                      ? "rotate-180"
+                      : ""
+                  }`}
+                />
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${mobileDropdown === "categories" ? "max-h-96 pb-3" : "max-h-0"}`}>
-                {categories.map((category) => (
-                  <Link key={category.href} href={category.href} onClick={closeMobile} className="block py-2.5 pl-4 text-[15px] text-[#6B6560]">
-                    {category.label}
-                  </Link>
-                ))}
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-out ${
+                  mobileDropdown === "categories"
+                    ? "max-h-[600px] pb-3"
+                    : "max-h-0"
+                }`}
+              >
+                <div className="space-y-1 pl-3">
+                  {categories.map((category) => (
+                    <Link
+                      key={category.href}
+                      href={category.href}
+                      onClick={closeMobileMenu}
+                      className="group flex items-center justify-between py-2.5 text-sm text-neutral-600"
+                    >
+                      {category.label}
+
+                      <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                        →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <Link href="/new-arrivals" onClick={closeMobile} className="block border-b border-[#E7E1D8] py-4 text-[15px] font-medium text-[#171412]">
+            {/* -------------------------------------------------
+                NEW ARRIVALS
+            -------------------------------------------------- */}
+
+            <Link
+              href="/new-arrivals"
+              onClick={closeMobileMenu}
+              className="block border-b border-neutral-100 py-4 text-sm font-medium"
+            >
               New Arrivals
             </Link>
 
-            {/* Deals */}
-            <div className="border-b border-[#E7E1D8]">
+            {/* =================================================
+                DEALS / OFFERS ACCORDION
+            ================================================== */}
+
+            <div className="border-b border-neutral-100">
+
               <button
                 type="button"
-                onClick={() => setMobileDropdown(mobileDropdown === "deals" ? null : "deals")}
-                className="flex w-full items-center justify-between py-4 text-[15px] font-medium text-[#171412]"
+                aria-expanded={
+                  mobileDropdown === "deals"
+                }
+                onClick={() =>
+                  toggleMobileDropdown("deals")
+                }
+                className="flex w-full items-center justify-between py-4 text-left text-sm font-medium"
               >
                 Deals / Offers
-                <ChevronDown size={17} className={`text-[#A9814D] transition-transform ${mobileDropdown === "deals" ? "rotate-180" : ""}`} />
+
+                <ChevronDown
+                  size={17}
+                  strokeWidth={1.7}
+                  className={`transition-transform duration-300 ${
+                    mobileDropdown === "deals"
+                      ? "rotate-180"
+                      : ""
+                  }`}
+                />
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${mobileDropdown === "deals" ? "max-h-72 pb-3" : "max-h-0"}`}>
-                {deals.map((deal) => (
-                  <Link key={deal.href} href={deal.href} onClick={closeMobile} className="block py-2.5 pl-4 text-[15px] text-[#6B6560]">
-                    {deal.label}
-                  </Link>
-                ))}
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-out ${
+                  mobileDropdown === "deals"
+                    ? "max-h-80 pb-3"
+                    : "max-h-0"
+                }`}
+              >
+                <div className="space-y-1 pl-3">
+                  {deals.map((deal) => (
+                    <Link
+                      key={deal.href}
+                      href={deal.href}
+                      onClick={closeMobileMenu}
+                      className="group flex items-center justify-between py-2.5 text-sm text-neutral-600"
+                    >
+                      {deal.label}
+
+                      <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                        →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* About */}
-            <div className="border-b border-[#E7E1D8]">
+            {/* =================================================
+                ABOUT ACCORDION
+            ================================================== */}
+
+            <div className="border-b border-neutral-100">
+
               <button
                 type="button"
-                onClick={() => setMobileDropdown(mobileDropdown === "about" ? null : "about")}
-                className="flex w-full items-center justify-between py-4 text-[15px] font-medium text-[#171412]"
+                aria-expanded={
+                  mobileDropdown === "about"
+                }
+                onClick={() =>
+                  toggleMobileDropdown("about")
+                }
+                className="flex w-full items-center justify-between py-4 text-left text-sm font-medium"
               >
                 About
-                <ChevronDown size={17} className={`text-[#A9814D] transition-transform ${mobileDropdown === "about" ? "rotate-180" : ""}`} />
+
+                <ChevronDown
+                  size={17}
+                  strokeWidth={1.7}
+                  className={`transition-transform duration-300 ${
+                    mobileDropdown === "about"
+                      ? "rotate-180"
+                      : ""
+                  }`}
+                />
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${mobileDropdown === "about" ? "max-h-72 pb-3" : "max-h-0"}`}>
-                {aboutLinks.map((item) => (
-                  <Link key={item.href} href={item.href} onClick={closeMobile} className="block py-2.5 pl-4 text-[15px] text-[#6B6560]">
-                    {item.label}
-                  </Link>
-                ))}
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-out ${
+                  mobileDropdown === "about"
+                    ? "max-h-80 pb-3"
+                    : "max-h-0"
+                }`}
+              >
+                <div className="space-y-1 pl-3">
+                  {aboutLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={closeMobileMenu}
+                      className="group flex items-center justify-between py-2.5 text-sm text-neutral-600"
+                    >
+                      {item.label}
+
+                      <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                        →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <Link href="/contact" onClick={closeMobile} className="block border-b border-[#E7E1D8] py-4 text-[15px] font-medium text-[#171412]">
+            {/* -------------------------------------------------
+                CONTACT
+            -------------------------------------------------- */}
+
+            <Link
+              href="/contact"
+              onClick={closeMobileMenu}
+              className="block border-b border-neutral-100 py-4 text-sm font-medium"
+            >
               Contact
             </Link>
-          </div>
 
-          {/* Drawer Bottom Actions */}
-          <div className="mt-8 grid grid-cols-2 gap-3">
-            <Link
-              href="/wishlist"
-              onClick={closeMobile}
-              className="flex items-center justify-center gap-2 border border-[#E7E1D8] py-3 text-xs font-medium uppercase tracking-wider text-[#171412] transition-colors hover:border-[#A9814D] hover:text-[#A9814D]"
-            >
-              <Heart size={16} />
-              Wishlist
-            </Link>
-            <Link
-              href="/account"
-              onClick={closeMobile}
-              className="flex items-center justify-center gap-2 border border-[#E7E1D8] py-3 text-xs font-medium uppercase tracking-wider text-[#171412] transition-colors hover:border-[#A9814D] hover:text-[#A9814D]"
-            >
-              <User size={16} />
-              Account
-            </Link>
+            {/* =================================================
+                MOBILE ACTIONS
+            ================================================== */}
+
+            <div className="mt-8 grid grid-cols-2 gap-3">
+
+              <Link
+                href="/wishlist"
+                onClick={closeMobileMenu}
+                className="flex items-center justify-center gap-2 border border-neutral-200 py-3 text-xs font-medium uppercase tracking-wider transition-colors duration-300 hover:bg-neutral-50"
+              >
+                <Heart size={16} />
+                Wishlist
+              </Link>
+
+              <Link
+                href="/account"
+                onClick={closeMobileMenu}
+                className="flex items-center justify-center gap-2 border border-neutral-200 py-3 text-xs font-medium uppercase tracking-wider transition-colors duration-300 hover:bg-neutral-50"
+              >
+                <User size={16} />
+                Account
+              </Link>
+            </div>
+
+            {/* =================================================
+                MOBILE FOOTER TEXT
+            ================================================== */}
+
+            <div className="mt-10 border-t border-neutral-200 pt-6">
+              <p className="text-[10px] uppercase tracking-[0.18em] text-neutral-400">
+                Premium Accessories
+              </p>
+
+              <p className="mt-2 text-xs leading-5 text-neutral-500">
+                Timeless accessories designed for
+                modern everyday living.
+              </p>
+            </div>
           </div>
-        </div>
+        </aside>
       </div>
     </header>
   );
