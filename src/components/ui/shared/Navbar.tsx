@@ -140,18 +140,12 @@ export default function Navbar() {
 
   return (
     <>
-    <header className="sticky top-0 z-50 w-full bg-[#FBF8F3]">
+    <header className={`sticky top-0 z-50 w-full bg-[#FBF8F3] ${mobileOpen ? "invisible" : ""}`}>
       {/* =====================================================
           ANNOUNCEMENT BAR
       ====================================================== */}
 
-      <div className="bg-[#171412] text-[#FBF8F3]">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-center px-4 text-center sm:px-5 lg:px-6 xl:px-8">
-          <p className="text-[10px] font-medium tracking-[0.18em] sm:text-[11px]">
-            Free Shipping on Orders Over 5,000 BDT
-          </p>
-        </div>
-      </div>
+      
 
       {/* =====================================================
           MAIN NAVBAR
@@ -799,4 +793,3 @@ export default function Navbar() {
     </>
   );
 }
-// https://bridge508.qodeinteractive.com/?_ga=2.259774978.96138890.1787648202-794819599.1787648202
