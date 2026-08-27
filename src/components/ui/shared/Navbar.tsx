@@ -139,14 +139,18 @@ export default function Navbar() {
   ======================================================== */
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full bg-[#FBF8F3]">
       {/* =====================================================
           ANNOUNCEMENT BAR
       ====================================================== */}
 
-      <div className="bg-[#171412] px-4 py-2.5 text-center text-[10px] font-medium uppercase tracking-[0.2em] text-[#F2EADD] sm:text-[11px]">
-        Free Shipping on Orders Over{" "}
-        <span className="text-[#C79A5C]">৳5,000</span>
+      <div className="bg-[#171412] text-[#FBF8F3]">
+        <div className="mx-auto flex h-9 max-w-7xl items-center justify-center px-4 text-center sm:px-5 lg:px-6 xl:px-8">
+          <p className="text-[10px] font-medium tracking-[0.18em] sm:text-[11px]">
+            Free Shipping on Orders Over 5,000 BDT
+          </p>
+        </div>
       </div>
 
       {/* =====================================================
@@ -508,8 +512,10 @@ export default function Navbar() {
         </div>
       </nav>
 
+    </header>
+
       {/* =====================================================
-          MOBILE MENU OVERLAY
+          MOBILE MENU OVERLAY (outside header to escape z-50)
       ====================================================== */}
 
       <div
@@ -790,7 +796,6 @@ export default function Navbar() {
           </div>
         </aside>
       </div>
-    </header>
   );
 }
 // https://bridge508.qodeinteractive.com/?_ga=2.259774978.96138890.1787648202-794819599.1787648202
