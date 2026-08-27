@@ -151,6 +151,8 @@ export default function Navbar() {
           MAIN NAVBAR
       ====================================================== */}
 
+
+
       <nav className="border-b border-[#E7E1D8] bg-[#FBF8F3]">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[72px] sm:px-5 lg:h-[76px] lg:px-6 xl:px-8">
 
