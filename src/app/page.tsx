@@ -1,9 +1,17 @@
-import Image from "next/image";
+import FeaturedCollection from "@/components/ui/shared/FeaturedCollection";
+import HeroSection from "@/components/ui/shared/HeroSection";
+import NewArrivalsSection from "@/components/ui/shared/NewArrivalsSection";
+import ShopByCategory from "@/components/ui/shared/ShopByCategory";
+import DiscoverCollections from "@/components/ui/shared/DiscoverCollections";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-    {/* <h1 className='text-3xl font-bold text-red-500'>snearaa</h1> */}
-    </div>
+    <main className="flex flex-col flex-1">
+      <HeroSection />
+      <ShopByCategory />
+      <NewArrivalsSection />
+      
+      <FeaturedCollection/>
+    </main>
   );
 }

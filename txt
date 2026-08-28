@@ -1,0 +1,42 @@
+data-lenis-prevent — Lenis ke drawer er wheel event ignore korar bole
+onWheel + stopPropagation — wheel event backdrop/container e jete dey na, drawer-e thake
+#   font-family: 'Montserrat', sans-serif  title and titleAccent e
+Geist Sans	Body/main text (default)	font-sans
+Geist Mono	Code/monospace	font-mono
+Serif (system)	NOVARA logo	font-serif
+className="block font-[family-name:var(--font-dancing-script)] text-[2.5rem] leading-none text-[#A9814D]/50 sm:text-[3rem] md:text-[3.5rem]">
+            crafted for you
+            #Sob jaygate #A9814D → #ff6289
+
+            #   --black-500
+#000
+: #000;
+   --blue-500: var(--blue-300);
+   --beige-500: #f4f4ef;
+   --white-500: white;
+   --green-500: #285652;
+   --pink-500: #ff6189;
+   --grey-600: #4b4b4b;
+   --poplin-pink: #ff6289;
+   --beige-600: #f4f4f0;
+   --grey-400: #d1d1d1;
+   --yellow-500: #ffc945;
+   --blue-300: #6ac1ff;
+   --blue-400: #8fd0ff;
+   --grey-500: #bfbfbf;
+   --blue-600: #0076ca;
+   --blue-50: #c2e6ff;
+   --red: #ff1818;
+   --grey-300: #d1d1d1;
+   --blue-200: #8fd0ff;
+   --purple-500: #c0afe2;
+   --blue-100: #9ccffb;
+   --green-400: #62ba76;
+   --blue-800: #002844;
+   --blue-30: #e5f4ff;
+   --yellow-400: #fff2d1;
+   --green-300: #dff6e9;
+   --pink-400: #ffebf0;
+}
+--bricks-color-66487b 
+--bricks-color-66487b 
