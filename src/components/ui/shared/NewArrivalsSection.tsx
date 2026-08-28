@@ -28,7 +28,7 @@ export default function NewArrivalsSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 md:gap-4">
+        <div className="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-3 md:gap-4">
 
           {newItems.slice(0, 6).map((item) => (
             <Link
