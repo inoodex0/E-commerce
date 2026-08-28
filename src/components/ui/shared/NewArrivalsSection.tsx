@@ -14,21 +14,21 @@ const newItems = [
 
 export default function NewArrivalsSection() {
   return (
-    <section className="bg-white py-16 sm:py-20 md:py-24">
+    <section className="bg-white py-12 sm:py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-6 xl:px-8">
 
         {/* Header */}
-        <div className="mb-10 text-center sm:mb-14">
-          <span className="block font-[family-name:var(--font-dancing-script)] text-[2.5rem] leading-none text-[#ff6289]/50 sm:text-[3rem] md:text-[3.5rem]">
+        <div className="mb-8 text-center sm:mb-12 md:mb-14">
+          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#ff6289]/50 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
             just arrived
           </span>
-          <h2 className="mt-4 font-serif text-3xl font-medium tracking-[0.08em] text-[#171412] sm:text-4xl md:text-[42px]">
+          <h2 className="mt-3 font-serif text-2xl font-medium tracking-[0.08em] text-[#171412] sm:text-3xl md:text-4xl lg:text-[42px]">
             NEW ARRIVALS
           </h2>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-3 md:gap-4">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:gap-5">
 
           {newItems.slice(0, 6).map((item) => (
             <Link
@@ -37,11 +37,11 @@ export default function NewArrivalsSection() {
               className="new-arrival-card group relative aspect-square overflow-hidden bg-[#F5F2EC]"
             >
               {/* Text behind image */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#FBF8F3] px-4">
-                <h3 className="text-center font-serif text-base font-medium tracking-wide text-[#171412] sm:text-lg">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#FBF8F3] px-3 sm:px-4">
+                <h3 className="text-center font-serif text-xs font-medium tracking-wide text-[#171412] sm:text-sm md:text-base lg:text-lg">
                   {item.name}
                 </h3>
-                <p className="mt-1 text-center text-[11px] tracking-wider text-[#6B6560]">
+                <p className="mt-0.5 text-center text-[9px] tracking-wider text-[#6B6560] sm:text-[10px] sm:mt-1 md:text-[11px]">
                   {item.tag}
                 </p>
               </div>
@@ -62,10 +62,10 @@ export default function NewArrivalsSection() {
         </div>
 
         {/* View All */}
-        <div className="mt-12 text-center">
+        <div className="mt-8 text-center sm:mt-10 md:mt-12">
           <Link
             href="#"
-            className="inline-flex items-center gap-3 border border-[#171412] bg-white px-8 py-3.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#171412] transition-all duration-300 hover:bg-[#ff6289] hover:border-[#ff6289] hover:text-white"
+            className="inline-flex items-center gap-2 border border-[#171412] bg-white px-6 py-3 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#ff6289] hover:border-[#ff6289] hover:text-white sm:px-8 sm:py-3.5 sm:text-[10px] sm:tracking-[0.18em]"
           >
             View All New Arrivals
           </Link>

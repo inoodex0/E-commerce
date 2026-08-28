@@ -49,21 +49,21 @@ const categories = [
 
 export default function ShopByCategory() {
   return (
-    <section className="bg-[#FBF8F3] mt-0 py-16 sm:py-20 md:py-24">
+    <section className="bg-[#FBF8F3] mt-0 py-12 sm:py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-6 xl:px-8">
 
         {/* =====================================================
             HEADER
         ====================================================== */}
 
-        <div className="relative mb-10 text-center sm:mb-14">
-          <span className="block font-[family-name:var(--font-dancing-script)] text-[2.5rem] leading-none text-[#ff6289]/50 sm:text-[3rem] md:text-[3.5rem]">
+        <div className="relative mb-8 text-center sm:mb-12 md:mb-14">
+          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#ff6289]/50 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
             crafted for you
           </span>
-          <h2 className="mt-4 font-serif text-3xl font-medium tracking-[0.08em] text-[#171412] sm:text-4xl md:text-[42px]">
+          <h2 className="mt-3 font-serif text-2xl font-medium tracking-[0.08em] text-[#171412] sm:text-3xl md:text-4xl lg:text-[42px]">
             SHOP BY CATEGORY
           </h2>
-          <p className="mx-auto mt-4 max-w-[400px] text-[13px] leading-6 text-[#6B6560] sm:text-sm sm:leading-7">
+          <p className="mx-auto mt-3 max-w-[340px] text-xs leading-5 text-[#6B6560] sm:max-w-[400px] sm:text-sm sm:leading-7">
             Explore our carefully curated collections designed to complement your unique style.
           </p>
         </div>
@@ -72,7 +72,7 @@ export default function ShopByCategory() {
             GRID
         ====================================================== */}
 
-        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-7">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-7">
 
           {categories.map((category) => (
             <Link
@@ -107,11 +107,11 @@ export default function ShopByCategory() {
               </div>
 
               {/* Text */}
-              <div className="mt-4 text-center sm:mt-5">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#171412] transition-colors duration-300 group-hover:text-[#ff6289] sm:text-sm">
+              <div className="mt-2.5 text-center sm:mt-4 md:mt-5">
+                <h3 className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#171412] transition-colors duration-300 group-hover:text-[#ff6289] sm:text-xs md:text-sm">
                   {category.name}
                 </h3>
-                <span className="mt-1.5 block h-px w-0 bg-[#ff6289] transition-all duration-500 group-hover:mx-auto group-hover:w-10" />
+                <span className="mt-1 block h-px w-0 bg-[#ff6289] transition-all duration-500 group-hover:mx-auto group-hover:w-8 sm:group-hover:w-10" />
               </div>
 
             </Link>

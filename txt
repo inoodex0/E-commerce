@@ -40,3 +40,6 @@ className="block font-[family-name:var(--font-dancing-script)] text-[2.5rem] lea
 }
 --bricks-color-66487b 
 --bricks-color-66487b 
+https://wpamerce.com/product/high-neck-midi-wool-coat/
+https://bridge487.qodeinteractive.com/about-us/
+https://bridge508.qodeinteractive.com/

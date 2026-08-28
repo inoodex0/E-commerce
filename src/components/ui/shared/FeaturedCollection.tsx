@@ -6,7 +6,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export default function FeaturedCollection() {
   return (
-    <section className="w-full bg-white py-20 sm:py-24 lg:py-32">
+    <section className="w-full bg-white py-14 sm:py-20 lg:py-32">
 
       <div className="mx-auto max-w-[1600px] px-0 sm:px-8 lg:px-12 xl:px-16">
 
@@ -37,7 +37,7 @@ export default function FeaturedCollection() {
           <h2
             className="
               font-sans
-              text-[clamp(3rem,6vw,6rem)]
+              text-[clamp(2.2rem,6vw,6rem)]
               font-medium
               leading-[0.85]
               tracking-[-0.04em]
@@ -109,16 +109,17 @@ export default function FeaturedCollection() {
             className="
               relative
               flex
-              min-h-[420px]
+              min-h-[350px]
               flex-col
               justify-center
               overflow-hidden
               border-b
               border-neutral-200
               bg-white
-              px-6
-              py-14
-              sm:px-10
+              px-5
+              py-10
+              sm:px-8
+              sm:py-14
               lg:min-h-0
               lg:px-14
               xl:px-16
@@ -188,7 +189,7 @@ export default function FeaturedCollection() {
 
             {/* Buttons */}
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 sm:mt-9">
               <Link
                 href="/collections/signature"
                 className="
@@ -255,16 +256,17 @@ export default function FeaturedCollection() {
             className="
               relative
               flex
-              min-h-[420px]
+              min-h-[350px]
               flex-col
               justify-center
               overflow-hidden
               border-b
               border-neutral-200
               bg-[#FAF9F7]
-              px-6
-              py-14
-              sm:px-10
+              px-5
+              py-10
+              sm:px-8
+              sm:py-14
               lg:min-h-0
               lg:px-14
               xl:px-16
