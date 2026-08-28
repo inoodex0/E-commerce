@@ -45,7 +45,7 @@ export default function FeaturedCollection() {
             "
           >
             Details That{" "}
-            <span className="italic text-neutral-500">
+            <span className="text-neutral-500">
               Define You.
             </span>
           </h2>
@@ -154,7 +154,6 @@ export default function FeaturedCollection() {
                 font-sans
                 text-[clamp(2.2rem,4vw,4.3rem)]
                 font-medium
-                italic
                 leading-[0.95]
                 tracking-[-0.025em]
                 text-neutral-900
@@ -310,7 +309,7 @@ export default function FeaturedCollection() {
             >
               What you wear
               <br />
-              <span className="italic text-neutral-500">
+              <span className="text-neutral-500">
                 says everything.
               </span>
             </h3>

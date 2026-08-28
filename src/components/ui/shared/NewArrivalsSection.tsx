@@ -30,7 +30,7 @@ export default function NewArrivalsSection() {
         {/* Grid */}
         <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 md:gap-4">
 
-          {newItems.map((item) => (
+          {newItems.slice(0, 6).map((item) => (
             <Link
               key={item.id}
               href={item.href}
@@ -64,7 +64,7 @@ export default function NewArrivalsSection() {
         {/* View All */}
         <div className="mt-12 text-center">
           <Link
-            href="/new-arrivals"
+            href="#"
             className="inline-flex items-center gap-3 border border-[#171412] bg-white px-8 py-3.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#171412] transition-all duration-300 hover:bg-[#ff6289] hover:border-[#ff6289] hover:text-white"
           >
             View All New Arrivals
