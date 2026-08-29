@@ -165,7 +165,9 @@ export default function NewArrivals() {
               text-neutral-900
               transition-all
               duration-300
-              hover:border-neutral-950
+              hover:border-[#fd6f93]
+              hover:bg-[#fd6f93]
+              hover:text-white
             "
           >
             View All Products
@@ -502,8 +504,8 @@ export default function NewArrivals() {
                       text-neutral-900
                       transition-all
                       duration-300
-                      hover:border-neutral-950
-                      hover:bg-neutral-950
+                      hover:border-[#fd6f93]
+                      hover:bg-[#fd6f93]
                       hover:text-white
                     "
                   >
@@ -545,8 +547,8 @@ export default function NewArrivals() {
               tracking-[0.16em]
               transition-all
               duration-300
-              hover:border-neutral-950
-              hover:bg-neutral-950
+              hover:border-[#fd6f93]
+              hover:bg-[#fd6f93]
               hover:text-white
             "
           >

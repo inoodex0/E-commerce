@@ -7,13 +7,13 @@ export default function AboutPage() {
       <div className="mx-auto max-w-4xl">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#ff6289] transition-colors hover:text-[#171412]"
+          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#fd6f93] transition-colors hover:text-[#171412]"
         >
           <ArrowLeft size={16} /> Back to Home
         </Link>
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">About NOVARA</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">About NOVARA</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             Redefining Everyday Luxury
           </h1>
@@ -29,17 +29,17 @@ export default function AboutPage() {
 
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="border border-[#E7E1D8] bg-white p-6 text-center">
-              <Gem className="mx-auto text-[#ff6289]" size={32} />
+              <Gem className="mx-auto text-[#fd6f93]" size={32} />
               <h3 className="mt-3 font-serif text-base font-semibold text-[#171412]">Artisan Made</h3>
               <p className="mt-1 text-xs text-[#6B6560]">Hand-finished by master craftspeople.</p>
             </div>
             <div className="border border-[#E7E1D8] bg-white p-6 text-center">
-              <ShieldCheck className="mx-auto text-[#ff6289]" size={32} />
+              <ShieldCheck className="mx-auto text-[#fd6f93]" size={32} />
               <h3 className="mt-3 font-serif text-base font-semibold text-[#171412]">Guaranteed Quality</h3>
               <p className="mt-1 text-xs text-[#6B6560]">Built to endure for generations.</p>
             </div>
             <div className="border border-[#E7E1D8] bg-white p-6 text-center">
-              <Sparkles className="mx-auto text-[#ff6289]" size={32} />
+              <Sparkles className="mx-auto text-[#fd6f93]" size={32} />
               <h3 className="mt-3 font-serif text-base font-semibold text-[#171412]">Ethical Luxury</h3>
               <p className="mt-1 text-xs text-[#6B6560]">Sustainably sourced premium leather & gold.</p>
             </div>

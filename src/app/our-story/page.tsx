@@ -8,7 +8,7 @@ export default function OurStoryPage() {
        
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">Our Heritage</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Our Heritage</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             Our Story
           </h1>

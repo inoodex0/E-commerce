@@ -187,7 +187,7 @@ export default function HeroSection() {
         {/* CTA Button */}
         <Link
           href="/shop"
-          className="hero-slide-up mt-6 inline-flex h-11 items-center gap-2.5 border border-white/40 bg-white/10 px-6 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm transition-all duration-300 hover:border-[#ff6289] hover:bg-[#ff6289] sm:mt-10 sm:h-12 sm:px-8 sm:text-[10px] sm:tracking-[0.18em]"
+          className="hero-slide-up mt-5 inline-flex h-10 items-center gap-2 border border-white/40 bg-white/10 px-5 text-[8.5px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-all duration-300 hover:border-[#fd6f93] hover:bg-[#fd6f93] sm:mt-10 sm:h-12 sm:px-8 sm:text-[10px] sm:tracking-[0.18em]"
           style={{ animationDelay: "0.35s" }}
         >
           {slide.cta}
@@ -207,7 +207,7 @@ export default function HeroSection() {
             onClick={() => goTo(idx)}
             className={`h-1.5 rounded-full transition-all duration-500 ${
               idx === current
-                ? "w-7 bg-[#ff6289]"
+                ? "w-7 bg-[#fd6f93]"
                 : "w-1.5 bg-white/40 hover:bg-white/70"
             }`}
           />

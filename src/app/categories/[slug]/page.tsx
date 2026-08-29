@@ -28,7 +28,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">Category</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Category</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             {formattedCategory}
           </h1>
@@ -51,13 +51,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 />
               </div>
               <div className="flex flex-1 flex-col p-5">
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-[#ff6289]">
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-[#fd6f93]">
                   {formattedCategory}
                 </span>
                 <h3 className="mt-1 font-serif text-lg font-medium text-[#171412]">{item.name}</h3>
                 <div className="mt-auto flex items-center justify-between pt-4">
                   <span className="text-sm font-semibold text-[#171412]">{item.price}</span>
-                  <button className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#ff6289] hover:border-[#ff6289]">
+                  <button className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]">
                     <ShoppingBag size={14} /> Add to Cart
                   </button>
                 </div>

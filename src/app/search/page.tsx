@@ -7,13 +7,13 @@ export default function SearchPage() {
       <div className="mx-auto max-w-4xl">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#ff6289] transition-colors hover:text-[#171412]"
+          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#fd6f93] transition-colors hover:text-[#171412]"
         >
           <ArrowLeft size={16} /> Back to Home
         </Link>
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">Discover</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Discover</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             Search Catalogue
           </h1>
@@ -24,9 +24,9 @@ export default function SearchPage() {
             <input
               type="text"
               placeholder="Search for watches, bags, wallets, sunglasses..."
-              className="w-full border border-[#E7E1D8] bg-white px-5 py-4 pl-12 text-base text-[#171412] outline-none transition-colors focus:border-[#ff6289]"
+              className="w-full border border-[#E7E1D8] bg-white px-5 py-4 pl-12 text-base text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
             />
-            <Search className="absolute left-4 text-[#ff6289]" size={20} />
+            <Search className="absolute left-4 text-[#fd6f93]" size={20} />
           </div>
 
           <div className="mt-8 rounded-sm border border-[#E7E1D8] bg-white p-8 text-center">

@@ -8,7 +8,7 @@ export default function ContactPage() {
         
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">Get In Touch</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Get In Touch</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
            ASK US ANYTHING
           </h1>
@@ -19,25 +19,25 @@ export default function ContactPage() {
           {/* Contact Details */}
           <div className="space-y-6">
             <div className="flex items-start gap-4 border border-[#E7E1D8] bg-white p-5">
-              <Mail className="mt-1 text-[#ff6289]" size={20} />
+              <Mail className="mt-1 text-[#fd6f93]" size={20} />
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#ff6289]">Email Us</h4>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#fd6f93]">Email Us</h4>
                 <p className="mt-1 text-sm font-medium text-[#171412]">novara@example.com</p>
               </div>
             </div>
 
             <div className="flex items-start gap-4 border border-[#E7E1D8] bg-white p-5">
-              <Phone className="mt-1 text-[#ff6289]" size={20} />
+              <Phone className="mt-1 text-[#fd6f93]" size={20} />
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#ff6289]">Call Concierge</h4>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#fd6f93]">Call Concierge</h4>
                 <p className="mt-1 text-sm font-medium text-[#171412]">+1 (800) 555-NOVARA</p>
               </div>
             </div>
 
             <div className="flex items-start gap-4 border border-[#E7E1D8] bg-white p-5">
-              <MapPin className="mt-1 text-[#ff6289]" size={20} />
+              <MapPin className="mt-1 text-[#fd6f93]" size={20} />
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#ff6289]">Headquarters</h4>
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#fd6f93]">Headquarters</h4>
                 <p className="mt-1 text-sm font-medium text-[#171412]">Fifth Avenue, Suite 1400, New York, NY</p>
               </div>
             </div>
@@ -52,7 +52,7 @@ export default function ContactPage() {
                 <input
                   type="text"
                   placeholder="John Doe"
-                  className="mt-1 w-full border border-[#E7E1D8] p-2.5 text-sm outline-none focus:border-[#ff6289]"
+                  className="mt-1 w-full border border-[#E7E1D8] p-2.5 text-sm outline-none focus:border-[#fd6f93]"
                 />
               </div>
               <div>
@@ -60,7 +60,7 @@ export default function ContactPage() {
                 <input
                   type="email"
                   placeholder="john@example.com"
-                  className="mt-1 w-full border border-[#E7E1D8] p-2.5 text-sm outline-none focus:border-[#ff6289]"
+                  className="mt-1 w-full border border-[#E7E1D8] p-2.5 text-sm outline-none focus:border-[#fd6f93]"
                 />
               </div>
               <div>
@@ -68,12 +68,12 @@ export default function ContactPage() {
                 <textarea
                   rows={4}
                   placeholder="How can we assist you today?"
-                  className="mt-1 w-full border border-[#E7E1D8] p-2.5 text-sm outline-none focus:border-[#ff6289]"
+                  className="mt-1 w-full border border-[#E7E1D8] p-2.5 text-sm outline-none focus:border-[#fd6f93]"
                 />
               </div>
               <button
                 type="button"
-                className="flex w-full items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#ff6289] hover:border-[#ff6289]"
+                className="flex w-full items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
               >
                 <Send size={14} /> Send Message
               </button>

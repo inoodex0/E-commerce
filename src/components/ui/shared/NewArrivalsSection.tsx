@@ -19,7 +19,7 @@ export default function NewArrivalsSection() {
 
         {/* Header */}
         <div className="mb-8 text-center sm:mb-12 md:mb-14">
-          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#ff6289]/50 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
+          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#fd6f93]/50 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
             just arrived
           </span>
           <h2 className="mt-3 font-serif text-2xl font-medium tracking-[0.08em] text-[#171412] sm:text-3xl md:text-4xl lg:text-[42px]">
@@ -65,7 +65,7 @@ export default function NewArrivalsSection() {
         <div className="mt-8 text-center sm:mt-10 md:mt-12">
           <Link
             href="#"
-            className="inline-flex items-center gap-2 border border-[#171412] bg-white px-6 py-3 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#ff6289] hover:border-[#ff6289] hover:text-white sm:px-8 sm:py-3.5 sm:text-[10px] sm:tracking-[0.18em]"
+            className="inline-flex items-center gap-2 border border-[#171412] bg-white px-6 py-3 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] hover:text-white sm:px-8 sm:py-3.5 sm:text-[10px] sm:tracking-[0.18em]"
           >
             View All New Arrivals
           </Link>

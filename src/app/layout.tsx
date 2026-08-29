@@ -4,6 +4,7 @@ import Navbar from "@/components/ui/shared/Navbar";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
 import GsapProvider from "@/components/shared/GsapProvider";
 import "./globals.css";
+import Footer from "@/components/ui/shared/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </GsapProvider>
         </SmoothScrollProvider>
+        <Footer/>
       </body>
     </html>
   );

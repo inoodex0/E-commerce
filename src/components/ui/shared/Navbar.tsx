@@ -18,7 +18,7 @@ import {
    TYPES
 ========================================================= */
 
-type DropdownType = "categories" | "deals" | "about" | null;
+type DropdownType = "categories" | "deals" | "about" | "cart" | null;
 
 /* =========================================================
    DATA
@@ -213,7 +213,7 @@ export default function Navbar() {
               className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
             >
               Home
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#ff6289] transition-all duration-300 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
             </Link>
 
             {/* -------------------------------------------------
@@ -225,7 +225,7 @@ export default function Navbar() {
               className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
             >
               Shop
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#ff6289] transition-all duration-300 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
             </Link>
 
             {/* =================================================
@@ -250,7 +250,7 @@ export default function Navbar() {
                 <ChevronDown
                   size={14}
                   strokeWidth={1.7}
-                  className={`text-[#ff6289] transition-transform duration-200 ${
+                  className={`text-[#fd6f93] transition-transform duration-200 ${
                     desktopDropdown === "categories" ? "rotate-180" : ""
                   }`}
                 />
@@ -270,7 +270,7 @@ export default function Navbar() {
                   {/* Heading */}
 
                   <div className="mb-6">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#ff6289]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#fd6f93]">
                       Shop By Category
                     </p>
                     <h3 className="mt-2 font-serif text-xl font-medium text-[#171412]">
@@ -283,10 +283,10 @@ export default function Navbar() {
                   <div className="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 sm:gap-x-10 sm:gap-y-6">
                     {categories.map((category) => (
                       <Link key={category.href} href={category.href} onClick={() => setDesktopDropdown(null)} className="group">
-                        <span className="text-sm font-medium text-[#171412] transition-colors duration-300 group-hover:text-[#ff6289]">
+                        <span className="text-sm font-medium text-[#171412] transition-colors duration-300 group-hover:text-[#fd6f93]">
                           {category.label}
                         </span>
-                        <span className="mt-2 block h-px w-0 bg-[#ff6289] transition-all duration-300 group-hover:w-full" />
+                        <span className="mt-2 block h-px w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
                       </Link>
                     ))}
                   </div>
@@ -307,7 +307,7 @@ export default function Navbar() {
               className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
             >
               New Arrivals
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#ff6289] transition-all duration-300 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
             </Link>
 
             {/* =================================================
@@ -328,7 +328,7 @@ export default function Navbar() {
                 <ChevronDown
                   size={14}
                   strokeWidth={1.7}
-                  className={`text-[#ff6289] transition-transform duration-200 ${
+                  className={`text-[#fd6f93] transition-transform duration-200 ${
                     desktopDropdown === "deals" ? "rotate-180" : ""
                   }`}
                 />
@@ -345,7 +345,7 @@ export default function Navbar() {
               >
                 <div className="border border-[#E7E1D8] bg-white p-5 shadow-xl shadow-[#171412]/5">
                   <div className="mb-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#ff6289]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#fd6f93]">
                       Special Offers
                     </p>
                   </div>
@@ -359,7 +359,7 @@ export default function Navbar() {
                         className="group flex items-center justify-between px-3 py-3 text-sm font-medium text-[#171412] transition-colors duration-300 hover:bg-[#FBF8F3]"
                       >
                         {deal.label}
-                        <span className="translate-x-2 text-[#ff6289] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                        <span className="translate-x-2 text-[#fd6f93] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                           →
                         </span>
                       </Link>
@@ -387,7 +387,7 @@ export default function Navbar() {
                 <ChevronDown
                   size={14}
                   strokeWidth={1.7}
-                  className={`text-[#ff6289] transition-transform duration-200 ${
+                  className={`text-[#fd6f93] transition-transform duration-200 ${
                     desktopDropdown === "about" ? "rotate-180" : ""
                   }`}
                 />
@@ -404,7 +404,7 @@ export default function Navbar() {
               >
                 <div className="border border-[#E7E1D8] bg-white p-5 shadow-xl shadow-[#171412]/5">
                   <div className="mb-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#ff6289]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#fd6f93]">
                       Discover Our Brand
                     </p>
                   </div>
@@ -418,7 +418,7 @@ export default function Navbar() {
                         className="group flex items-center justify-between px-3 py-3 text-sm font-medium text-[#171412] transition-colors duration-300 hover:bg-[#FBF8F3]"
                       >
                         {item.label}
-                        <span className="translate-x-2 text-[#ff6289] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                        <span className="translate-x-2 text-[#fd6f93] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                           →
                         </span>
                       </Link>
@@ -437,7 +437,7 @@ export default function Navbar() {
               className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
             >
               Contact
-              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#ff6289] transition-all duration-300 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
             </Link>
           </div>
 
@@ -452,7 +452,7 @@ export default function Navbar() {
             <Link
               href="/search"
               aria-label="Search"
-              className="text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#ff6289]"
+              className="text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#fd6f93]"
             >
               <Search size={18} strokeWidth={1.6} className="xl:h-[19px] xl:w-[19px]" />
             </Link>
@@ -462,10 +462,10 @@ export default function Navbar() {
             <Link
               href="/wishlist"
               aria-label="Wishlist"
-              className="relative text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#ff6289]"
+              className="relative text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#fd6f93]"
             >
               <Heart size={18} strokeWidth={1.6} className="xl:h-[19px] xl:w-[19px]" />
-              <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#ff6289] px-1 text-[9px] text-white">
+              <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#fd6f93] px-1 text-[9px] text-white">
                 0
               </span>
             </Link>
@@ -480,10 +480,10 @@ export default function Navbar() {
               <Link
                 href="/cart"
                 aria-label="Shopping Cart"
-                className="relative text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#ff6289]"
+                className="relative text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#fd6f93]"
               >
                 <ShoppingBag size={19} strokeWidth={1.6} className="xl:h-5 xl:w-5" />
-                <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#ff6289] px-1 text-[9px] text-white">
+                <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#fd6f93] px-1 text-[9px] text-white">
                   0
                 </span>
               </Link>
@@ -503,13 +503,13 @@ export default function Navbar() {
                   <div className="mt-6 flex items-center justify-between border-t border-[#E7E1D8] pt-5">
                     <Link
                       href="/cart"
-                      className="inline-flex  mt-6 items-center gap-2 border border-[#171412] bg-[#171412] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-colors duration-300 hover:bg-[#ff6289] hover:border-[#ff6289]"
+                      className="inline-flex  mt-6 items-center gap-2 border border-[#171412] bg-[#171412] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-colors duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
                     >
                       CART
                       <ShoppingBag size={13} strokeWidth={1.5} />
                     </Link>
                     <p className="text-[11px]  mt-6  font-semibold uppercase tracking-[0.1em] text-[#171412]">
-                      TOTAL: <span className="text-[#ff6289]">$0.00</span>
+                      TOTAL: <span className="text-[#fd6f93]">$0.00</span>
                     </p>
                   </div>
                 </div>
@@ -521,7 +521,7 @@ export default function Navbar() {
             {/* <Link
               href="/account"
               aria-label="Account"
-              className="text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#ff6289]"
+              className="text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#fd6f93]"
             >
               <User size={18} strokeWidth={1.6} className="xl:h-[19px] xl:w-[19px]" />
             </Link> */}
@@ -551,7 +551,7 @@ export default function Navbar() {
               className="relative transition-transform duration-300 active:scale-90"
             >
               <ShoppingBag size={19} strokeWidth={1.7} className="sm:h-5 sm:w-5" />
-              <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#ff6289] px-1 text-[9px] text-white">
+              <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#fd6f93] px-1 text-[9px] text-white">
                 0
               </span>
             </Link>
@@ -665,7 +665,7 @@ export default function Navbar() {
                 <ChevronDown
                   size={17}
                   strokeWidth={1.7}
-                  className={`text-[#ff6289] transition-transform duration-300 ${
+                  className={`text-[#fd6f93] transition-transform duration-300 ${
                     mobileDropdown === "categories" ? "rotate-180" : ""
                   }`}
                 />
@@ -685,7 +685,7 @@ export default function Navbar() {
                       className="group flex items-center justify-between py-2.5 text-sm text-[#6B6560] sm:text-[15px]"
                     >
                       {category.label}
-                      <span className="translate-x-2 text-[#ff6289] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                      <span className="translate-x-2 text-[#fd6f93] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                         →
                       </span>
                     </Link>
@@ -722,7 +722,7 @@ export default function Navbar() {
                 <ChevronDown
                   size={17}
                   strokeWidth={1.7}
-                  className={`text-[#ff6289] transition-transform duration-300 ${
+                  className={`text-[#fd6f93] transition-transform duration-300 ${
                     mobileDropdown === "deals" ? "rotate-180" : ""
                   }`}
                 />
@@ -742,7 +742,7 @@ export default function Navbar() {
                       className="group flex items-center justify-between py-2.5 text-sm text-[#6B6560] sm:text-[15px]"
                     >
                       {deal.label}
-                      <span className="translate-x-2 text-[#ff6289] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                      <span className="translate-x-2 text-[#fd6f93] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                         →
                       </span>
                     </Link>
@@ -767,7 +767,7 @@ export default function Navbar() {
                 <ChevronDown
                   size={17}
                   strokeWidth={1.7}
-                  className={`text-[#ff6289] transition-transform duration-300 ${
+                  className={`text-[#fd6f93] transition-transform duration-300 ${
                     mobileDropdown === "about" ? "rotate-180" : ""
                   }`}
                 />
@@ -787,7 +787,7 @@ export default function Navbar() {
                       className="group flex items-center justify-between py-2.5 text-sm text-[#6B6560] sm:text-[15px]"
                     >
                       {item.label}
-                      <span className="translate-x-2 text-[#ff6289] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                      <span className="translate-x-2 text-[#fd6f93] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                         →
                       </span>
                     </Link>
@@ -817,7 +817,7 @@ export default function Navbar() {
               <Link
                 href="/wishlist"
                 onClick={closeMobileMenu}
-                className="flex items-center justify-center gap-2 border border-[#E7E1D8] py-3 px-2 text-xs font-medium uppercase tracking-wider text-[#171412] transition-colors duration-300 hover:border-[#ff6289] hover:text-[#ff6289] sm:py-4"
+                className="flex items-center justify-center gap-2 border border-[#E7E1D8] py-3 px-2 text-xs font-medium uppercase tracking-wider text-[#171412] transition-colors duration-300 hover:border-[#fd6f93] hover:text-[#fd6f93] sm:py-4"
               >
                 <Heart size={16} />
                 Wishlist
@@ -826,7 +826,7 @@ export default function Navbar() {
               <Link
                 href="/account"
                 onClick={closeMobileMenu}
-                className="flex items-center justify-center gap-2 border border-[#E7E1D8] py-3 text-xs font-medium uppercase tracking-wider text-[#171412] transition-colors duration-300 hover:border-[#ff6289] hover:text-[#ff6289] sm:py-4"
+                className="flex items-center justify-center gap-2 border border-[#E7E1D8] py-3 text-xs font-medium uppercase tracking-wider text-[#171412] transition-colors duration-300 hover:border-[#fd6f93] hover:text-[#fd6f93] sm:py-4"
               >
                 <User size={16} />
                 Account

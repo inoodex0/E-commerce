@@ -78,9 +78,9 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 font-serif text-xs text-[#6B6560] sm:text-sm sm:gap-2.5">
-          <Link href="/" className="transition-colors hover:text-[#ff6289]">Home</Link>
+          <Link href="/" className="transition-colors hover:text-[#fd6f93]">Home</Link>
           <ChevronRight size={12} />
-          <Link href="/shop" className="transition-colors hover:text-[#ff6289]">Products</Link>
+          <Link href="/shop" className="transition-colors hover:text-[#fd6f93]">Products</Link>
           <ChevronRight size={12} />
           <span className="text-[#171412] font-medium truncate max-w-[150px] sm:max-w-none">{product.name}</span>
         </nav>
@@ -159,14 +159,14 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
 
               <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:gap-4">
                 {/* Main product */}
-                <div className="flex items-center gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3 transition-all hover:border-[#ff6289]/30 sm:gap-5 sm:rounded-2xl sm:p-5">
-                  <input type="checkbox" defaultChecked className="h-4 w-4 shrink-0 accent-[#ff6289] sm:h-5 sm:w-5" />
+                <div className="flex items-center gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3 transition-all hover:border-[#fd6f93]/30 sm:gap-5 sm:rounded-2xl sm:p-5">
+                  <input type="checkbox" defaultChecked className="h-4 w-4 shrink-0 accent-[#fd6f93] sm:h-5 sm:w-5" />
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#F5F2EC] sm:h-20 sm:w-20 sm:rounded-xl lg:h-24 lg:w-24">
                     <Image src={product.images[0]} alt={product.name} fill className="object-cover object-center" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-serif text-sm font-medium text-[#171412] sm:text-base">{product.name}</h3>
-                    <p className="mt-0.5 font-serif text-sm font-semibold text-[#ff6289] sm:text-base">{product.price}</p>
+                    <p className="mt-0.5 font-serif text-sm font-semibold text-[#fd6f93] sm:text-base">{product.price}</p>
                     <select className="mt-1.5 w-full max-w-[160px] border border-[#E7E1D8] bg-white px-2 py-1.5 text-xs text-[#6B6560] rounded-md sm:mt-2 sm:max-w-[200px] sm:px-3 sm:py-2 sm:text-sm sm:rounded-lg">
                       {product.sizes.map((size) =>
                         product.colors.map((color, ci) => (
@@ -177,17 +177,17 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                   </div>
                 </div>
 
-                <div className="text-center text-sm text-[#ff6289] font-bold sm:text-base">+</div>
+                <div className="text-center text-sm text-[#fd6f93] font-bold sm:text-base">+</div>
 
                 {frequentlyBought.map((item) => (
-                  <div key={item.id} className="flex items-center gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3 transition-all hover:border-[#ff6289]/30 sm:gap-5 sm:rounded-2xl sm:p-5">
-                    <input type="checkbox" defaultChecked className="h-4 w-4 shrink-0 accent-[#ff6289] sm:h-5 sm:w-5" />
+                  <div key={item.id} className="flex items-center gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3 transition-all hover:border-[#fd6f93]/30 sm:gap-5 sm:rounded-2xl sm:p-5">
+                    <input type="checkbox" defaultChecked className="h-4 w-4 shrink-0 accent-[#fd6f93] sm:h-5 sm:w-5" />
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#F5F2EC] sm:h-20 sm:w-20 sm:rounded-xl lg:h-24 lg:w-24">
                       <Image src={item.image} alt={item.name} fill className="object-cover object-center" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-serif text-sm font-medium text-[#171412] sm:text-base">{item.name}</h3>
-                      <p className="mt-0.5 font-serif text-sm font-semibold text-[#ff6289] sm:text-base">{item.price}</p>
+                      <p className="mt-0.5 font-serif text-sm font-semibold text-[#fd6f93] sm:text-base">{item.price}</p>
                       <select className="mt-1.5 w-full max-w-[160px] border border-[#E7E1D8] bg-white px-2 py-1.5 text-xs text-[#6B6560] rounded-md sm:mt-2 sm:max-w-[200px] sm:px-3 sm:py-2 sm:text-sm sm:rounded-lg">
                         {item.sizes.map((size) =>
                           item.colors.map((color, ci) => (
@@ -205,7 +205,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                   <span className="text-xs text-[#6B6560] sm:text-sm">Total price: </span>
                   <span className="font-serif text-xl font-medium text-[#171412] sm:text-2xl">$104.99</span>
                 </div>
-                <button className="flex w-full rounded-2xl items-center justify-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#ff6289] hover:border-[#ff6289] sm:w-auto sm:px-8 sm:py-3.5 sm:text-sm">
+                <button className="flex w-full rounded-2xl items-center justify-center gap-2 border border-neutral-200   bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] sm:w-auto sm:px-8 sm:py-3.5 sm:text-sm">
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
                   </svg>
@@ -221,7 +221,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
           <div className="flex flex-1 flex-col lg:w-[45%]">
 
             {/* Category */}
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#ff6289] sm:text-xs">{product.category}</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93] sm:text-xs">{product.category}</p>
 
             {/* Name */}
             <h1 className="mt-2 font-serif text-2xl font-medium leading-tight text-[#171412] sm:text-3xl lg:text-[38px]">
@@ -232,15 +232,15 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
             <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4 sm:gap-3">
               <div className="flex items-center gap-0.5 sm:gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} className={i < Math.floor(product.rating) ? "fill-[#ff6289] text-[#ff6289]" : "text-[#E7E1D8] sm:size-[18px]"} />
+                  <Star key={i} size={14} className={i < Math.floor(product.rating) ? "fill-[#fd6f93] text-[#fd6f93]" : "text-[#E7E1D8] sm:size-[18px]"} />
                 ))}
               </div>
               <span className="text-xs text-[#6B6560] sm:text-sm">({product.reviews} review{product.reviews > 1 ? "s" : ""})</span>
               <span className="hidden h-4 w-px bg-[#E7E1D8] sm:block" />
-              <span className="flex items-center gap-1.5 text-xs text-[#ff6289] font-medium sm:text-sm">
+              <span className="flex items-center gap-1.5 text-xs text-[#fd6f93] font-medium sm:text-sm">
                 <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ff6289] opacity-75" />
-                  <span className="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#ff6289]" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#fd6f93] opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#fd6f93]" />
                 </span>
                 {product.sold}
               </span>
@@ -250,7 +250,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
             <div className="mt-4 flex items-baseline gap-2 sm:mt-5 sm:gap-4">
               <span className="font-serif text-2xl font-medium text-[#171412] sm:text-4xl">{product.price}</span>
               <span className="text-sm text-[#6B6560] line-through sm:text-lg">{product.originalPrice}</span>
-              <span className="rounded-full bg-[#ff6289]/10 px-2 py-0.5 text-[10px] font-semibold text-[#ff6289] sm:px-3 sm:py-1 sm:text-xs">
+              <span className="rounded-full bg-[#fd6f93]/10 px-2 py-0.5 text-[10px] font-semibold text-[#fd6f93] sm:px-3 sm:py-1 sm:text-xs">
                 Save {(parseFloat(product.originalPrice.replace("$", "")) - parseFloat(product.price.replace("$", ""))).toFixed(0)}
               </span>
             </div>
@@ -259,10 +259,10 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
             <p className="mt-4 text-sm leading-[1.7] text-[#6B6560] sm:mt-5 sm:text-base sm:leading-[1.8]">{product.description}</p>
 
             {/* Viewing */}
-            <div className="mt-4 flex items-center gap-2 rounded-full bg-[#ff6289]/5 px-3 py-2 w-fit sm:mt-5 sm:gap-2.5 sm:px-5 sm:py-2.5">
+            <div className="mt-4 flex items-center gap-2 rounded-full bg-[#fd6f93]/5 px-3 py-2 w-fit sm:mt-5 sm:gap-2.5 sm:px-5 sm:py-2.5">
               <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ff6289] opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#ff6289]" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#fd6f93] opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#fd6f93]" />
               </span>
               <span className="text-xs text-[#6B6560] sm:text-sm"><span className="font-semibold text-[#171412]">{product.viewing}</span> People are viewing this right now</span>
             </div>
@@ -297,7 +297,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
             <div className="mt-5 sm:mt-6">
               <div className="flex items-center justify-between">
                 <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#171412] sm:text-sm">Size: <span className="text-[#6B6560] font-normal normal-case">{selectedSize}</span></p>
-                <button className="text-xs text-[#6B6560] underline underline-offset-4 decoration-[#E7E1D8] hover:text-[#ff6289] hover:decoration-[#ff6289] transition-colors sm:text-sm">Size Guide</button>
+                <button className="text-xs text-[#6B6560] underline underline-offset-4 decoration-[#E7E1D8] hover:text-[#fd6f93] hover:decoration-[#fd6f93] transition-colors sm:text-sm">Size Guide</button>
               </div>
               <div className="mt-2.5 flex flex-wrap gap-2 sm:mt-3 sm:gap-3">
                 {product.sizes.map((size) => (
@@ -339,7 +339,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
 
               <button 
                 onClick={addToCart}
-                className="group rounded-2xl flex flex-1 items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#ff6289] hover:border-[#ff6289] hover:shadow-lg hover:shadow-[#ff6289]/20 sm:gap-2.5 sm:text-sm"
+                className="group rounded-2xl flex flex-1 items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] hover:shadow-lg hover:shadow-[#fd6f93]/20 sm:gap-2.5 sm:text-sm"
               >
                 <svg className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
@@ -347,13 +347,13 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                 Add to Cart — {product.price}
               </button>
 
-              <button className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#E7E1D8] bg-white transition-all duration-300 hover:border-[#ff6289] hover:text-[#ff6289] hover:bg-[#ff6289]/5 sm:h-12 sm:w-12">
+              <button className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#E7E1D8] bg-white transition-all duration-300 hover:border-[#fd6f93] hover:text-[#fd6f93] hover:bg-[#fd6f93]/5 sm:h-12 sm:w-12">
                 <Heart size={20} />
               </button>
             </div>
 
             {/* Buy It Now */}
-            <button className="group rounded-2xl mt-3 w-full bg-gradient-to-r from-[#ff6289] to-[#ff8fab] py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#ff6289]/30 hover:from-[#e5507a] hover:to-[#ff6289] sm:py-4 sm:text-sm">
+            <button className="group rounded-2xl mt-3 w-full bg-gradient-to-r from-[#fd6f93] to-[#ff8fab] py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#fd6f93]/30 hover:from-[#e5507a] hover:to-[#fd6f93] sm:py-4 sm:text-sm">
               Buy It Now
             </button>
 
@@ -373,8 +373,8 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
             {/* Delivery Info */}
             <div className="mt-5 grid grid-cols-1 gap-2.5 sm:mt-6 sm:grid-cols-2 sm:gap-3">
               <div className="flex items-start gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3.5 sm:p-4">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ff6289]/10 sm:h-10 sm:w-10">
-                  <Truck size={18} className="text-[#ff6289]" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#fd6f93]/10 sm:h-10 sm:w-10">
+                  <Truck size={18} className="text-[#fd6f93]" />
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#171412] sm:text-sm">Free Shipping</p>
@@ -382,8 +382,8 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3.5 sm:p-4">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ff6289]/10 sm:h-10 sm:w-10">
-                  <RotateCcw size={18} className="text-[#ff6289]" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#fd6f93]/10 sm:h-10 sm:w-10">
+                  <RotateCcw size={18} className="text-[#fd6f93]" />
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#171412] sm:text-sm">Easy Returns</p>
@@ -501,7 +501,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-semibold text-[#171412] sm:text-base">User {r}</span>
-                        <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#ff6289] text-[#ff6289] sm:size-[14px]" />)}</div>
+                        <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#fd6f93] text-[#fd6f93] sm:size-[14px]" />)}</div>
                       </div>
                       <p className="mt-1 text-xs text-[#6B6560] sm:mt-1.5 sm:text-sm">Absolutely love this product! The quality exceeded my expectations and it arrived beautifully packaged.</p>
                     </div>
@@ -555,14 +555,14 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <span className="absolute left-2 top-2 rounded-full bg-[#2E8B7B] px-2 py-0.5 text-[9px] font-semibold text-white sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">In Stock</span>
                     {item.originalPrice && (
-                      <span className="absolute right-2 top-2 rounded-full bg-[#ff6289] px-2 py-0.5 text-[9px] font-semibold text-white sm:right-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">
+                      <span className="absolute right-2 top-2 rounded-full bg-[#fd6f93] px-2 py-0.5 text-[9px] font-semibold text-white sm:right-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">
                         -{Math.round((1 - parseFloat(item.price.replace("$", "")) / parseFloat(item.originalPrice.replace("$", ""))) * 100)}%
                       </span>
                     )}
                   </div>
                   <div className="mt-2 sm:mt-4">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#ff6289] sm:text-[11px]">{item.category}</p>
-                    <h3 className="mt-0.5 text-xs font-medium text-[#171412] group-hover:text-[#ff6289] transition-colors sm:text-base">{item.name}</h3>
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#fd6f93] sm:text-[11px]">{item.category}</p>
+                    <h3 className="mt-0.5 text-xs font-medium text-[#171412] group-hover:text-[#fd6f93] transition-colors sm:text-base">{item.name}</h3>
                     <div className="mt-1 flex items-center gap-1.5 sm:mt-2 sm:gap-2">
                       <span className="text-sm font-semibold text-[#171412] sm:text-lg">{item.price}</span>
                       {item.originalPrice && (
@@ -593,14 +593,14 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <span className="absolute left-2 top-2 rounded-full bg-[#2E8B7B] px-2 py-0.5 text-[9px] font-semibold text-white sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">In Stock</span>
                     {item.originalPrice && (
-                      <span className="absolute right-2 top-2 rounded-full bg-[#ff6289] px-2 py-0.5 text-[9px] font-semibold text-white sm:right-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">
+                      <span className="absolute right-2 top-2 rounded-full bg-[#fd6f93] px-2 py-0.5 text-[9px] font-semibold text-white sm:right-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">
                         -{Math.round((1 - parseFloat(item.price.replace("$", "")) / parseFloat(item.originalPrice.replace("$", ""))) * 100)}%
                       </span>
                     )}
                   </div>
                   <div className="mt-2 sm:mt-4">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#ff6289] sm:text-[11px]">{item.category}</p>
-                    <h3 className="mt-0.5 text-xs font-medium text-[#171412] group-hover:text-[#ff6289] transition-colors sm:text-base">{item.name}</h3>
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#fd6f93] sm:text-[11px]">{item.category}</p>
+                    <h3 className="mt-0.5 text-xs font-medium text-[#171412] group-hover:text-[#fd6f93] transition-colors sm:text-base">{item.name}</h3>
                     <div className="mt-1 flex items-center gap-1.5 sm:mt-2 sm:gap-2">
                       <span className="text-sm font-semibold text-[#171412] sm:text-lg">{item.price}</span>
                       {item.originalPrice && (
@@ -649,8 +649,8 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                 <div className="flex gap-3 overflow-x-auto pb-2">
                   {allProducts.filter(p => p.name !== product.name).slice(0, 4).map((item) => (
                     <Link
-                      key={item.slug}
-                      href={`/product/${item.slug}`}
+                      key={item.name}
+                      href={`/product/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
                       onClick={() => setIsCartOpen(false)}
                       className="flex w-20 shrink-0 flex-col items-center gap-1"
                     >
@@ -712,7 +712,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                           <span className="ml-auto text-xs font-semibold text-[#171412]">${(parseFloat(item.product.price.replace("$", "")) * item.quantity).toFixed(2)}</span>
                         </div>
                       </div>
-                      <button onClick={() => removeFromCart(index)} className="text-[#6B6560] hover:text-[#ff6289] transition-colors">
+                      <button onClick={() => removeFromCart(index)} className="text-[#6B6560] hover:text-[#fd6f93] transition-colors">
                         <X size={14} />
                       </button>
                     </div>
@@ -736,12 +736,12 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                   <input type="checkbox" className="mt-0.5 accent-[#171412]" />
                   <span className="text-[10px] text-[#6B6560]">I agree with the terms & conditions</span>
                 </div>
-                <button className="w-full bg-[#171412] py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#ff6289] transition-colors rounded-lg mb-2">
+                <button className="w-full bg-[#171412] py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#fd6f93] transition-colors rounded-lg mb-2">
                   Check Out
                 </button>
                 <div className="flex justify-between text-xs">
-                  <Link href="/cart" className="text-[#171412] underline underline-offset-4 hover:text-[#ff6289] transition-colors" onClick={() => setIsCartOpen(false)}>View Cart</Link>
-                  <button onClick={() => setIsCartOpen(false)} className="text-[#171412] underline underline-offset-4 hover:text-[#ff6289] transition-colors">Continue Shopping</button>
+                  <Link href="/cart" className="text-[#171412] underline underline-offset-4 hover:text-[#fd6f93] transition-colors" onClick={() => setIsCartOpen(false)}>View Cart</Link>
+                  <button onClick={() => setIsCartOpen(false)} className="text-[#171412] underline underline-offset-4 hover:text-[#fd6f93] transition-colors">Continue Shopping</button>
                 </div>
               </div>
             )}

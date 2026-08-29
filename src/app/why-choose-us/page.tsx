@@ -15,7 +15,7 @@ export default function WhyChooseUsPage() {
        
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">The NOVARA Difference</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">The NOVARA Difference</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             Why Choose Us
           </h1>
@@ -24,7 +24,7 @@ export default function WhyChooseUsPage() {
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {reasons.map((r, i) => (
             <div key={i} className="border border-[#E7E1D8] bg-white p-6">
-              <CheckCircle2 className="text-[#ff6289]" size={28} />
+              <CheckCircle2 className="text-[#fd6f93]" size={28} />
               <h3 className="mt-3 font-serif text-lg font-medium text-[#171412]">{r.title}</h3>
               <p className="mt-1 text-sm text-[#6B6560]">{r.desc}</p>
             </div>

@@ -7,25 +7,25 @@ export default function WishlistPage() {
       <div className="mx-auto max-w-4xl">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#ff6289] transition-colors hover:text-[#171412]"
+          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#fd6f93] transition-colors hover:text-[#171412]"
         >
           <ArrowLeft size={16} /> Back to Home
         </Link>
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">Saved Items</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Saved Items</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             My Wishlist
           </h1>
         </div>
 
         <div className="mt-8 border border-[#E7E1D8] bg-white p-12 text-center shadow-sm">
-          <Heart className="mx-auto text-[#ff6289]" size={48} strokeWidth={1.5} />
+          <Heart className="mx-auto text-[#fd6f93]" size={48} strokeWidth={1.5} />
           <h3 className="mt-4 font-serif text-xl font-medium text-[#171412]">Your Wishlist is Empty</h3>
           <p className="mt-2 text-sm text-[#6B6560]">Save your favorite luxury pieces to view them later.</p>
           <Link
             href="/shop"
-            className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#ff6289] hover:border-[#ff6289]"
+            className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
           >
             <ShoppingBag size={14} /> Explore Collection
           </Link>

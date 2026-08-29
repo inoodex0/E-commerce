@@ -7,13 +7,13 @@ export default function AccountPage() {
       <div className="mx-auto max-w-md">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#ff6289] transition-colors hover:text-[#171412]"
+          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#fd6f93] transition-colors hover:text-[#171412]"
         >
           <ArrowLeft size={16} /> Back to Home
         </Link>
 
         <div className="mt-6 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">Client Access</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Client Access</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412]">
             Account Login
           </h1>
@@ -28,9 +28,9 @@ export default function AccountPage() {
                 <input
                   type="email"
                   placeholder="client@example.com"
-                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#ff6289]"
+                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#fd6f93]"
                 />
-                <User className="absolute right-3 text-[#ff6289]" size={18} />
+                <User className="absolute right-3 text-[#fd6f93]" size={18} />
               </div>
             </div>
 
@@ -40,23 +40,23 @@ export default function AccountPage() {
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#ff6289]"
+                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#fd6f93]"
                 />
-                <Lock className="absolute right-3 text-[#ff6289]" size={18} />
+                <Lock className="absolute right-3 text-[#fd6f93]" size={18} />
               </div>
             </div>
 
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#ff6289] hover:border-[#ff6289]"
+              className="flex w-full items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
             >
               Sign In <ArrowRight size={14} />
             </button>
           </div>
 
           <div className="mt-6 flex items-center justify-between text-xs text-[#6B6560]">
-            <a href="#" className="hover:text-[#ff6289]">Forgot Password?</a>
-            <a href="#" className="font-semibold text-[#171412] hover:text-[#ff6289]">Create Account</a>
+            <a href="#" className="hover:text-[#fd6f93]">Forgot Password?</a>
+            <a href="#" className="font-semibold text-[#171412] hover:text-[#fd6f93]">Create Account</a>
           </div>
         </form>
       </div>

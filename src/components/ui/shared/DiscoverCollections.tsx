@@ -34,8 +34,8 @@ export default function DiscoverCollections() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6289]">Discover</p>
-          <h2 className="mt-2 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl lg:text-5xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#fd6f93]">Discover</p>
+          <h2 className="mt-2 font-serif text-2xl font-medium tracking-tight text-[#171412] sm:text-3xl md:text-4xl lg:text-5xl">
             Our Collections
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm text-[#6B6560]">
@@ -65,27 +65,27 @@ export default function DiscoverCollections() {
 
                 {/* Tag */}
                 <div className="absolute left-5 top-5 sm:left-6 sm:top-6">
-                  <span className="inline-block rounded-full bg-white/90 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#171412] backdrop-blur-sm">
+                  <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-[8px] font-semibold uppercase tracking-wider text-[#171412] backdrop-blur-sm sm:px-4 sm:py-1.5 sm:text-[10px]">
                     {col.tag}
                   </span>
                 </div>
 
                 {/* Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 lg:p-8">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#ff6289]">
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
+                  <p className="text-[9px] font-semibold uppercase tracking-widest text-[#fd6f93] sm:text-[11px]">
                     {col.productCount} Products
                   </p>
-                  <h3 className="mt-1 font-serif text-2xl font-medium text-white sm:text-3xl">
+                  <h3 className="mt-1 font-serif text-xl font-medium text-white sm:text-2xl lg:text-3xl">
                     {col.name} Collection
                   </h3>
-                  <p className="mt-2 max-w-sm text-xs leading-5 text-white/70 sm:text-sm">
+                  <p className="mt-2 max-w-sm text-[11px] leading-4 text-white/70 sm:text-xs sm:leading-5">
                     {col.description}
                   </p>
 
                   {/* CTA */}
                   <div
-                    className={`mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 ${
-                      hoveredId === col.id ? "gap-3" : ""
+                    className={`mt-3 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-white transition-all duration-300 sm:mt-4 sm:gap-2 sm:text-xs ${
+                      hoveredId === col.id ? "sm:gap-3" : ""
                     }`}
                   >
                     Explore {col.name}

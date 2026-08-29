@@ -9,6 +9,9 @@ const products = [
   { id: 4, name: "Classic Aviator Sunglasses", category: "Sunglasses", price: "$210.00", image: "/images/a4.avif" },
   { id: 5, name: "Artisan Leather Wallet", category: "Wallets", price: "$120.00", image: "/images/a5.avif" },
   { id: 6, name: "Signature Velvet Pouch", category: "Tech Accessories", price: "$95.00", image: "/images/a6.avif" },
+   { id: 7, name: " Sunglasses", category: "Sunglasses", price: "$210.00", image: "/images/products/bag-1.avif" },
+  { id: 8, name: "Artisan Leather Wallet", category: "Wallets", price: "$120.00", image: "/images/products/bracelet-1.avif" },
+  { id: 9 ,name: "Signature Velvet Pouch", category: "Tech Accessories", price: "$95.00", image: "/images/products/watch-1.avif" },
 ];
 
 export default function ShopPage() {
@@ -16,17 +19,12 @@ export default function ShopPage() {
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Breadcrumb / Back Link */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#ff6289] transition-colors hover:text-[#171412]"
-        >
-          <ArrowLeft size={16} /> Back to Home
-        </Link>
+       
 
         {/* Page Title */}
         <div className="mt-6 flex flex-col justify-between border-b border-[#E7E1D8] pb-6 sm:flex-row sm:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6289]">Collection</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Collection</p>
             <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
               Shop All Products
             </h1>
@@ -50,13 +48,13 @@ export default function ShopPage() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-5">
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-[#ff6289]">
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-[#fd6f93]">
                   {product.category}
                 </span>
                 <h3 className="mt-1 font-serif text-lg font-medium text-[#171412]">{product.name}</h3>
                 <div className="mt-auto flex items-center justify-between pt-4">
                   <span className="text-sm font-semibold text-[#171412]">{product.price}</span>
-                  <button className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#ff6289] hover:border-[#ff6289]">
+                  <button className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]">
                     <ShoppingBag size={14} /> Add to Cart
                   </button>
                 </div>

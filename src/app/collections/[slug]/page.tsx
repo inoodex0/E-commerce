@@ -62,7 +62,7 @@ const collectionsData: Record<string, {
       { icon: "leaf", title: "Comfort First", desc: "Ergonomically designed for all-day comfort without sacrificing style." },
       { icon: "shield", title: "Warranty", desc: "Comprehensive 2-year warranty covering manufacturing defects and materials." },
       { icon: "truck", title: "Quick Delivery", desc: "Fast, reliable shipping with signature-required delivery for your peace of mind." },
-      { icon: "clock", time: "Seasonless", title: "Seasonless", desc: "Classic designs that work year-round, making them smart investments." },
+      { icon: "clock", title: "Seasonless", desc: "Classic designs that work year-round, making them smart investments." },
     ],
     products: [
       { id: 1, slug: "obsidian-aviator-shades", name: "Obsidian Aviator Shades", category: "Sunglasses", tag: "Daily Essential", price: "$280.00", originalPrice: "$340.00", image: "/images/a5.avif", description: "Polarized lenses housed in a lightweight titanium frame with UV400 protection.", rating: 4.6, reviews: 156, colors: ["#2C2C2C", "#D4B89C"] },
@@ -97,7 +97,7 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
         <ShoppingBag size={64} className="text-[#E7E1D8] mb-6" />
         <h1 className="font-serif text-3xl font-medium text-[#171412]">Collection Not Found</h1>
         <p className="mt-2 text-sm text-[#6B6560]">The collection you&apos;re looking for doesn&apos;t exist.</p>
-        <Link href="/" className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:bg-[#ff6289] hover:border-[#ff6289]">
+        <Link href="/" className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:bg-[#fd6f93] hover:border-[#fd6f93]">
           <ArrowLeft size={14} /> Back to Home
         </Link>
       </main>
@@ -131,7 +131,7 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
       ═══════════════════════════════════════════════════════════ */}
       <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="font-serif text-lg italic text-[#ff6289]/60 sm:text-xl">{collection.subtitle}</span>
+          <span className="font-serif text-lg italic text-[#fd6f93]/60 sm:text-xl">{collection.subtitle}</span>
           <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl lg:text-5xl">
             {collection.title.replace("Collection", "")}That Defines You.
           </h2>
@@ -154,7 +154,7 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
                 onMouseEnter={() => setHoveredFeature(i)}
                 onMouseLeave={() => setHoveredFeature(null)}
               >
-                <div className={`mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-[#E7E1D8] bg-white transition-all duration-300 ${hoveredFeature === i ? "border-[#ff6289] text-[#ff6289] shadow-lg shadow-[#ff6289]/10" : "text-[#171412]"}`}>
+                <div className={`mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-[#E7E1D8] bg-white transition-all duration-300 ${hoveredFeature === i ? "border-[#fd6f93] text-[#fd6f93] shadow-lg shadow-[#fd6f93]/10" : "text-[#171412]"}`}>
                   {iconMap[feat.icon]}
                 </div>
                 <h3 className="font-serif text-sm font-semibold uppercase tracking-wider text-[#171412]">{feat.title}</h3>
@@ -171,7 +171,7 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
       <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ff6289]">{collection.products.length} Products</span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93]">{collection.products.length} Products</span>
             <h2 className="mt-2 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Explore The Collection</h2>
           </div>
 
@@ -196,23 +196,23 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
                     <div className="absolute left-4 top-4 flex flex-col gap-2">
                       <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-[9px] font-semibold uppercase tracking-wider text-[#171412] backdrop-blur-sm">{item.tag}</span>
                       {discount > 0 && (
-                        <span className="inline-block rounded-full bg-[#ff6289] px-3 py-1 text-[9px] font-semibold uppercase tracking-wider text-white">-{discount}%</span>
+                        <span className="inline-block rounded-full bg-[#fd6f93] px-3 py-1 text-[9px] font-semibold uppercase tracking-wider text-white">-{discount}%</span>
                       )}
                     </div>
                     <div className={`absolute bottom-0 left-0 right-0 flex justify-center gap-3 bg-gradient-to-t from-black/50 to-transparent p-6 transition-all duration-500 ${hoveredProduct === item.id ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
-                      <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#171412] shadow-lg transition-all duration-300 hover:bg-[#ff6289] hover:text-white hover:scale-110"><Heart size={16} /></button>
-                      <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#171412] shadow-lg transition-all duration-300 hover:bg-[#ff6289] hover:text-white hover:scale-110"><Eye size={16} /></button>
-                      <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#171412] shadow-lg transition-all duration-300 hover:bg-[#ff6289] hover:text-white hover:scale-110"><ShoppingBag size={16} /></button>
+                      <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#171412] shadow-lg transition-all duration-300 hover:bg-[#fd6f93] hover:text-white hover:scale-110"><Heart size={16} /></button>
+                      <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#171412] shadow-lg transition-all duration-300 hover:bg-[#fd6f93] hover:text-white hover:scale-110"><Eye size={16} /></button>
+                      <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#171412] shadow-lg transition-all duration-300 hover:bg-[#fd6f93] hover:text-white hover:scale-110"><ShoppingBag size={16} /></button>
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-5 sm:p-6">
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#ff6289]">{item.category}</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#fd6f93]">{item.category}</span>
                     <h3 className="mt-1 font-serif text-base font-medium text-[#171412] sm:text-lg">{item.name}</h3>
                     <p className="mt-2 text-xs leading-5 text-[#6B6560] line-clamp-2">{item.description}</p>
                     <div className="mt-3 flex items-center gap-2">
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={12} className={i < Math.floor(item.rating) ? "fill-[#ff6289] text-[#ff6289]" : "text-[#E7E1D8]"} />
+                          <Star key={i} size={12} className={i < Math.floor(item.rating) ? "fill-[#fd6f93] text-[#fd6f93]" : "text-[#E7E1D8]"} />
                         ))}
                       </div>
                       <span className="text-[10px] text-[#6B6560]">({item.reviews})</span>
@@ -241,7 +241,7 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
         <div className="mx-auto max-w-7xl text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 border border-[#171412] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#171412] transition-all duration-300 hover:bg-[#171412] hover:text-white"
+            className="inline-flex items-center gap-2 border border-[#171412] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#171412] transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] hover:text-white"
           >
             <ArrowLeft size={14} /> Back to Home
           </Link>

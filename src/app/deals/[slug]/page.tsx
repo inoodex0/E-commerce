@@ -23,13 +23,13 @@ export default async function DealsPage({ params }: DealsPageProps) {
       <div className="mx-auto max-w-7xl">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#ff6289] transition-colors hover:text-[#171412]"
+          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#fd6f93] transition-colors hover:text-[#171412]"
         >
           <ArrowLeft size={16} /> Back to Home
         </Link>
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <div className="flex items-center gap-2 text-[#ff6289]">
+          <div className="flex items-center gap-2 text-[#fd6f93]">
             <Tag size={16} />
             <p className="text-xs font-semibold uppercase tracking-[0.2em]">Exclusive Offer</p>
           </div>
@@ -57,10 +57,10 @@ export default async function DealsPage({ params }: DealsPageProps) {
                 <h3 className="font-serif text-lg font-medium text-[#171412]">{item.name}</h3>
                 <div className="mt-auto flex items-center justify-between pt-4">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-sm font-bold text-[#ff6289]">{item.dealPrice}</span>
+                    <span className="text-sm font-bold text-[#fd6f93]">{item.dealPrice}</span>
                     <span className="text-xs text-[#6B6560] line-through">{item.originalPrice}</span>
                   </div>
-                  <button className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#ff6289]">
+                  <button className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]">
                     <ShoppingBag size={14} /> Claim Deal
                   </button>
                 </div>
