@@ -154,3 +154,19 @@
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+
+@media (max-width: 639px) {
+  .animate-marquee {
+    animation-duration: 12s;
+  }
+}

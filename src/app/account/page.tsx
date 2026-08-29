@@ -5,15 +5,10 @@ export default function AccountPage() {
   return (
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-md">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#fd6f93] transition-colors hover:text-[#171412]"
-        >
-          <ArrowLeft size={16} /> Back to Home
-        </Link>
+      
 
         <div className="mt-6 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Client Access</p>
+          
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412]">
             Account Login
           </h1>

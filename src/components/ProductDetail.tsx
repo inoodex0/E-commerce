@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Heart, Star, Minus, Plus, Eye, Truck, RotateCcw, ShieldCheck, Share2, GitCompare, MessageCircle, ChevronRight, Check, ShoppingBag, X } from "lucide-react";
+import { useCartStore } from "@/lib/store";
 
 export interface Product {
   name: string;
@@ -41,7 +42,10 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
   const [activeTab, setActiveTab] = useState("Description");
   const [relatedTab, setRelatedTab] = useState<"related" | "recent">("related");
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<{ product: Product; quantity: number; size: string; color: string }[]>([]);
+  const cartItems = useCartStore((state) => state.cart);
+  const addToCartStore = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -51,21 +55,8 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
   };
 
   const addToCart = () => {
-    const existingIndex = cartItems.findIndex(
-      (item) => item.product.name === product.name && item.size === selectedSize && item.color === product.colors[selectedColor]
-    );
-    if (existingIndex >= 0) {
-      const updated = [...cartItems];
-      updated[existingIndex].quantity += quantity;
-      setCartItems(updated);
-    } else {
-      setCartItems([...cartItems, { product, quantity, size: selectedSize, color: product.colors[selectedColor] }]);
-    }
+    addToCartStore(product as any, quantity, selectedSize, product.colors[selectedColor]);
     setIsCartOpen(true);
-  };
-
-  const removeFromCart = (index: number) => {
-    setCartItems(cartItems.filter((_, i) => i !== index));
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + parseFloat(item.product.price.replace("$", "")) * item.quantity, 0);
@@ -353,9 +344,15 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
             </div>
 
             {/* Buy It Now */}
-            <button className="group rounded-2xl mt-3 w-full bg-gradient-to-r from-[#fd6f93] to-[#ff8fab] py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#fd6f93]/30 hover:from-[#e5507a] hover:to-[#fd6f93] sm:py-4 sm:text-sm">
+            <Link
+              href="/checkout"
+              onClick={() => {
+                addToCartStore(product as any, quantity, selectedSize, product.colors[selectedColor]);
+              }}
+              className="group rounded-2xl mt-3 flex w-full items-center justify-center bg-gradient-to-r from-[#fd6f93] to-[#ff8fab] py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#fd6f93]/30 hover:from-[#e5507a] hover:to-[#fd6f93] sm:py-4 sm:text-sm"
+            >
               Buy It Now
-            </button>
+            </Link>
 
             {/* Actions */}
             <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-[#E7E1D8] pt-4 sm:mt-5 sm:flex-nowrap sm:gap-6 sm:pt-5">
@@ -676,7 +673,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                   {cartItems.map((item, index) => (
                     <div key={index} className="flex gap-4 border-b border-[#E7E1D8] pb-4 last:border-0">
                       <div className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-[#F0ECE6]">
-                        <img src={item.product.images[0]} alt={item.product.name} className="h-full w-full object-cover" />
+                        <img src={item.product.images?.[0] ?? item.product.image} alt={item.product.name} className="h-full w-full object-cover" />
                       </div>
                       <div className="flex flex-1 flex-col">
                         <p className="text-xs font-medium text-[#171412] mb-0.5">{item.product.name}</p>
@@ -686,9 +683,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                             <button
                               onClick={() => {
                                 if (item.quantity > 1) {
-                                  const updated = [...cartItems];
-                                  updated[index].quantity--;
-                                  setCartItems(updated);
+                                  updateQuantity(index, item.quantity - 1);
                                 } else {
                                   removeFromCart(index);
                                 }
@@ -700,9 +695,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                             <span className="px-2 text-xs font-medium">{item.quantity}</span>
                             <button
                               onClick={() => {
-                                const updated = [...cartItems];
-                                updated[index].quantity++;
-                                setCartItems(updated);
+                                updateQuantity(index, item.quantity + 1);
                               }}
                               className="px-2 py-0.5 text-[#6B6560] hover:text-[#171412]"
                             >

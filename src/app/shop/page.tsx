@@ -1,27 +1,23 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, SlidersHorizontal, ShoppingBag } from "lucide-react";
+"use client";
 
-const products = [
-  { id: 1, name: "Chronograph Noir Watch", category: "Watches", price: "$340.00", image: "/images/a1.jpg" },
-  { id: 2, name: "Luxe Leather Tote Bag", category: "Bags", price: "$490.00", image: "/images/a2.avif" },
-  { id: 3, name: "Gold Minimalist Bracelet", category: "Jewelry", price: "$180.00", image: "/images/a3avif.avif" },
-  { id: 4, name: "Classic Aviator Sunglasses", category: "Sunglasses", price: "$210.00", image: "/images/a4.avif" },
-  { id: 5, name: "Artisan Leather Wallet", category: "Wallets", price: "$120.00", image: "/images/a5.avif" },
-  { id: 6, name: "Signature Velvet Pouch", category: "Tech Accessories", price: "$95.00", image: "/images/a6.avif" },
-   { id: 7, name: " Sunglasses", category: "Sunglasses", price: "$210.00", image: "/images/products/bag-1.avif" },
-  { id: 8, name: "Artisan Leather Wallet", category: "Wallets", price: "$120.00", image: "/images/products/bracelet-1.avif" },
-  { id: 9 ,name: "Signature Velvet Pouch", category: "Tech Accessories", price: "$95.00", image: "/images/products/watch-1.avif" },
-];
+import Image from "next/image";
+import { ShoppingBag } from "lucide-react";
+import { useState } from "react";
+import { products } from "@/lib/products";
+import { useCartStore } from "@/lib/store";
+
+const categories = ["All", ...Array.from(new Set(products.map((p) => p.category)))];
 
 export default function ShopPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const { addToCart } = useCartStore();
+
+  const filtered = activeCategory === "All" ? products : products.filter((p) => p.category === activeCategory);
+
   return (
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        {/* Breadcrumb / Back Link */}
-       
 
-        {/* Page Title */}
         <div className="mt-6 flex flex-col justify-between border-b border-[#E7E1D8] pb-6 sm:flex-row sm:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Collection</p>
@@ -29,12 +25,27 @@ export default function ShopPage() {
               Shop All Products
             </h1>
           </div>
-          <p className="mt-2 text-sm text-[#6B6560] sm:mt-0">Showing 6 premium pieces</p>
+          <p className="mt-2 text-sm text-[#6B6560] sm:mt-0">Showing {filtered.length} premium pieces</p>
         </div>
 
-        {/* Products Grid */}
+        <div className="mt-6 flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`rounded-full border px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] transition-all duration-300 ${
+                activeCategory === cat
+                  ? "border-[#171412] bg-[#171412] text-white"
+                  : "border-[#E7E1D8] bg-white text-[#171412] hover:border-[#fd6f93] hover:text-[#fd6f93]"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
         <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product) => (
+          {filtered.map((product) => (
             <div
               key={product.id}
               className="group relative flex flex-col overflow-hidden border border-[#E7E1D8] bg-white transition-all duration-300 hover:shadow-lg hover:shadow-[#171412]/5"
@@ -54,7 +65,10 @@ export default function ShopPage() {
                 <h3 className="mt-1 font-serif text-lg font-medium text-[#171412]">{product.name}</h3>
                 <div className="mt-auto flex items-center justify-between pt-4">
                   <span className="text-sm font-semibold text-[#171412]">{product.price}</span>
-                  <button className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]">
+                  <button
+                    onClick={() => addToCart(product, 1, "", "")}
+                    className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                  >
                     <ShoppingBag size={14} /> Add to Cart
                   </button>
                 </div>
@@ -62,6 +76,7 @@ export default function ShopPage() {
             </div>
           ))}
         </div>
+
       </div>
     </main>
   );

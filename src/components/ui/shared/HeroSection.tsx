@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowDown, ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const slides = [
@@ -68,6 +68,7 @@ export default function HeroSection() {
   const [animKey, setAnimKey] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const touchStartRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -77,6 +78,11 @@ export default function HeroSection() {
       setAnimKey((k) => k + 1);
     }, 5000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const popupTimer = setTimeout(() => setShowPopup(true), 3000);
+    return () => clearTimeout(popupTimer);
   }, []);
 
   const goTo = (index: number) => {
@@ -236,19 +242,6 @@ export default function HeroSection() {
       </button>
 
       {/* =====================================================
-          SCROLL DOWN ARROW (Desktop only)
-      ====================================================== */}
-      <div
-        className="hero-slide-up absolute bottom-8 right-5 hidden flex-col items-center gap-2 sm:bottom-10 sm:right-8 md:right-10 lg:flex"
-        style={{ animationDelay: "0.8s" }}
-      >
-        <span className="text-[9px] uppercase tracking-[0.2em] text-white/50 [writing-mode:vertical-lr]">
-          Scroll
-        </span>
-        <ArrowDown size={16} strokeWidth={1.5} className="animate-bounce text-white/60" />
-      </div>
-
-      {/* =====================================================
           CUSTOM ARROW CURSOR (desktop only)
       ====================================================== */}
       <div
@@ -306,6 +299,84 @@ export default function HeroSection() {
           }
         }
       `}</style>
+
+      {/* =====================================================
+          20% OFF POPUP
+      ====================================================== */}
+      {showPopup && (
+        <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm">
+          <div className="popup-enter relative flex w-full max-w-[680px] overflow-hidden bg-white shadow-2xl sm:rounded-sm">
+
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setShowPopup(false)}
+              className="absolute right-3 top-3 z-30 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#171412] transition-colors hover:bg-white hover:text-[#fd6f93]"
+            >
+              <X size={16} />
+            </button>
+
+            {/* Left — Image */}
+            <div className="relative hidden w-[45%] sm:block">
+              <Image
+                src="/images/products/bracelet-1.avif"
+                alt="20% Off"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+
+            {/* Right — Content */}
+            <div className="flex flex-1 flex-col items-center justify-center p-8 text-center sm:p-10">
+              <span className="rounded-full border border-[#fd6f93]/30 bg-[#fd6f93]/5 px-4 py-1.5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">
+                Limited Time Offer
+              </span>
+
+              <h2 className="mt-5 font-serif text-4xl font-medium text-[#171412] sm:text-5xl">
+                <span className="text-[#fd6f93]">20%</span> OFF
+              </h2>
+
+              <p className="mt-2 font-serif text-lg font-medium text-[#171412]">
+                On Your First Purchase
+              </p>
+
+              <p className="mt-3 max-w-xs text-xs leading-5 text-[#6B6560]">
+                Discover timeless elegance. Enjoy an exclusive discount on our entire luxury collection.
+              </p>
+
+              <div className="mt-5 flex items-center gap-2 text-xs text-[#6B6560]">
+                Use code{" "}
+                <span className="rounded border border-[#E7E1D8] bg-[#FBF8F3] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wider text-[#171412]">
+                  NOVARA20
+                </span>
+              </div>
+
+              <Link
+                href="/shop"
+                onClick={() => setShowPopup(false)}
+                className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-8 py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+              >
+                Shop Now
+              </Link>
+            </div>
+          </div>
+
+          <style>{`
+            .popup-enter {
+              opacity: 0;
+              transform: scale(0.9) translateY(20px);
+              animation: popupIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+            }
+            @keyframes popupIn {
+              to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+              }
+            }
+          `}</style>
+        </div>
+      )}
     </section>
   );
 }

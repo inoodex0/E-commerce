@@ -13,6 +13,8 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
+import { useCartStore } from "@/lib/store";
+import Image from "next/image";
 
 /* =========================================================
    TYPES
@@ -69,6 +71,17 @@ export default function Navbar() {
 
   const [mobileDropdown, setMobileDropdown] =
     useState<DropdownType>(null);
+
+  const [mounted, setMounted] = useState(false);
+  const cart = useCartStore((state) => state.cart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const cartCount = mounted ? cart.reduce((sum, item) => sum + item.quantity, 0) : 0;
+  const cartTotal = mounted ? cart.reduce((sum, item) => sum + parseFloat(item.product.price.replace("$", "")) * item.quantity, 0) : 0;
 
   /* =======================================================
      CLOSE MOBILE MENU
@@ -484,33 +497,82 @@ export default function Navbar() {
               >
                 <ShoppingBag size={19} strokeWidth={1.6} className="xl:h-5 xl:w-5" />
                 <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#fd6f93] px-1 text-[9px] text-white">
-                  0
+                  {cartCount}
                 </span>
               </Link>
 
               {/* Cart Dropdown */}
               <div
-                className={`absolute right-0 top-ful mt-6  w-[320px] pt-3 transition-all duration-200 ${
+                className={`absolute right-0 top-ful mt-6 w-[340px] pt-3 transition-all duration-200 ${
                   desktopDropdown === "cart"
                     ? "visible translate-y-0 opacity-100"
                     : "invisible -translate-y-2 opacity-0"
                 }`}
               >
-                <div className="border border-[#E7E1D8] bg-white p-6 shadow-xl shadow-[#171412]/5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#171412]">
-                    NO PRODUCTS IN THE CART.
-                  </p>
-                  <div className="mt-6 flex items-center justify-between border-t border-[#E7E1D8] pt-5">
-                    <Link
-                      href="/cart"
-                      className="inline-flex  mt-6 items-center gap-2 border border-[#171412] bg-[#171412] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-colors duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
-                    >
-                      CART
-                      <ShoppingBag size={13} strokeWidth={1.5} />
-                    </Link>
-                    <p className="text-[11px]  mt-6  font-semibold uppercase tracking-[0.1em] text-[#171412]">
-                      TOTAL: <span className="text-[#fd6f93]">$0.00</span>
+                <div className="border border-[#E7E1D8] bg-white p-5 shadow-xl shadow-[#171412]/5">
+                  {cart.length === 0 ? (
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#171412] py-4 text-center">
+                      NO PRODUCTS IN THE CART.
                     </p>
+                  ) : (
+                    <div className="space-y-4 max-h-[260px] overflow-y-auto pr-1">
+                      {cart.map((item, idx) => (
+                        <div key={`${item.product.name}-${item.size}-${item.color}`} className="flex items-center gap-3 border-b border-[#E7E1D8] pb-3 last:border-b-0 last:pb-0">
+                          <div className="relative h-12 w-12 shrink-0 bg-[#F5F2EC]">
+                            <Image
+                              src={item.product.images?.[0] ?? item.product.image}
+                              alt={item.product.name}
+                              fill
+                              className="object-cover object-center"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-[11px] font-semibold text-[#171412] truncate">
+                              {item.product.name}
+                            </h4>
+                            <p className="text-[10px] text-neutral-400 mt-0.5">
+                              {item.size} / {item.color}
+                            </p>
+                            <p className="text-[10px] font-semibold text-[#fd6f93] mt-0.5">
+                              {item.quantity} × {item.product.price}
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => removeFromCart(idx)}
+                            className="text-neutral-400 hover:text-neutral-900 transition-colors"
+                          >
+                            <X size={14} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="mt-4 border-t border-[#E7E1D8] pt-4">
+                    <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.1em] text-[#171412]">
+                      <span>Total:</span>
+                      <span className="text-[#fd6f93]">${cartTotal.toFixed(2)}</span>
+                    </div>
+
+                    <div className="mt-4 flex gap-2">
+                      <Link
+                        href="/cart"
+                        onClick={() => setDesktopDropdown(null)}
+                        className="flex-1 inline-flex items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-colors duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                      >
+                        Cart
+                      </Link>
+                      {cart.length > 0 && (
+                        <Link
+                          href="/checkout"
+                          onClick={() => setDesktopDropdown(null)}
+                          className="flex-1 inline-flex items-center justify-center gap-2 border border-[#fd6f93] bg-[#fd6f93] py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-colors duration-300 hover:bg-[#171412] hover:border-[#171412]"
+                        >
+                          Checkout
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -552,7 +614,7 @@ export default function Navbar() {
             >
               <ShoppingBag size={19} strokeWidth={1.7} className="sm:h-5 sm:w-5" />
               <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#fd6f93] px-1 text-[9px] text-white">
-                0
+                {cartCount}
               </span>
             </Link>
           </div>

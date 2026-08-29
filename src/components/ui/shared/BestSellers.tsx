@@ -8,6 +8,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { useState } from "react";
+import { useCartStore } from "@/lib/store";
 
 interface Product {
   id: number;
@@ -58,6 +59,7 @@ const products: Product[] = [
 
 export default function BestSellers() {
   const [wishlist, setWishlist] = useState<number[]>([]);
+  const { addToCart } = useCartStore();
 
   const toggleWishlist = (id: number) => {
     setWishlist((current) =>
@@ -379,6 +381,7 @@ export default function BestSellers() {
 
                   <button
                     type="button"
+                    onClick={() => addToCart({ id: product.id, name: product.name, category: product.category, price: `৳${product.price.toLocaleString()}`, image: product.image }, 1, "", "")}
                     className="
                       mt-4
                       flex

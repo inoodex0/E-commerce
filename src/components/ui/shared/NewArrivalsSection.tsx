@@ -18,31 +18,35 @@ export default function NewArrivalsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-6 xl:px-8">
 
         {/* Header */}
-        <div className="mb-8 text-center sm:mb-12 md:mb-14">
-          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#fd6f93]/50 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
+        <div className="mb-10 text-center sm:mb-14 md:mb-16">
+          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#fd6f93]/60 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
             just arrived
           </span>
-          <h2 className="mt-3 font-serif text-2xl font-medium tracking-[0.08em] text-[#171412] sm:text-3xl md:text-4xl lg:text-[42px]">
+          <h2 className="mt-3 font-serif text-2xl font-medium tracking-[0.1em] text-[#171412] sm:text-3xl md:text-4xl lg:text-[42px]">
             NEW ARRIVALS
           </h2>
+          <div className="mx-auto mt-4 h-[1.5px] w-14 bg-[#fd6f93]/70 sm:w-20" />
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-6 lg:gap-7">
 
           {newItems.slice(0, 6).map((item) => (
             <Link
               key={item.id}
               href={item.href}
-              className="new-arrival-card group relative aspect-square overflow-hidden bg-[#F5F2EC]"
+              className="new-arrival-card group relative aspect-square overflow-hidden rounded-sm border border-[#171412]/10 bg-[#FBF8F3] shadow-sm transition-shadow duration-300 hover:shadow-lg"
             >
               {/* Text behind image */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#FBF8F3] px-3 sm:px-4">
-                <h3 className="text-center font-serif text-xs font-medium tracking-wide text-[#171412] sm:text-sm md:text-base lg:text-lg">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-[#FBF8F3] px-4">
+                <p className="text-[8px] font-medium uppercase tracking-[0.25em] text-[#fd6f93] sm:text-[9px]">
+                  {item.tag}
+                </p>
+                <h3 className="text-center font-serif text-xs font-medium leading-snug tracking-wide text-[#171412] sm:text-sm md:text-base lg:text-lg">
                   {item.name}
                 </h3>
-                <p className="mt-0.5 text-center text-[9px] tracking-wider text-[#6B6560] sm:text-[10px] sm:mt-1 md:text-[11px]">
-                  {item.tag}
+                <p className="text-[10px] font-medium tracking-wider text-[#6B6560] sm:text-[11px]">
+                  {item.price}
                 </p>
               </div>
 
@@ -56,18 +60,24 @@ export default function NewArrivalsSection() {
                   className="object-cover object-center"
                 />
               </div>
+
+              {/* NEW badge — stays on top of the image */}
+              <span className="absolute left-3 top-3 z-20 rounded-full bg-white/90 px-2.5 py-1 text-[8px] font-semibold uppercase tracking-[0.15em] text-[#171412] shadow-sm backdrop-blur-sm sm:text-[9px]">
+                New
+              </span>
             </Link>
           ))}
 
         </div>
 
         {/* View All */}
-        <div className="mt-8 text-center sm:mt-10 md:mt-12">
+        <div className="mt-10 text-center sm:mt-12 md:mt-14">
           <Link
-            href="#"
-            className="inline-flex items-center gap-2 border border-[#171412] bg-white px-6 py-3 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] hover:text-white sm:px-8 sm:py-3.5 sm:text-[10px] sm:tracking-[0.18em]"
+            href="/new-arrivals"
+            className="group inline-flex items-center gap-2 border border-[#171412] bg-white px-7 py-3 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] hover:text-white sm:px-9 sm:py-3.5 sm:text-[10px] sm:tracking-[0.2em]"
           >
             View All New Arrivals
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </div>
