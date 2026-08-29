@@ -51,28 +51,34 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[#fd6f93]/10 py-10 sm:py-12 lg:py-16">
+    <section className="relative bg-[#fd6f93]/10 py-10 sm:py-12 lg:py-16">
 
       {/* =====================================================
           DECORATIVE BACKGROUND
       ====================================================== */}
 
-      <div className="pointer-events-none absolute -left-10 bottom-0 hidden h-[700px] w-[950px] mix-blend-multiply opacity-80 sm:block sm:h-[800px] sm:w-[1100px]">
-        <Image
-          src="/images/products/m-h-bg-icons.png"
-          alt=""
-          fill
-          className="object-contain object-bottom"
-        />
+      <div className="pointer-events-none absolute -left-10 bottom-0 opacity-100 sm:-left-2 sm:bottom-4 lg:left-16">
+        <div className="h-[140px] w-[170px] overflow-hidden sm:h-[320px] sm:w-[380px] lg:h-[450px] lg:w-[520px]">
+          <Image
+            src="/images/products/m-h-bg-icons.png"
+            alt=""
+            width={600}
+            height={600}
+            className="h-full w-full object-cover object-right-top saturate-[3] brightness-[0.5] contrast-[1.5] hue-rotate-[-20deg]"
+          />
+        </div>
       </div>
 
-      <div className="pointer-events-none absolute -right-5 top-0 hidden h-[450px] w-[650px] mix-blend-multiply opacity-80 sm:block sm:h-[550px] sm:w-[750px]">
-        <Image
-          src="/images/products/m-h-bg-icons.png"
-          alt=""
-          fill
-          className="object-contain object-top"
-        />
+      <div className="pointer-events-none absolute -right-6 top-0 opacity-100 sm:-right-2 sm:top-0 lg:right-12">
+        <div className="h-[120px] w-[150px] overflow-hidden sm:h-[280px] sm:w-[340px] lg:h-[380px] lg:w-[450px]">
+          <Image
+            src="/images/products/m-h-bg-icons.png"
+            alt=""
+            width={500}
+            height={500}
+            className="h-full w-full object-cover object-left-bottom saturate-[3] brightness-[0.5] contrast-[1.5] hue-rotate-[-20deg]"
+          />
+        </div>
       </div>
 
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Heart, Star, Minus, Plus, Eye, Truck, RotateCcw, ShieldCheck, Share2, GitCompare, MessageCircle, ChevronRight, Check, ShoppingBag, X } from "lucide-react";
-import { useCartStore } from "@/lib/store";
+import { useCartStore, useWishlistStore } from "@/lib/store";
 
 export interface Product {
   name: string;
@@ -40,12 +40,15 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const [isZooming, setIsZooming] = useState(false);
   const [activeTab, setActiveTab] = useState("Description");
+  const [selectedItems, setSelectedItems] = useState<boolean[]>(frequentlyBought.map(() => true));
   const [relatedTab, setRelatedTab] = useState<"related" | "recent">("related");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const cartItems = useCartStore((state) => state.cart);
   const addToCartStore = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const { toggleWishlist, isWishlisted } = useWishlistStore();
+  const wishlisted = isWishlisted(product.name);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -55,11 +58,17 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
   };
 
   const addToCart = () => {
-    addToCartStore(product as any, quantity, selectedSize, product.colors[selectedColor]);
+    addToCartStore({
+      ...product,
+      image: product.images[0],
+    } as any, quantity, selectedSize, product.colors[selectedColor]);
     setIsCartOpen(true);
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + parseFloat(item.product.price.replace("$", "")) * item.quantity, 0);
+  const subtotal = cartItems.reduce((sum, item) => {
+    const priceStr = item.product.price.replace(/[^0-9.]/g, "");
+    return sum + (parseFloat(priceStr) || 0) * item.quantity;
+  }, 0);
   const freeShippingThreshold = 150;
   const shippingProgress = Math.min((subtotal / freeShippingThreshold) * 100, 100);
 
@@ -151,7 +160,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
               <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:gap-4">
                 {/* Main product */}
                 <div className="flex items-center gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3 transition-all hover:border-[#fd6f93]/30 sm:gap-5 sm:rounded-2xl sm:p-5">
-                  <input type="checkbox" defaultChecked className="h-4 w-4 shrink-0 accent-[#fd6f93] sm:h-5 sm:w-5" />
+                  <input type="checkbox" defaultChecked className="h-4 w-4 shrink-0 accent-[#fd6f93] sm:h-5 sm:w-5" id="main-product-check" />
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#F5F2EC] sm:h-20 sm:w-20 sm:rounded-xl lg:h-24 lg:w-24">
                     <Image src={product.images[0]} alt={product.name} fill className="object-cover object-center" />
                   </div>
@@ -170,9 +179,9 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
 
                 <div className="text-center text-sm text-[#fd6f93] font-bold sm:text-base">+</div>
 
-                {frequentlyBought.map((item) => (
+                {frequentlyBought.map((item, idx) => (
                   <div key={item.id} className="flex items-center gap-3 rounded-xl border border-[#E7E1D8] bg-white p-3 transition-all hover:border-[#fd6f93]/30 sm:gap-5 sm:rounded-2xl sm:p-5">
-                    <input type="checkbox" defaultChecked className="h-4 w-4 shrink-0 accent-[#fd6f93] sm:h-5 sm:w-5" />
+                    <input type="checkbox" checked={selectedItems[idx]} onChange={(e) => { const n = [...selectedItems]; n[idx] = e.target.checked; setSelectedItems(n); }} className="h-4 w-4 shrink-0 accent-[#fd6f93] sm:h-5 sm:w-5" />
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#F5F2EC] sm:h-20 sm:w-20 sm:rounded-xl lg:h-24 lg:w-24">
                       <Image src={item.image} alt={item.name} fill className="object-cover object-center" />
                     </div>
@@ -194,9 +203,28 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
               <div className="mt-5 flex flex-col items-center gap-3 border-t border-[#E7E1D8] pt-5 sm:mt-6 sm:flex-row sm:justify-between sm:gap-4 sm:pt-6">
                 <div className="text-center sm:text-left">
                   <span className="text-xs text-[#6B6560] sm:text-sm">Total price: </span>
-                  <span className="font-serif text-xl font-medium text-[#171412] sm:text-2xl">$104.99</span>
+                  <span className="font-serif text-xl font-medium text-[#171412] sm:text-2xl">{product.price}</span>
                 </div>
-                <button className="flex w-full rounded-2xl items-center justify-center gap-2 border border-neutral-200   bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] sm:w-auto sm:px-8 sm:py-3.5 sm:text-sm">
+                <button
+                  onClick={() => {
+                    addToCartStore({
+                      ...product,
+                      image: product.images[0],
+                    } as any, 1, selectedSize, product.colors[selectedColor]);
+                    frequentlyBought.forEach((item, idx) => {
+                      if (!selectedItems[idx]) return;
+                      addToCartStore({
+                        id: item.id,
+                        name: item.name,
+                        category: "Accessories",
+                        price: item.price,
+                        image: item.image,
+                      } as any, 1, item.sizes[0], item.colors[0]);
+                    });
+                    setIsCartOpen(true);
+                  }}
+                  className="flex w-full rounded-2xl items-center justify-center gap-2 border border-neutral-200 bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] sm:w-auto sm:px-8 sm:py-3.5 sm:text-sm"
+                >
                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
                   </svg>
@@ -338,8 +366,13 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                 Add to Cart — {product.price}
               </button>
 
-              <button className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#E7E1D8] bg-white transition-all duration-300 hover:border-[#fd6f93] hover:text-[#fd6f93] hover:bg-[#fd6f93]/5 sm:h-12 sm:w-12">
-                <Heart size={20} />
+              <button
+                onClick={() => toggleWishlist(product as any)}
+                className={`flex h-11 w-11 shrink-0 items-center justify-center border bg-white transition-all duration-300 hover:border-[#fd6f93] hover:text-[#fd6f93] hover:bg-[#fd6f93]/5 sm:h-12 sm:w-12 ${
+                  wishlisted ? "border-[#fd6f93] text-[#fd6f93]" : "border-[#E7E1D8]"
+                }`}
+              >
+                <Heart size={20} className={wishlisted ? "fill-[#fd6f93]" : ""} />
               </button>
             </div>
 
@@ -347,7 +380,10 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
             <Link
               href="/checkout"
               onClick={() => {
-                addToCartStore(product as any, quantity, selectedSize, product.colors[selectedColor]);
+                addToCartStore({
+                  ...product,
+                  image: product.images[0],
+                } as any, quantity, selectedSize, product.colors[selectedColor]);
               }}
               className="group rounded-2xl mt-3 flex w-full items-center justify-center bg-gradient-to-r from-[#fd6f93] to-[#ff8fab] py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#fd6f93]/30 hover:from-[#e5507a] hover:to-[#fd6f93] sm:py-4 sm:text-sm"
             >
@@ -615,8 +651,8 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
       {/* Cart Overlay */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 flex justify-end">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsCartOpen(false)} />
-          <div className="relative flex w-full max-w-lg flex-col bg-white shadow-2xl">
+          <div className="absolute inset-0 z-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsCartOpen(false)} />
+          <div className="relative z-10 flex w-full max-w-lg flex-col bg-white shadow-2xl">
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[#E7E1D8] px-6 py-4">
               <h2 className="font-serif text-lg font-semibold text-[#171412]">Shopping Cart</h2>
@@ -702,7 +738,7 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                               <Plus size={12} />
                             </button>
                           </div>
-                          <span className="ml-auto text-xs font-semibold text-[#171412]">${(parseFloat(item.product.price.replace("$", "")) * item.quantity).toFixed(2)}</span>
+                          <span className="ml-auto text-xs font-semibold text-[#171412]">${(parseFloat(item.product.price.replace(/[^0-9.]/g, "")) * item.quantity).toFixed(2)}</span>
                         </div>
                       </div>
                       <button onClick={() => removeFromCart(index)} className="text-[#6B6560] hover:text-[#fd6f93] transition-colors">
@@ -729,9 +765,13 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                   <input type="checkbox" className="mt-0.5 accent-[#171412]" />
                   <span className="text-[10px] text-[#6B6560]">I agree with the terms & conditions</span>
                 </div>
-                <button className="w-full bg-[#171412] py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#fd6f93] transition-colors rounded-lg mb-2">
+                <Link
+                  href="/checkout"
+                  onClick={() => setIsCartOpen(false)}
+                  className="block w-full bg-[#171412] py-3 text-center text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#fd6f93] transition-colors rounded-lg mb-2"
+                >
                   Check Out
-                </button>
+                </Link>
                 <div className="flex justify-between text-xs">
                   <Link href="/cart" className="text-[#171412] underline underline-offset-4 hover:text-[#fd6f93] transition-colors" onClick={() => setIsCartOpen(false)}>View Cart</Link>
                   <button onClick={() => setIsCartOpen(false)} className="text-[#171412] underline underline-offset-4 hover:text-[#fd6f93] transition-colors">Continue Shopping</button>

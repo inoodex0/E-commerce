@@ -56,3 +56,39 @@ export const useCartStore = create<CartStore>()(
     }
   )
 );
+
+interface WishlistStore {
+  wishlist: Product[];
+  toggleWishlist: (product: Product) => void;
+  isWishlisted: (productName: string) => boolean;
+  removeFromWishlist: (productName: string) => void;
+  clearWishlist: () => void;
+}
+
+export const useWishlistStore = create<WishlistStore>()(
+  persist(
+    (set, get) => ({
+      wishlist: [],
+      toggleWishlist: (product) =>
+        set((state) => {
+          const exists = state.wishlist.some((p) => p.name === product.name);
+          if (exists) {
+            return { wishlist: state.wishlist.filter((p) => p.name !== product.name) };
+          } else {
+            return { wishlist: [...state.wishlist, product] };
+          }
+        }),
+      isWishlisted: (productName) => {
+        return get().wishlist.some((p) => p.name === productName);
+      },
+      removeFromWishlist: (productName) =>
+        set((state) => ({
+          wishlist: state.wishlist.filter((p) => p.name !== productName),
+        })),
+      clearWishlist: () => set({ wishlist: [] }),
+    }),
+    {
+      name: "novara-wishlist-storage",
+    }
+  )
+);

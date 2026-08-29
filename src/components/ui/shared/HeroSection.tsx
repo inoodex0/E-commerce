@@ -242,18 +242,20 @@ export default function HeroSection() {
       </button>
 
       {/* =====================================================
-          CUSTOM ARROW CURSOR (desktop only)
+          CUSTOM CURSOR (desktop only)
       ====================================================== */}
       <div
-        className={`pointer-events-none fixed z-[9999] hidden -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-200 ease-out md:block ${
-          isHovering ? "opacity-100 scale-100" : "opacity-0 scale-50"
+        className={`pointer-events-none fixed z-[9999] hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/50 transition-[opacity,width,height] duration-300 ease-out md:block ${
+          isHovering ? "opacity-100 h-16 w-16 lg:h-20 lg:w-20" : "opacity-0 h-4 w-4"
         }`}
         style={{ left: mousePos.x, top: mousePos.y }}
-      >
-        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" className="md:h-[70px] md:w-[70px] lg:h-[80px] lg:w-[80px]">
-          <path d="M22 15L38 30L22 45" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-        </svg>
-      </div>
+      />
+      {!isHovering && (
+        <div
+          className="pointer-events-none fixed z-[9999] hidden h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/60 md:block"
+          style={{ left: mousePos.x, top: mousePos.y }}
+        />
+      )}
 
       {/* =====================================================
           ANIMATIONS

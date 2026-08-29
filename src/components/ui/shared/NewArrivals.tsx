@@ -9,7 +9,7 @@ import {
   Eye,
 } from "lucide-react";
 import { useState } from "react";
-import { useCartStore } from "@/lib/store";
+import { useCartStore, useWishlistStore } from "@/lib/store";
 
 interface Product {
   id: number;
@@ -69,16 +69,8 @@ const products: Product[] = [
 ];
 
 export default function NewArrivals() {
-  const [wishlist, setWishlist] = useState<number[]>([]);
   const { addToCart } = useCartStore();
-
-  const toggleWishlist = (id: number) => {
-    setWishlist((current) =>
-      current.includes(id)
-        ? current.filter((item) => item !== id)
-        : [...current, id]
-    );
-  };
+  const { toggleWishlist, isWishlisted } = useWishlistStore();
 
   return (
     <section className="w-full bg-[#F7F5F0] py-20 sm:py-24 lg:py-32">
@@ -206,7 +198,7 @@ export default function NewArrivals() {
         >
 
           {products.map((product, index) => {
-            const isWishlisted = wishlist.includes(product.id);
+            const wishlisted = isWishlisted(product.name);
 
             const discount = product.oldPrice
               ? Math.round(
@@ -315,14 +307,14 @@ export default function NewArrivals() {
 
                   <button
                     type="button"
-                    aria-label={
-                      isWishlisted
-                        ? `Remove ${product.name} from wishlist`
-                        : `Add ${product.name} to wishlist`
-                    }
-                    onClick={() =>
-                      toggleWishlist(product.id)
-                    }
+                      aria-label={
+                        wishlisted
+                          ? `Remove ${product.name} from wishlist`
+                          : `Add ${product.name} to wishlist`
+                      }
+                      onClick={() =>
+                        toggleWishlist(product as any)
+                      }
                     className="
                       absolute
                       right-3
@@ -347,8 +339,8 @@ export default function NewArrivals() {
                       size={16}
                       strokeWidth={1.5}
                       className={
-                        isWishlisted
-                          ? "fill-neutral-950 text-neutral-950"
+                        wishlisted
+                          ? "fill-[#fd6f93] text-[#fd6f93]"
                           : "text-neutral-800"
                       }
                     />

@@ -8,7 +8,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { useState } from "react";
-import { useCartStore } from "@/lib/store";
+import { useCartStore, useWishlistStore } from "@/lib/store";
 
 interface Product {
   id: number;
@@ -58,16 +58,8 @@ const products: Product[] = [
 ];
 
 export default function BestSellers() {
-  const [wishlist, setWishlist] = useState<number[]>([]);
   const { addToCart } = useCartStore();
-
-  const toggleWishlist = (id: number) => {
-    setWishlist((current) =>
-      current.includes(id)
-        ? current.filter((item) => item !== id)
-        : [...current, id]
-    );
-  };
+  const { toggleWishlist, isWishlisted } = useWishlistStore();
 
   return (
     <section className="w-full bg-white py-14 sm:py-20 lg:py-32">
@@ -131,7 +123,7 @@ export default function BestSellers() {
         <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-12 sm:mt-14 sm:gap-x-5 lg:grid-cols-4 lg:gap-x-7">
 
           {products.map((product, index) => {
-            const isWishlisted = wishlist.includes(product.id);
+            const wishlisted = isWishlisted(product.name);
 
             return (
               <article
@@ -244,10 +236,10 @@ export default function BestSellers() {
                   <button
                     type="button"
                     onClick={() =>
-                      toggleWishlist(product.id)
+                      toggleWishlist(product as any)
                     }
                     aria-label={
-                      isWishlisted
+                      wishlisted
                         ? "Remove from wishlist"
                         : "Add to wishlist"
                     }
@@ -275,8 +267,8 @@ export default function BestSellers() {
                       size={15}
                       strokeWidth={1.4}
                       className={
-                        isWishlisted
-                          ? "fill-neutral-900 text-neutral-900"
+                        wishlisted
+                          ? "fill-[#fd6f93] text-[#fd6f93]"
                           : "text-neutral-800"
                       }
                     />

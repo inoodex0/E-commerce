@@ -13,7 +13,7 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
-import { useCartStore } from "@/lib/store";
+import { useCartStore, useWishlistStore } from "@/lib/store";
 import Image from "next/image";
 
 /* =========================================================
@@ -75,13 +75,14 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const cart = useCartStore((state) => state.cart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const wishlist = useWishlistStore((state) => state.wishlist);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const cartCount = mounted ? cart.reduce((sum, item) => sum + item.quantity, 0) : 0;
-  const cartTotal = mounted ? cart.reduce((sum, item) => sum + parseFloat(item.product.price.replace("$", "")) * item.quantity, 0) : 0;
+  const cartTotal = mounted ? cart.reduce((sum, item) => sum + parseFloat(item.product.price.replace(/[^0-9.]/g, "")) * item.quantity, 0) : 0;
 
   /* =======================================================
      CLOSE MOBILE MENU
@@ -479,7 +480,7 @@ export default function Navbar() {
             >
               <Heart size={18} strokeWidth={1.6} className="xl:h-[19px] xl:w-[19px]" />
               <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#fd6f93] px-1 text-[9px] text-white">
-                0
+                {wishlist.length}
               </span>
             </Link>
 
@@ -552,7 +553,7 @@ export default function Navbar() {
                   <div className="mt-4 border-t border-[#E7E1D8] pt-4">
                     <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.1em] text-[#171412]">
                       <span>Total:</span>
-                      <span className="text-[#fd6f93]">${cartTotal.toFixed(2)}</span>
+                      <span className="text-[#fd6f93]">৳{cartTotal.toLocaleString()}</span>
                     </div>
 
                     <div className="mt-4 flex gap-2">
