@@ -80,6 +80,22 @@ export default function ContactPage() {
             </div>
           </form>
         </div>
+
+        {/* Map */}
+        <div className="mt-12
+         overflow-hidden border border-[#E7E1D8] bg-white">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14773.154137578934!2d90.3488!3d23.8289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c71b8d5e3e3d%3A0x1!2sGhoroia%20Mor%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd"
+            width="100%"
+            height="250"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-48 sm:h-64"
+          />
+        </div>
+
       </div>
     </main>
   );

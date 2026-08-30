@@ -65,6 +65,12 @@ export default function Navbar() {
   ======================================================== */
 
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchCategory, setSearchCategory] = useState("All Categories");
+  const searchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchRef = useRef<HTMLDivElement>(null);
 
   const [desktopDropdown, setDesktopDropdown] =
     useState<DropdownType>(null);
@@ -135,10 +141,28 @@ export default function Navbar() {
   ======================================================== */
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        mobileSearchOpen &&
+        mobileSearchRef.current &&
+        !mobileSearchRef.current.contains(event.target as Node)
+      ) {
+        setMobileSearchOpen(false);
+        setSearchQuery("");
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [mobileSearchOpen]);
+
+  useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         closeMobileMenu();
         setDesktopDropdown(null);
+        setSearchQuery("");
+        setMobileSearchOpen(false);
       }
     };
 
@@ -185,7 +209,7 @@ export default function Navbar() {
 
 
       <nav className="border-b border-[#E7E1D8] bg-[#FBF8F3]">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[72px] sm:px-5 lg:h-[76px] lg:px-6 xl:px-8">
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:h-[72px] sm:px-5 lg:h-[76px] lg:px-6 xl:px-8">
 
           {/* =================================================
               MOBILE HAMBURGER (left)
@@ -224,7 +248,7 @@ export default function Navbar() {
 
             <Link
               href="/"
-              className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
+              className="group relative whitespace-nowrap py-7 text-[14px] font-normal tracking-wide text-[#171412]/80 xl:text-[15.5px]"
             >
               Home
               <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
@@ -236,7 +260,7 @@ export default function Navbar() {
 
             <Link
               href="/shop"
-              className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
+              className="group relative whitespace-nowrap py-7 text-[14px] font-normal tracking-wide text-[#171412]/80 xl:text-[15.5px]"
             >
               Shop
               <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
@@ -258,7 +282,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => toggleDesktopDropdown("categories")}
-                className="flex items-center gap-1.5 whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
+                className="flex items-center gap-1.5 whitespace-nowrap py-7 text-[14px] font-normal tracking-wide text-[#171412]/80 xl:text-[15.5px]"
               >
                 Categories
                 <ChevronDown
@@ -318,7 +342,7 @@ export default function Navbar() {
 
             <Link
               href="/new-arrivals"
-              className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
+              className="group relative whitespace-nowrap py-7 text-[14px] font-normal tracking-wide text-[#171412]/80 xl:text-[15.5px]"
             >
               New Arrivals
               <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
@@ -336,7 +360,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => toggleDesktopDropdown("deals")}
-                className="flex items-center gap-1.5 whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
+                className="flex items-center gap-1.5 whitespace-nowrap py-7 text-[14px] font-normal tracking-wide text-[#171412]/80 xl:text-[15.5px]"
               >
                 Deals 
                 <ChevronDown
@@ -395,7 +419,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => toggleDesktopDropdown("about")}
-                className="flex items-center gap-1.5 whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
+                className="flex items-center gap-1.5 whitespace-nowrap py-7 text-[14px] font-normal tracking-wide text-[#171412]/80 xl:text-[15.5px]"
               >
                 About
                 <ChevronDown
@@ -448,7 +472,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className="group relative whitespace-nowrap py-7 text-[13px] font-normal tracking-wide text-[#171412]/80 xl:text-[14.5px]"
+              className="group relative whitespace-nowrap py-7 text-[14px] font-normal tracking-wide text-[#171412]/80 xl:text-[15.5px]"
             >
               Contact
               <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#fd6f93] transition-all duration-300 group-hover:w-full" />
@@ -461,15 +485,113 @@ export default function Navbar() {
 
           <div className="hidden shrink-0 items-center gap-3.5 lg:flex xl:gap-5">
 
-            {/* Search */}
+            {/* Search Bar */}
+            <div className="hidden xl:flex items-center overflow-hidden border border-[#E7E1D8] bg-white">
+              <div className="relative flex items-center border-r border-[#E7E1D8]">
+                <select
+                  value={searchCategory}
+                  onChange={(e) => setSearchCategory(e.target.value)}
+                  className="appearance-none bg-transparent pl-2.5 pr-6 py-2.5 text-[13px] font-medium text-[#171412] outline-none cursor-pointer"
+                >
+                  <option>All</option>
+                  {categories.map((c) => (
+                    <option key={c.href} value={c.label}>{c.label}</option>
+                  ))}
+                </select>
+                <ChevronDown size={11} className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[#171412]/40 pointer-events-none" />
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search..."
+                className="w-32 bg-transparent px-2.5 py-2.5 text-[11px] text-[#171412] outline-none placeholder:text-[#6B6560]/40"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    const cat = searchCategory === "All" ? "" : searchCategory.toLowerCase();
+                    const q = searchQuery.trim();
+                    window.location.href = `/shop?q=${encodeURIComponent(q)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}`;
+                  }
+                }}
+              />
+              <button
+                onClick={() => {
+                  const cat = searchCategory === "All" ? "" : searchCategory.toLowerCase();
+                  const q = searchQuery.trim();
+                  window.location.href = `/shop?q=${encodeURIComponent(q)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}`;
+                }}
+                className="shrink-0 bg-[#171412] px-3.5 py-2.5 text-[9px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93]"
+              >
+                Search
+              </button>
+            </div>
 
-            <Link
-              href="/search"
-              aria-label="Search"
-              className="text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#fd6f93]"
-            >
-              <Search size={18} strokeWidth={1.6} className="xl:h-[19px] xl:w-[19px]" />
-            </Link>
+            {/* Search Icon (lg only, below xl) */}
+            <div className="relative xl:hidden" ref={searchRef}>
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                aria-label="Search"
+                className="text-[#171412] transition-all duration-300 hover:-translate-y-0.5 hover:text-[#fd6f93]"
+              >
+                <Search size={18} strokeWidth={1.6} />
+              </button>
+              <div
+                className={`absolute right-0 top-full mt-3 w-72 transition-all duration-300 ease-out ${
+                  searchOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-3 opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden rounded-xl border border-[#E7E1D8] bg-white shadow-2xl shadow-[#171412]/10">
+                  <div className="flex items-center overflow-hidden border-b border-[#E7E1D8]">
+                    <div className="relative flex items-center border-r border-[#E7E1D8]">
+                      <select
+                        value={searchCategory}
+                        onChange={(e) => setSearchCategory(e.target.value)}
+                        className="appearance-none bg-transparent pl-2.5 pr-6 py-3 text-[10px] font-medium text-[#171412] outline-none cursor-pointer"
+                      >
+                        <option>All</option>
+                        {categories.map((c) => (
+                          <option key={c.href} value={c.label}>{c.label}</option>
+                        ))}
+                      </select>
+                      <ChevronDown size={11} className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[#171412]/40 pointer-events-none" />
+                    </div>
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search..."
+                      className="w-full bg-transparent px-3 py-3 text-[12px] text-[#171412] outline-none placeholder:text-[#6B6560]/40"
+                      autoFocus={searchOpen}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          const cat = searchCategory === "All" ? "" : searchCategory.toLowerCase();
+                          const q = searchQuery.trim();
+                          window.location.href = `/shop?q=${encodeURIComponent(q)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}`;
+                          setSearchOpen(false);
+                          setSearchQuery("");
+                        }
+                        if (e.key === "Escape") {
+                          setSearchOpen(false);
+                          setSearchQuery("");
+                        }
+                      }}
+                    />
+                    <button
+                      onClick={() => {
+                        const cat = searchCategory === "All" ? "" : searchCategory.toLowerCase();
+                        const q = searchQuery.trim();
+                        window.location.href = `/shop?q=${encodeURIComponent(q)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}`;
+                        setSearchOpen(false);
+                        setSearchQuery("");
+                      }}
+                      className="shrink-0 bg-[#171412] px-4 py-3 text-[9px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93]"
+                    >
+                      Search
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Wishlist */}
 
@@ -597,14 +719,13 @@ export default function Navbar() {
           <div className="flex items-center gap-3.5 text-[#171412] sm:gap-4 lg:hidden">
 
             {/* Search */}
-
-            <Link
-              href="/search"
+            <button
+              onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
               aria-label="Search"
               className="transition-transform duration-300 active:scale-90"
             >
               <Search size={19} strokeWidth={1.7} className="sm:h-5 sm:w-5" />
-            </Link>
+            </button>
 
             {/* Cart */}
 
@@ -623,6 +744,75 @@ export default function Navbar() {
       </nav>
 
     </header>
+
+      {/* =====================================================
+          MOBILE SEARCH OVERLAY
+      ====================================================== */}
+
+      <div
+        className={`fixed left-0 right-0 top-[96px] z-[90] sm:top-[72px] lg:hidden transition-all duration-300 ${
+          mobileSearchOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        <div className="mx-4 overflow-hidden border border-[#E7E1D8] bg-white shadow-2xl shadow-[#171412]/10" ref={mobileSearchRef}>
+          <div className="flex items-center border-b border-[#E7E1D8]">
+            <div className="relative flex items-center border-r border-[#E7E1D8]">
+              <select
+                value={searchCategory}
+                onChange={(e) => setSearchCategory(e.target.value)}
+                className="appearance-none bg-transparent pl-3 pr-7 py-3 text-[12px] font-medium text-[#171412] outline-none cursor-pointer"
+              >
+                <option>All</option>
+                {categories.map((c) => (
+                  <option key={c.href} value={c.label}>{c.label}</option>
+                ))}
+              </select>
+              <ChevronDown size={11} className="absolute right-2 top-1/2 -translate-y-1/2 text-[#171412]/40 pointer-events-none" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="w-full bg-transparent px-3 py-3 text-sm text-[#171412] outline-none placeholder:text-[#6B6560]/40"
+              autoFocus={mobileSearchOpen}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  const cat = searchCategory === "All" ? "" : searchCategory.toLowerCase();
+                  const q = searchQuery.trim();
+                  window.location.href = `/shop?q=${encodeURIComponent(q)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}`;
+                  setMobileSearchOpen(false);
+                  setSearchQuery("");
+                }
+                if (e.key === "Escape") {
+                  setMobileSearchOpen(false);
+                  setSearchQuery("");
+                }
+              }}
+            />
+            <button
+              onClick={() => {
+                const cat = searchCategory === "All" ? "" : searchCategory.toLowerCase();
+                const q = searchQuery.trim();
+                window.location.href = `/shop?q=${encodeURIComponent(q)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}`;
+                setMobileSearchOpen(false);
+                setSearchQuery("");
+              }}
+              className="shrink-0 bg-[#171412] px-4 py-3 text-[10px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93]"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Backdrop */}
+      {mobileSearchOpen && (
+        <div
+          className="fixed inset-0 z-[80] lg:hidden"
+          onClick={() => { setMobileSearchOpen(false); setSearchQuery(""); }}
+        />
+      )}
 
       {/* =====================================================
           MOBILE MENU OVERLAY (outside header to escape z-50)

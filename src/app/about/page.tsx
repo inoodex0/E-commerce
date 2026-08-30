@@ -5,12 +5,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#fd6f93] transition-colors hover:text-[#171412]"
-        >
-          <ArrowLeft size={16} /> Back to Home
-        </Link>
+       
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">About NOVARA</p>

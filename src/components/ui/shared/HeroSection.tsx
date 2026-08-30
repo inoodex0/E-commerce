@@ -244,18 +244,48 @@ export default function HeroSection() {
       {/* =====================================================
           CUSTOM CURSOR (desktop only)
       ====================================================== */}
+      {/* Outer ring */}
       <div
-        className={`pointer-events-none fixed z-[9999] hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/50 transition-[opacity,width,height] duration-300 ease-out md:block ${
-          isHovering ? "opacity-100 h-16 w-16 lg:h-20 lg:w-20" : "opacity-0 h-4 w-4"
-        }`}
-        style={{ left: mousePos.x, top: mousePos.y }}
+        className="pointer-events-none fixed z-[9999] hidden -translate-x-1/2 -translate-y-1/2 md:block"
+        style={{
+          left: mousePos.x,
+          top: mousePos.y,
+          width: isHovering ? 56 : 12,
+          height: isHovering ? 56 : 12,
+          borderRadius: "50%",
+          border: isHovering ? "1.5px solid rgba(253,111,147,0.6)" : "1px solid rgba(255,255,255,0.35)",
+          backgroundColor: isHovering ? "rgba(253,111,147,0.08)" : "rgba(255,255,255,0.15)",
+          backdropFilter: isHovering ? "blur(8px)" : "none",
+          boxShadow: isHovering
+            ? "0 0 30px 6px rgba(253,111,147,0.15), inset 0 0 15px rgba(253,111,147,0.05)"
+            : "0 0 10px 2px rgba(253,111,147,0.1)",
+          transition: isHovering
+            ? "all 0.45s cubic-bezier(0.23,1,0.32,1)"
+            : "all 0.2s cubic-bezier(0.23,1,0.32,1)",
+        }}
+      >
+        {isHovering && (
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 animate-[fadeIn_0.3s_0.12s_ease-out_forwards]">
+            <ArrowRight size={18} strokeWidth={1.5} className="text-[#fd6f93] -translate-x-[1px]" />
+          </div>
+        )}
+      </div>
+
+      {/* Inner dot */}
+      <div
+        className="pointer-events-none fixed z-[9999] hidden -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+        style={{
+          left: mousePos.x,
+          top: mousePos.y,
+          width: isHovering ? 0 : 5,
+          height: isHovering ? 0 : 5,
+          backgroundColor: "#fd6f93",
+          boxShadow: isHovering
+            ? "none"
+            : "0 0 12px 3px rgba(253,111,147,0.25)",
+          transition: "all 0.3s cubic-bezier(0.23,1,0.32,1)",
+        }}
       />
-      {!isHovering && (
-        <div
-          className="pointer-events-none fixed z-[9999] hidden h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/60 md:block"
-          style={{ left: mousePos.x, top: mousePos.y }}
-        />
-      )}
 
       {/* =====================================================
           ANIMATIONS
@@ -285,6 +315,10 @@ export default function HeroSection() {
             opacity: 1;
             transform: translateY(0) rotateX(0deg);
           }
+        }
+
+        @keyframes fadeIn {
+          to { opacity: 1; }
         }
 
         @media (hover: hover) and (pointer: fine) {

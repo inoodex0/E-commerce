@@ -49,51 +49,65 @@ const SALE_DURATION = 24 * 60 * 60;
 
 export default function DealsSection() {
   const [timeLeft, setTimeLeft] = useState(SALE_DURATION);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const savedEndTime = localStorage.getItem(
-      "accessories-sale-end"
-    );
+    setMounted(true);
 
     let endTime: number;
 
-    if (savedEndTime) {
-      endTime = Number(savedEndTime);
-    } else {
+    try {
+      const savedEndTime = localStorage.getItem("accessories-sale-end");
+      if (savedEndTime) {
+        endTime = Number(savedEndTime);
+        if (endTime <= Date.now()) {
+          endTime = Date.now() + SALE_DURATION * 1000;
+          localStorage.setItem("accessories-sale-end", String(endTime));
+        }
+      } else {
+        endTime = Date.now() + SALE_DURATION * 1000;
+        localStorage.setItem("accessories-sale-end", String(endTime));
+      }
+    } catch {
       endTime = Date.now() + SALE_DURATION * 1000;
-
-      localStorage.setItem(
-        "accessories-sale-end",
-        String(endTime)
-      );
     }
 
     const updateTimer = () => {
-      const remaining = Math.max(
-        0,
-        Math.floor((endTime - Date.now()) / 1000)
-      );
-
+      const remaining = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
       setTimeLeft(remaining);
     };
 
     updateTimer();
-
     const timer = setInterval(updateTimer, 1000);
 
     return () => clearInterval(timer);
   }, []);
 
   const hours = Math.floor(timeLeft / 3600);
-
-  const minutes = Math.floor(
-    (timeLeft % 3600) / 60
-  );
-
+  const minutes = Math.floor((timeLeft % 3600) / 60);
   const seconds = timeLeft % 60;
 
-  const formatNumber = (value: number) =>
-    String(value).padStart(2, "0");
+  const formatNumber = (value: number) => String(value).padStart(2, "0");
+
+  if (!mounted) {
+    return (
+      <section className="w-full bg-[#FAF9F7] py-14 sm:py-20 lg:py-32">
+        <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="flex flex-col gap-8 border-b border-neutral-200 pb-10 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-neutral-900" />
+                <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-neutral-500 sm:text-[10px]">Limited Time</p>
+              </div>
+              <h2 className="mt-5 font-sans text-[clamp(3rem,6vw,6rem)] font-medium leading-[0.84] tracking-[-0.04em] text-neutral-950">
+                Flash <span className="italic text-neutral-500">Sale</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full bg-[#FAF9F7] py-14 sm:py-20 lg:py-32">

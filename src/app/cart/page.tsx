@@ -20,12 +20,7 @@ export default function CartPage() {
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
 
-        <Link
-          href="/shop"
-          className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560] transition-colors hover:text-[#171412]"
-        >
-          <ArrowLeft size={14} /> Continue Shopping
-        </Link>
+       
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Shopping Bag</p>

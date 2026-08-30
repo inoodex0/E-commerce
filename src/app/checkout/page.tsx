@@ -64,16 +64,7 @@ export default function CheckoutPage() {
   if (cart.length === 0 && !orderPlaced) {
     return (
       <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl text-center">
-          <h1 className="font-serif text-3xl font-medium text-[#171412]">No Items to Checkout</h1>
-          <p className="mt-2 text-sm text-[#6B6560]">Add some items to your cart first.</p>
-          <Link
-            href="/shop"
-            className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
-          >
-            Shop Collection
-          </Link>
-        </div>
+      
       </main>
     );
   }
@@ -227,12 +218,7 @@ export default function CheckoutPage() {
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
 
-        <Link
-          href="/cart"
-          className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560] transition-colors hover:text-[#171412]"
-        >
-          <ArrowLeft size={14} /> Back to Cart
-        </Link>
+       
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Secure Checkout</p>
