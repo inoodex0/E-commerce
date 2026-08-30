@@ -90,7 +90,6 @@ export default function CheckoutPage() {
             <p className="mt-1 text-sm text-[#6B6560]">Your invoice is ready. Print or download it below.</p>
           </div>
 
-          {/* Action Buttons */}
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               onClick={() => printInvoicePDF(invoiceData)}
@@ -114,100 +113,109 @@ export default function CheckoutPage() {
             </Link>
           </div>
 
-          {/* Invoice Preview */}
-          <div className="border border-[#E7E1D8] bg-white shadow-sm overflow-hidden">
+          {/* ═══════════════════════════════════════════════════════════
+              INVOICE PREVIEW
+          ═══════════════════════════════════════════════════════════ */}
+          <div className="rounded-lg border border-[#E7E1D8] bg-white p-4 shadow-md sm:p-6">
 
-            {/* Invoice Header */}
-            <div className="bg-[#171412] px-6 py-5 sm:px-8 sm:py-6">
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="font-serif text-xl font-bold text-[#fd6f93] sm:text-2xl">NOVARA</p>
-                  <p className="text-[10px] uppercase tracking-wider text-gray-400 sm:text-xs">Invoice</p>
+            {/* ── Logo + INVOICE ── */}
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#F0EDE8] sm:h-20 sm:w-20">
+                <span className="text-center text-[8px] font-bold uppercase leading-tight text-[#171412] sm:text-[9px]">NOVARA<br />LOGO</span>
+              </div>
+              <h2 className="text-2xl font-normal tracking-tight text-[#171412] sm:text-3xl">INVOICE</h2>
+            </div>
+
+            {/* ── Invoice Info + Billed To ── */}
+            <div className="mt-6 flex flex-col justify-between gap-4 sm:flex-row sm:gap-8">
+              <div className="space-y-1">
+                <div className="flex gap-2">
+                  <span className="text-[10px] font-semibold text-[#171412] sm:text-xs">Invoice Number:</span>
+                  <span className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.orderId}</span>
                 </div>
-                <div className="text-right">
-                  <p className="text-xs font-medium text-white">Order #{invoiceData.orderId}</p>
-                  <p className="text-[10px] text-gray-400 sm:text-xs">{invoiceData.date}</p>
+                <div className="flex gap-2">
+                  <span className="text-[10px] font-semibold text-[#171412] sm:text-xs">Invoice Date:</span>
+                  <span className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.date}</span>
                 </div>
+                <div className="flex gap-2">
+                  <span className="text-[10px] font-semibold text-[#171412] sm:text-xs">Payment:</span>
+                  <span className="text-[10px] text-[#6B6560] sm:text-xs">
+                    {invoiceData.paymentMethod === "cod" ? "Cash on Delivery" : invoiceData.paymentMethod === "bkash" ? "bKash" : "Nagad"}
+                  </span>
+                </div>
+              </div>
+              <div className="text-left sm:text-right">
+                <p className="text-[10px] font-semibold text-[#171412] sm:text-xs">Billed to:</p>
+                <p className="text-[10px] font-semibold text-[#171412] sm:text-xs">{invoiceData.customer.name}</p>
+                <p className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.customer.address}</p>
+                <p className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.customer.area}, {invoiceData.customer.city}</p>
+                <p className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.customer.email}</p>
               </div>
             </div>
 
-            <div className="px-6 py-5 sm:px-8">
-
-              {/* Billing + Payment */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-[#fd6f93]">Bill To</p>
-                  <p className="mt-1 text-sm font-medium text-[#171412]">{invoiceData.customer.name}</p>
-                  <p className="text-xs text-[#6B6560]">{invoiceData.customer.address}</p>
-                  <p className="text-xs text-[#6B6560]">{invoiceData.customer.area}, {invoiceData.customer.city}</p>
-                  <p className="text-xs text-[#6B6560]">{invoiceData.customer.phone}</p>
-                  <p className="text-xs text-[#6B6560]">{invoiceData.customer.email}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-[#fd6f93]">Payment Method</p>
-                  <div className="mt-2 inline-flex items-center gap-2 rounded-lg bg-[#FBF8F3] px-3 py-2">
-                    <FileText size={14} className="text-[#171412]" />
-                    <span className="text-xs font-medium text-[#171412]">{payLabel}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Items Table */}
-              <div className="mt-6 overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="border-b-2 border-[#171412]">
-                      <th className="pb-2 text-[10px] font-semibold uppercase tracking-wider text-[#171412]">Item</th>
-                      <th className="pb-2 text-[10px] font-semibold uppercase tracking-wider text-[#171412]">Size</th>
-                      <th className="pb-2 text-[10px] font-semibold uppercase tracking-wider text-[#171412]">Color</th>
-                      <th className="pb-2 text-center text-[10px] font-semibold uppercase tracking-wider text-[#171412]">Qty</th>
-                      <th className="pb-2 text-right text-[10px] font-semibold uppercase tracking-wider text-[#171412]">Price</th>
-                      <th className="pb-2 text-right text-[10px] font-semibold uppercase tracking-wider text-[#171412]">Total</th>
+            {/* ── Items Table ── */}
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full text-left text-[10px] sm:text-xs">
+                <thead>
+                  <tr className="border-b-2 border-[#171412]">
+                    <th className="pb-1.5 font-semibold text-[#171412]">Description</th>
+                    <th className="pb-1.5 text-right font-semibold text-[#171412]">Price</th>
+                    <th className="pb-1.5 text-center font-semibold text-[#171412]">Quantity</th>
+                    <th className="pb-1.5 text-right font-semibold text-[#171412]">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {invoiceData.items.map((item, idx) => (
+                    <tr key={idx} className="border-b border-[#E7E1D8]">
+                      <td className="py-2.5 font-medium text-[#171412]">{item.name}</td>
+                      <td className="py-2.5 text-right text-[#6B6560]">৳{item.price.toLocaleString()}</td>
+                      <td className="py-2.5 text-center text-[#6B6560]">{item.quantity}</td>
+                      <td className="py-2.5 text-right font-medium text-[#171412]">৳{(item.price * item.quantity).toLocaleString()}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {invoiceData.items.map((item, idx) => (
-                      <tr key={idx} className="border-b border-[#E7E1D8]">
-                        <td className="py-2.5 text-xs font-medium text-[#171412]">{item.name}</td>
-                        <td className="py-2.5 text-xs text-[#6B6560]">{item.size}</td>
-                        <td className="py-2.5 text-xs text-[#6B6560]">{item.color}</td>
-                        <td className="py-2.5 text-center text-xs text-[#6B6560]">{item.quantity}</td>
-                        <td className="py-2.5 text-right text-xs text-[#171412]">৳{item.price.toLocaleString()}</td>
-                        <td className="py-2.5 text-right text-xs font-semibold text-[#171412]">৳{(item.price * item.quantity).toLocaleString()}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-              {/* Totals */}
-              <div className="mt-5 flex justify-end">
-                <div className="w-full max-w-[260px] space-y-1.5">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-[#6B6560]">Subtotal</span>
-                    <span className="font-medium text-[#171412]">৳{invoiceData.subtotal.toLocaleString()}</span>
+            {/* ── Bank Info + Total Due ── */}
+            <div className="mt-6 flex flex-col gap-4 rounded-lg bg-[#F5F2EC] p-4 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-[10px] font-bold text-[#171412] sm:text-xs">Bank Info</p>
+                <div className="mt-1.5 space-y-0.5">
+                  <div className="flex gap-2">
+                    <span className="text-[10px] text-[#6B6560]">Account Name:</span>
+                    <span className="text-[10px] font-medium text-[#171412]">NOVARA</span>
                   </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-[#6B6560]">Shipping</span>
-                    <span className="font-medium text-[#171412]">
-                      {invoiceData.shipping === 0 ? <span className="text-[#fd6f93]">Free</span> : `৳${invoiceData.shipping.toLocaleString()}`}
-                    </span>
+                  <div className="flex gap-2">
+                    <span className="text-[10px] text-[#6B6560]">Bank:</span>
+                    <span className="text-[10px] font-medium text-[#171412]">bKash / Nagad</span>
                   </div>
-                  <div className="flex justify-between border-t-2 border-[#171412] pt-2">
-                    <span className="text-sm font-bold text-[#171412]">Total</span>
-                    <span className="text-base font-bold text-[#fd6f93]">৳{invoiceData.total.toLocaleString()}</span>
+                  <div className="flex gap-2">
+                    <span className="text-[10px] text-[#6B6560]">Account Number:</span>
+                    <span className="text-[10px] font-medium text-[#171412]">01XXXXXXXXX</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <span className="text-[10px] text-[#6B6560]">Sort Code:</span>
+                    <span className="text-[10px] font-medium text-[#171412]">Dhaka</span>
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Invoice Footer */}
-            <div className="bg-[#171412] px-6 py-3 sm:px-8">
-              <div className="flex flex-col items-center justify-between gap-1 sm:flex-row">
-                <p className="text-[10px] text-gray-400">NOVARA — Premium Fashion & Accessories</p>
-                <p className="text-[10px] text-gray-400">support@novara.com</p>
+              <div className="text-left sm:text-right">
+                <p className="text-[10px] text-[#6B6560] sm:text-xs">Total due:</p>
+                <p className="mt-1 text-xl font-bold text-[#171412] sm:text-2xl">৳{invoiceData.total.toLocaleString()}</p>
               </div>
             </div>
+
+            {/* ── Footer ── */}
+            <div className="mt-6 flex items-center justify-center gap-2 border-t border-[#E7E1D8] pt-4">
+              <span className="text-[10px] text-[#6B6560] sm:text-xs">+880 1XXXXXXXXX</span>
+              <span className="text-[#E7E1D8]">|</span>
+              <span className="text-[10px] text-[#6B6560] sm:text-xs">support@novara.com</span>
+              <span className="text-[#E7E1D8]">|</span>
+              <span className="text-[10px] text-[#6B6560] sm:text-xs">www.novara.com</span>
+              <svg className="ml-1 h-2.5 w-2.5 text-[#fd6f93]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
+            </div>
+
           </div>
 
         </div>
