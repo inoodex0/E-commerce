@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Heart, Star, Minus, Plus, Eye, Truck, RotateCcw, ShieldCheck, Share2, GitCompare, MessageCircle, ChevronRight, Check, ShoppingBag, X } from "lucide-react";
 import { useCartStore, useWishlistStore } from "@/lib/store";
 
@@ -37,12 +37,15 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedSize, setSelectedSize] = useState("M");
   const [quantity, setQuantity] = useState(1);
-  const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
-  const [isZooming, setIsZooming] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("Description");
   const [selectedItems, setSelectedItems] = useState<boolean[]>(frequentlyBought.map(() => true));
   const [relatedTab, setRelatedTab] = useState<"related" | "recent">("related");
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const zoomPanelRef = useRef<HTMLImageElement>(null);
+  const zoomPanelContainerRef = useRef<HTMLDivElement>(null);
   const cartItems = useCartStore((state) => state.cart);
   const addToCartStore = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -50,12 +53,37 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
   const { toggleWishlist, isWishlisted } = useWishlistStore();
   const wishlisted = isWishlisted(product.name);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setZoomPos({ x, y });
-  };
+    const origin = `${x}% ${y}%`;
+    const panel = zoomPanelRef.current;
+    if (panel) {
+      panel.style.objectPosition = origin;
+      panel.style.transformOrigin = origin;
+      panel.style.transform = "scale(2.5)";
+    }
+    const panelContainer = zoomPanelContainerRef.current;
+    if (panelContainer) {
+      panelContainer.style.opacity = "1";
+      panelContainer.style.visibility = "visible";
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const panel = zoomPanelRef.current;
+    if (panel) {
+      panel.style.transform = "scale(1)";
+      panel.style.objectPosition = "center center";
+      panel.style.transformOrigin = "center center";
+    }
+    const panelContainer = zoomPanelContainerRef.current;
+    if (panelContainer) {
+      panelContainer.style.opacity = "0";
+      panelContainer.style.visibility = "hidden";
+    }
+  }, []);
 
   const addToCart = () => {
     addToCartStore({
@@ -114,40 +142,43 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                 ))}
               </div>
 
-              {/* Main Image with Zoom */}
+              {/* Main Image — Static, hover triggers right zoom panel */}
               <div className="relative flex gap-4 lg:flex-1">
                 <div
+                  ref={imageContainerRef}
                   className="relative w-full overflow-hidden rounded-xl bg-[#F5F2EC] cursor-crosshair shadow-sm aspect-[4/5] sm:rounded-2xl"
-                  onMouseEnter={() => setIsZooming(true)}
-                  onMouseLeave={() => setIsZooming(false)}
                   onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => { setLightboxIndex(selectedImage); setLightboxOpen(true); }}
                 >
-                  <Image
+                  <img
                     src={product.images[selectedImage]}
                     alt={product.name}
-                    fill
-                    className="object-cover object-center pointer-events-none"
+                    draggable={false}
+                    className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none"
                   />
                   <div className="absolute left-3 top-3 flex h-7 w-7 items-center justify-center bg-white/90 rounded-full z-10 shadow-sm sm:left-4 sm:top-4 sm:h-8 sm:w-8">
                     <Eye size={14} className="text-[#171412]" />
                   </div>
                 </div>
+              </div>
 
-                {/* Zoomed Preview — Desktop Only */}
-                {isZooming && (
-                  <div className="hidden lg:block absolute left-full top-0 ml-4 h-[440px] w-[440px] overflow-hidden rounded-2xl border border-[#E7E1D8] bg-white shadow-2xl shadow-[#171412]/10 z-50">
-                    <Image
-                      src={product.images[selectedImage]}
-                      alt={product.name}
-                      fill
-                      className="object-cover pointer-events-none"
-                      style={{
-                        objectPosition: `${zoomPos.x}% ${zoomPos.y}%`,
-                        transform: "scale(2.5)",
-                      }}
-                    />
-                  </div>
-                )}
+              {/* Zoom Preview Panel — Desktop Only, beside image */}
+              <div
+                ref={zoomPanelContainerRef}
+                className="hidden lg:block relative shrink-0 transition-opacity transition-visibility duration-200"
+                style={{ opacity: 0, visibility: "hidden" }}
+              >
+                <div className="sticky top-32 h-[440px] w-[380px] overflow-hidden rounded-2xl border border-[#E7E1D8] bg-[#F5F2EC] shadow-2xl shadow-[#171412]/10">
+                  <img
+                    ref={zoomPanelRef}
+                    src={product.images[selectedImage]}
+                    alt={product.name}
+                    draggable={false}
+                    className="h-full w-full object-cover pointer-events-none transition-transform duration-150 ease-out"
+                    style={{ objectPosition: "center center", transform: "scale(1)", transformOrigin: "center center" }}
+                  />
+                </div>
               </div>
             </div>
 
@@ -778,6 +809,62 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      )}
+      {/* ═══ Image Lightbox ═══ */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm" onClick={() => setLightboxOpen(false)}>
+          {/* Close button */}
+          <button onClick={() => setLightboxOpen(false)} className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:right-6 sm:top-6">
+            <X size={20} />
+          </button>
+
+          {/* Prev arrow */}
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1)); }}
+            className="absolute left-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:left-6 sm:h-12 sm:w-12"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+          </button>
+
+          {/* Image */}
+          <div className="relative h-[70vh] w-[90vw] max-w-4xl" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={product.images[lightboxIndex]}
+              alt={product.name}
+              fill
+              className="object-contain"
+              sizes="90vw"
+            />
+          </div>
+
+          {/* Next arrow */}
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((prev) => (prev === product.images.length - 1 ? 0 : prev + 1)); }}
+            className="absolute right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:right-6 sm:h-12 sm:w-12"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+          </button>
+
+          {/* Thumbnails strip */}
+          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-xl bg-black/50 p-2 backdrop-blur-sm sm:bottom-6" onClick={(e) => e.stopPropagation()}>
+            {product.images.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setLightboxIndex(i)}
+                className={`relative h-12 w-12 overflow-hidden rounded-lg border-2 transition-all sm:h-14 sm:w-14 ${
+                  lightboxIndex === i ? "border-[#fd6f93] opacity-100" : "border-white/20 opacity-50 hover:opacity-80"
+                }`}
+              >
+                <Image src={img} alt={`Thumb ${i + 1}`} fill className="object-cover" />
+              </button>
+            ))}
+          </div>
+
+          {/* Counter */}
+          <div className="absolute left-1/2 top-4 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-xs text-white backdrop-blur-sm sm:top-6">
+            {lightboxIndex + 1} / {product.images.length}
           </div>
         </div>
       )}
