@@ -194,7 +194,7 @@ export default function Navbar() {
   return (
     <>
     <header
-      className={`sticky top-0 z-50 w-full bg-[#FBF8F3] ${mobileOpen ? "invisible" : ""}`}
+      className={`fixed top-0 left-0 right-0 z-50 w-full bg-[#FBF8F3] ${mobileOpen ? "invisible" : ""}`}
     >
       {/* =====================================================
           ANNOUNCEMENT BAR
@@ -744,6 +744,9 @@ export default function Navbar() {
       </nav>
 
     </header>
+
+      {/* Spacer for fixed navbar */}
+      <div className="h-[calc(2.25rem+4rem)] sm:h-[calc(2.25rem+4.5rem)] lg:h-[calc(2.25rem+4.75rem)]" />
 
       {/* =====================================================
           MOBILE SEARCH OVERLAY

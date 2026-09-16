@@ -44,9 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-full flex flex-col">
+        <Navbar />
         <SmoothScrollProvider>
           <GsapProvider>
-            <Navbar />
             {children}
           </GsapProvider>
         </SmoothScrollProvider>

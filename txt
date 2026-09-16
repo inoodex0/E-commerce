@@ -4,6 +4,21 @@ onWheel + stopPropagation — wheel event backdrop/container e jete dey na, draw
 Geist Sans	Body/main text (default)	font-sans
 Geist Mono	Code/monospace	font-mono
 Serif (system)	NOVARA logo	font-serif
+#Mouse position directly set korchi — lerping add korechi for buttery smooth follow:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 className="block font-[family-name:var(--font-dancing-script)] text-[2.5rem] leading-none text-[#A9814D]/50 sm:text-[3rem] md:text-[3.5rem]">
             crafted for you
             #Sob jaygate #A9814D → #ff6289

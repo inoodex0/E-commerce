@@ -2,16 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle, CreditCard, Truck, ShieldCheck, Download, Printer, FileText } from "lucide-react";
+import { ArrowLeft, CheckCircle, CreditCard, Truck, ShieldCheck, Download, Printer } from "lucide-react";
 import { useState } from "react";
 import { useCartStore } from "@/lib/store";
-import { downloadInvoicePDF, printInvoicePDF, type InvoiceData } from "@/lib/generateInvoice";
+import { downloadInvoicePDF, printInvoicePDF, type InvoiceData, type PaperSize } from "@/lib/generateInvoice";
 
 export default function CheckoutPage() {
   const { cart, clearCart } = useCartStore();
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"cod" | "bkash" | "nagad">("cod");
   const [invoiceData, setInvoiceData] = useState<InvoiceData | null>(null);
+  const [paperSize, setPaperSize] = useState<PaperSize>("a4");
 
   const [form, setForm] = useState({
     name: "",
@@ -21,6 +22,9 @@ export default function CheckoutPage() {
     city: "",
     area: "",
     notes: "",
+    bkashNumber: "",
+    nagadNumber: "",
+    transactionId: "",
   });
 
   const updateForm = (field: string, value: string) => setForm((prev) => ({ ...prev, [field]: value }));
@@ -54,6 +58,11 @@ export default function CheckoutPage() {
       shipping,
       total,
       paymentMethod: paymentMethod,
+      paymentDetails: paymentMethod === "bkash"
+        ? `bKash: ${form.bkashNumber} | TXN: ${form.transactionId}`
+        : paymentMethod === "nagad"
+        ? `Nagad: ${form.nagadNumber} | TXN: ${form.transactionId}`
+        : undefined,
     };
 
     setInvoiceData(data);
@@ -64,7 +73,6 @@ export default function CheckoutPage() {
   if (cart.length === 0 && !orderPlaced) {
     return (
       <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
-      
       </main>
     );
   }
@@ -81,16 +89,41 @@ export default function CheckoutPage() {
             <p className="mt-1 text-sm text-[#6B6560]">Your invoice is ready. Print or download it below.</p>
           </div>
 
+          {/* Paper Size Selector */}
+          <div className="mb-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560]">Paper Size:</span>
+            <div className="flex gap-2">
+              {([
+                { id: "a4" as const, label: "A4", desc: "210 × 297 mm" },
+                { id: "a5" as const, label: "A5", desc: "148 × 210 mm" },
+                { id: "letter" as const, label: "Letter", desc: "8.5 × 11 in" },
+              ]).map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setPaperSize(s.id)}
+                  className={`px-4 py-2 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 ${
+                    paperSize === s.id
+                      ? "border border-[#171412] bg-[#171412] text-white"
+                      : "border border-[#E7E1D8] bg-white text-[#6B6560] hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                  }`}
+                >
+                  {s.label}
+                  <span className="ml-1 hidden text-[8px] font-normal normal-case tracking-normal text-[#6B6560]/60 sm:inline">({s.desc})</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
-              onClick={() => printInvoicePDF(invoiceData)}
+              onClick={() => printInvoicePDF(invoiceData, paperSize)}
               className="flex items-center justify-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
             >
               <Printer size={14} />
               Print Invoice
             </button>
             <button
-              onClick={() => downloadInvoicePDF(invoiceData)}
+              onClick={() => downloadInvoicePDF(invoiceData, paperSize)}
               className="flex items-center justify-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
             >
               <Download size={14} />
@@ -104,109 +137,172 @@ export default function CheckoutPage() {
             </Link>
           </div>
 
-          {/* ═══════════════════════════════════════════════════════════
-              INVOICE PREVIEW
-          ═══════════════════════════════════════════════════════════ */}
-          <div className="rounded-lg border border-[#E7E1D8] bg-white p-4 shadow-md sm:p-6">
+          {/* ═══ INVOICE PREVIEW — Sidebar Layout ═══ */}
+          <div className="relative overflow-hidden bg-white shadow-xl shadow-[#171412]/10">
+            <div className="flex flex-col md:flex-row">
 
-            {/* ── Logo + INVOICE ── */}
-            <div className="flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#F0EDE8] sm:h-20 sm:w-20">
-                <span className="text-center text-[8px] font-bold uppercase leading-tight text-[#171412] sm:text-[9px]">NOVARA<br />LOGO</span>
-              </div>
-              <h2 className="text-2xl font-normal tracking-tight text-[#171412] sm:text-3xl">INVOICE</h2>
-            </div>
+              {/* ── Left Sidebar (dark navy + pink wave) ── */}
+              <div className="relative w-full shrink-0 bg-[#171412] px-6 py-10 sm:px-8 md:w-[260px] lg:w-[280px]">
+                {/* Pink curved wave overlay */}
+                <svg className="pointer-events-none absolute right-0 top-0 h-full w-[120px]" viewBox="0 0 120 600" preserveAspectRatio="none" fill="none">
+                  <path d="M120,0 C40,80 0,160 20,300 C40,440 100,520 120,600 L120,0 Z" fill="#fd6f93" opacity="0.85" />
+                </svg>
+                <svg className="pointer-events-none absolute right-[30px] top-0 h-full w-[80px]" viewBox="0 0 80 600" preserveAspectRatio="none" fill="none">
+                  <path d="M80,0 C20,100 0,200 10,340 C20,480 70,540 80,600 L80,0 Z" fill="#fd6f93" opacity="0.4" />
+                </svg>
 
-            {/* ── Invoice Info + Billed To ── */}
-            <div className="mt-6 flex flex-col justify-between gap-4 sm:flex-row sm:gap-8">
-              <div className="space-y-1">
-                <div className="flex gap-2">
-                  <span className="text-[10px] font-semibold text-[#171412] sm:text-xs">Invoice Number:</span>
-                  <span className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.orderId}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-[10px] font-semibold text-[#171412] sm:text-xs">Invoice Date:</span>
-                  <span className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.date}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-[10px] font-semibold text-[#171412] sm:text-xs">Payment:</span>
-                  <span className="text-[10px] text-[#6B6560] sm:text-xs">
-                    {invoiceData.paymentMethod === "cod" ? "Cash on Delivery" : invoiceData.paymentMethod === "bkash" ? "bKash" : "Nagad"}
-                  </span>
-                </div>
-              </div>
-              <div className="text-left sm:text-right">
-                <p className="text-[10px] font-semibold text-[#171412] sm:text-xs">Billed to:</p>
-                <p className="text-[10px] font-semibold text-[#171412] sm:text-xs">{invoiceData.customer.name}</p>
-                <p className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.customer.address}</p>
-                <p className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.customer.area}, {invoiceData.customer.city}</p>
-                <p className="text-[10px] text-[#6B6560] sm:text-xs">{invoiceData.customer.email}</p>
-              </div>
-            </div>
+                <div className="relative z-10">
+                  {/* Brand */}
+                  <div className="mb-10">
+                    <div className="mb-3 flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/10">
+                        <span className="font-serif text-base font-bold text-white">N</span>
+                      </div>
+                      <div>
+                        <h2 className="text-base font-bold tracking-[0.12em] text-white">NOVARA</h2>
+                        <p className="text-[8px] uppercase tracking-[0.2em] text-white/50">Premium Accessories</p>
+                      </div>
+                    </div>
+                  </div>
 
-            {/* ── Items Table ── */}
-            <div className="mt-6 overflow-x-auto">
-              <table className="w-full text-left text-[10px] sm:text-xs">
-                <thead>
-                  <tr className="border-b-2 border-[#171412]">
-                    <th className="pb-1.5 font-semibold text-[#171412]">Description</th>
-                    <th className="pb-1.5 text-right font-semibold text-[#171412]">Price</th>
-                    <th className="pb-1.5 text-center font-semibold text-[#171412]">Quantity</th>
-                    <th className="pb-1.5 text-right font-semibold text-[#171412]">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {invoiceData.items.map((item, idx) => (
-                    <tr key={idx} className="border-b border-[#E7E1D8]">
-                      <td className="py-2.5 font-medium text-[#171412]">{item.name}</td>
-                      <td className="py-2.5 text-right text-[#6B6560]">৳{item.price.toLocaleString()}</td>
-                      <td className="py-2.5 text-center text-[#6B6560]">{item.quantity}</td>
-                      <td className="py-2.5 text-right font-medium text-[#171412]">৳{(item.price * item.quantity).toLocaleString()}</td>
-                    </tr>
+                  {/* Invoice to */}
+                  <div className="mb-8">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">Invoice to:</p>
+                    <div className="mt-3 space-y-1">
+                      <p className="text-sm font-semibold text-white">{invoiceData.customer.name}</p>
+                      <p className="text-[11px] leading-relaxed text-white/70">{invoiceData.customer.address}</p>
+                      <p className="text-[11px] leading-relaxed text-white/70">{invoiceData.customer.area}, {invoiceData.customer.city}</p>
+                      <p className="text-[11px] leading-relaxed text-white/70">{invoiceData.customer.email}</p>
+                      <p className="text-[11px] leading-relaxed text-white/70">{invoiceData.customer.phone}</p>
+                    </div>
+                  </div>
+
+                  {/* Terms & Conditions */}
+                  <div className="border-t border-white/10 pt-6">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white">Terms &amp; Conditions</p>
+                    <p className="mt-2 text-[9px] leading-relaxed text-white/50">
+                      Payment is due upon delivery for COD orders. Digital payments must be completed before order processing. Returns accepted within 7 days of delivery.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── Right Content ── */}
+              <div className="flex-1 p-6 sm:p-8 lg:p-10">
+
+                {/* INVOICE title + meta */}
+                <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div />
+                  <div className="text-left sm:text-right">
+                    <h2 className="text-3xl font-light tracking-[0.15em] text-[#fd6f93] sm:text-4xl">INVOICE</h2>
+                    <div className="mt-3 space-y-1">
+                      <div className="flex gap-3 sm:justify-end">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">Invoice#</span>
+                        <span className="text-xs font-semibold text-[#171412]">#{invoiceData.orderId}</span>
+                      </div>
+                      <div className="flex gap-3 sm:justify-end">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">Date</span>
+                        <span className="text-xs text-[#171412]">{invoiceData.date}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Items Table */}
+                <div className="mt-10 overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr className="border-b-2 border-[#171412]">
+                        <th className="py-2 text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">SL.</th>
+                        <th className="py-2 text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">Item Description</th>
+                        <th className="py-2 text-right text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">Price</th>
+                        <th className="py-2 text-center text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">Qty.</th>
+                        <th className="py-2 text-right text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {invoiceData.items.map((item, idx) => (
+                        <tr key={idx} className="border-b border-[#E7E1D8]">
+                          <td className="py-3 text-xs text-[#6B6560]">{idx + 1}</td>
+                          <td className="py-3">
+                            <p className="text-xs font-medium text-[#171412]">{item.name}</p>
+                            <p className="text-[10px] text-[#6B6560]">{item.category}{item.size ? ` / ${item.size}` : ""}{item.color ? ` / ${item.color}` : ""}</p>
+                          </td>
+                          <td className="py-3 text-right text-xs text-[#171412]">৳{item.price.toLocaleString()}</td>
+                          <td className="py-3 text-center text-xs text-[#6B6560]">{item.quantity}</td>
+                          <td className="py-3 text-right text-xs font-medium text-[#171412]">৳{(item.price * item.quantity).toLocaleString()}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Empty rows to match visual */}
+                <div className="border-b border-[#E7E1D8]">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="h-8 border-b border-[#E7E1D8]" />
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </div>
 
-            {/* ── Bank Info + Total Due ── */}
-            <div className="mt-6 flex flex-col gap-4 rounded-lg bg-[#F5F2EC] p-4 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="text-[10px] font-bold text-[#171412] sm:text-xs">Bank Info</p>
-                <div className="mt-1.5 space-y-0.5">
-                  <div className="flex gap-2">
-                    <span className="text-[10px] text-[#6B6560]">Account Name:</span>
-                    <span className="text-[10px] font-medium text-[#171412]">NOVARA</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="text-[10px] text-[#6B6560]">Bank:</span>
-                    <span className="text-[10px] font-medium text-[#171412]">bKash / Nagad</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="text-[10px] text-[#6B6560]">Account Number:</span>
-                    <span className="text-[10px] font-medium text-[#171412]">01XXXXXXXXX</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="text-[10px] text-[#6B6560]">Sort Code:</span>
-                    <span className="text-[10px] font-medium text-[#171412]">Dhaka</span>
+                {/* Totals */}
+                <div className="mt-6 flex justify-end">
+                  <div className="w-full max-w-[240px] space-y-2">
+                    <div className="flex justify-between text-xs">
+                      <span className="font-medium text-[#171412]">Sub Total:</span>
+                      <span className="text-[#171412]">৳{invoiceData.subtotal.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between text-xs">
+                      <span className="font-medium text-[#171412]">Shipping:</span>
+                      <span className={invoiceData.shipping === 0 ? "font-medium text-[#fd6f93]" : "text-[#171412]"}>
+                        {invoiceData.shipping === 0 ? "Free" : `৳${invoiceData.shipping}`}
+                      </span>
+                    </div>
+                    <div className="flex justify-between border-t border-[#E7E1D8] pt-3">
+                      <span className="text-sm font-bold text-[#171412]">Total:</span>
+                      <span className="text-sm font-bold text-[#fd6f93]">৳{invoiceData.total.toLocaleString()}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="text-left sm:text-right">
-                <p className="text-[10px] text-[#6B6560] sm:text-xs">Total due:</p>
-                <p className="mt-1 text-xl font-bold text-[#171412] sm:text-2xl">৳{invoiceData.total.toLocaleString()}</p>
+
+                {/* Payment Info + Authorised Sign + Thank you */}
+                <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  {/* Authorised Sign */}
+                  <div className="flex flex-col justify-end">
+                    <div className="border-t border-[#171412] pt-2">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-[#171412]">Authorised Sign</p>
+                    </div>
+                  </div>
+
+                  {/* Payment Info */}
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#171412]">Payment Info:</p>
+                    <div className="mt-2 space-y-1">
+                      <div className="flex gap-2 text-[11px]">
+                        <span className="font-medium text-[#6B6560]">Account #:</span>
+                        <span className="text-[#171412]">01XXXXXXXXX</span>
+                      </div>
+                      <div className="flex gap-2 text-[11px]">
+                        <span className="font-medium text-[#6B6560]">A/C Name:</span>
+                        <span className="text-[#171412]">NOVARA</span>
+                      </div>
+                      <div className="flex gap-2 text-[11px]">
+                        <span className="font-medium text-[#6B6560]">Bank Details:</span>
+                        <span className="text-[#171412]">{payLabel}</span>
+                      </div>
+                      {invoiceData.paymentDetails && (
+                        <p className="mt-1 text-[10px] text-[#6B6560]">{invoiceData.paymentDetails}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Thank you */}
+                <div className="mt-8 border-t border-[#E7E1D8] pt-4">
+                  <p className="text-xs font-medium text-[#171412]">Thank you for your business</p>
+                </div>
+
               </div>
             </div>
-
-            {/* ── Footer ── */}
-            <div className="mt-6 flex items-center justify-center gap-2 border-t border-[#E7E1D8] pt-4">
-              <span className="text-[10px] text-[#6B6560] sm:text-xs">+880 1XXXXXXXXX</span>
-              <span className="text-[#E7E1D8]">|</span>
-              <span className="text-[10px] text-[#6B6560] sm:text-xs">support@novara.com</span>
-              <span className="text-[#E7E1D8]">|</span>
-              <span className="text-[10px] text-[#6B6560] sm:text-xs">www.novara.com</span>
-              <svg className="ml-1 h-2.5 w-2.5 text-[#fd6f93]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
-            </div>
-
           </div>
 
         </div>
@@ -217,8 +313,6 @@ export default function CheckoutPage() {
   return (
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-
-       
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Secure Checkout</p>
@@ -354,6 +448,76 @@ export default function CheckoutPage() {
                   </label>
                 ))}
               </div>
+
+              {paymentMethod === "bkash" && (
+                <div className="mt-5 space-y-4 rounded-lg border border-[#E2136E]/20 bg-[#FBF8F3] p-5">
+                  <div className="flex items-center gap-2.5">
+                    <svg viewBox="0 0 36 36" className="h-9 w-9 shrink-0" fill="none">
+                      <circle cx="18" cy="18" r="18" fill="#E2136E"/>
+                      <text x="18" y="23" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold" fontFamily="Arial">bK</text>
+                    </svg>
+                    <p className="text-sm font-medium text-[#171412]">Pay with bKash</p>
+                  </div>
+                  <p className="text-[11px] text-[#6B6560]">
+                    Send <span className="font-semibold text-[#171412]">৳{total.toLocaleString()}</span> to <span className="font-semibold text-[#171412]">01XXXXXXXXX (Personal)</span> and enter details below.
+                  </p>
+                  <div>
+                    <label className="block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560]">Your bKash Number *</label>
+                    <input
+                      type="tel"
+                      placeholder="01XXXXXXXXX"
+                      value={form.bkashNumber}
+                      onChange={(e) => updateForm("bkashNumber", e.target.value)}
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560]">bKash Transaction ID *</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. 8A3B5C7D9E"
+                      value={form.transactionId}
+                      onChange={(e) => updateForm("transactionId", e.target.value)}
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {paymentMethod === "nagad" && (
+                <div className="mt-5 space-y-4 rounded-lg border border-[#F6921E]/20 bg-[#FBF8F3] p-5">
+                  <div className="flex items-center gap-2.5">
+                    <svg viewBox="0 0 36 36" className="h-9 w-9 shrink-0" fill="none">
+                      <circle cx="18" cy="18" r="18" fill="#F6921E"/>
+                      <text x="18" y="23" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" fontFamily="Arial">Nagad</text>
+                    </svg>
+                    <p className="text-sm font-medium text-[#171412]">Pay with Nagad</p>
+                  </div>
+                  <p className="text-[11px] text-[#6B6560]">
+                    Send <span className="font-semibold text-[#171412]">৳{total.toLocaleString()}</span> to <span className="font-semibold text-[#171412]">01XXXXXXXXX (Personal)</span> and enter details below.
+                  </p>
+                  <div>
+                    <label className="block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560]">Your Nagad Number *</label>
+                    <input
+                      type="tel"
+                      placeholder="01XXXXXXXXX"
+                      value={form.nagadNumber}
+                      onChange={(e) => updateForm("nagadNumber", e.target.value)}
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560]">Nagad Transaction ID *</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. 8A3B5C7D9E"
+                      value={form.transactionId}
+                      onChange={(e) => updateForm("transactionId", e.target.value)}
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
           </div>
@@ -417,7 +581,11 @@ export default function CheckoutPage() {
 
             <button
               onClick={placeOrder}
-              disabled={!form.name || !form.phone || !form.email || !form.address || !form.city || !form.area}
+              disabled={
+                !form.name || !form.phone || !form.email || !form.address || !form.city || !form.area ||
+                (paymentMethod === "bkash" && (!form.bkashNumber || !form.transactionId)) ||
+                (paymentMethod === "nagad" && (!form.nagadNumber || !form.transactionId))
+              }
               className="w-full border border-[#171412] bg-[#171412] py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#171412] disabled:hover:border-[#171412]"
             >
               Place Order — ৳{total.toLocaleString()}

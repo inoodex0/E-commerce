@@ -70,6 +70,24 @@ export default function HeroSection() {
   const [isHovering, setIsHovering] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const touchStartRef = useRef<number | null>(null);
+  const cursorRef = useRef({ x: 0, y: 0 });
+  const targetRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    const lerp = (start: number, end: number, factor: number) =>
+      start + (end - start) * factor;
+
+    const animate = () => {
+      cursorRef.current.x = lerp(cursorRef.current.x, targetRef.current.x, 0.15);
+      cursorRef.current.y = lerp(cursorRef.current.y, targetRef.current.y, 0.15);
+      setMousePos({ x: cursorRef.current.x, y: cursorRef.current.y });
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -119,7 +137,7 @@ export default function HeroSection() {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
+    targetRef.current = { x: e.clientX, y: e.clientY };
   };
 
   const slide = slides[current];
@@ -244,28 +262,44 @@ export default function HeroSection() {
       {/* =====================================================
           CUSTOM CURSOR (desktop only)
       ====================================================== */}
-      {/* Outer ring */}
+
+      {/* Trailing ring - slow follow */}
       <div
-        className="pointer-events-none fixed z-[9999] hidden -translate-x-1/2 -translate-y-1/2 md:block"
+        className="pointer-events-none fixed z-[9998] hidden -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
         style={{
           left: mousePos.x,
           top: mousePos.y,
-          width: isHovering ? 56 : 12,
-          height: isHovering ? 56 : 12,
-          borderRadius: "50%",
-          border: isHovering ? "1.5px solid rgba(253,111,147,0.6)" : "1px solid rgba(255,255,255,0.35)",
-          backgroundColor: isHovering ? "rgba(253,111,147,0.08)" : "rgba(255,255,255,0.15)",
-          backdropFilter: isHovering ? "blur(8px)" : "none",
+          width: isHovering ? 72 : 0,
+          height: isHovering ? 72 : 0,
+          border: "1px solid rgba(253,111,147,0.2)",
+          opacity: isHovering ? 1 : 0,
+          transition: "width 0.4s cubic-bezier(0.23,1,0.32,1), height 0.4s cubic-bezier(0.23,1,0.32,1), opacity 0.4s ease",
+        }}
+      />
+
+      {/* Outer ring */}
+      <div
+        className="pointer-events-none fixed z-[9999] hidden -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+        style={{
+          left: mousePos.x,
+          top: mousePos.y,
+          width: isHovering ? 56 : 14,
+          height: isHovering ? 56 : 14,
+          border: isHovering
+            ? "1.5px solid rgba(253,111,147,0.5)"
+            : "1px solid rgba(255,255,255,0.3)",
+          backgroundColor: isHovering
+            ? "rgba(253,111,147,0.06)"
+            : "rgba(255,255,255,0.12)",
+          backdropFilter: isHovering ? "blur(10px)" : "none",
           boxShadow: isHovering
-            ? "0 0 30px 6px rgba(253,111,147,0.15), inset 0 0 15px rgba(253,111,147,0.05)"
-            : "0 0 10px 2px rgba(253,111,147,0.1)",
-          transition: isHovering
-            ? "all 0.45s cubic-bezier(0.23,1,0.32,1)"
-            : "all 0.2s cubic-bezier(0.23,1,0.32,1)",
+            ? "0 0 40px 8px rgba(253,111,147,0.12), inset 0 0 20px rgba(253,111,147,0.04)"
+            : "0 0 12px 2px rgba(253,111,147,0.08)",
+          transition: "width 0.4s cubic-bezier(0.23,1,0.32,1), height 0.4s cubic-bezier(0.23,1,0.32,1), border 0.3s, background-color 0.3s, box-shadow 0.3s",
         }}
       >
         {isHovering && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 animate-[fadeIn_0.3s_0.12s_ease-out_forwards]">
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 animate-[fadeIn_0.35s_0.1s_ease-out_forwards]">
             <ArrowRight size={18} strokeWidth={1.5} className="text-[#fd6f93] -translate-x-[1px]" />
           </div>
         )}
@@ -281,9 +315,9 @@ export default function HeroSection() {
           height: isHovering ? 0 : 5,
           backgroundColor: "#fd6f93",
           boxShadow: isHovering
-            ? "none"
-            : "0 0 12px 3px rgba(253,111,147,0.25)",
-          transition: "all 0.3s cubic-bezier(0.23,1,0.32,1)",
+            ? "0 0 20px 6px rgba(253,111,147,0.4)"
+            : "0 0 14px 4px rgba(253,111,147,0.3)",
+          transition: "width 0.3s, height 0.3s, box-shadow 0.3s",
         }}
       />
 
