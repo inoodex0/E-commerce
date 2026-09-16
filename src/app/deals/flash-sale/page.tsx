@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, ShoppingBag, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useCartStore, useWishlistStore } from "@/lib/store";
 
 const SALE_DURATION = 24 * 60 * 60;
 
@@ -19,6 +20,8 @@ const dealProducts = [
 export default function FlashSalePage() {
   const [timeLeft, setTimeLeft] = useState(SALE_DURATION);
   const [mounted, setMounted] = useState(false);
+  const { addToCart } = useCartStore();
+  const { toggleWishlist, wishlist } = useWishlistStore();
 
   useEffect(() => {
     setMounted(true);
@@ -92,44 +95,44 @@ export default function FlashSalePage() {
           {/* Left — Timer */}
           {mounted && (
             <div className="flex items-center border-b border-white/15 lg:border-b-0 lg:border-r">
-              <div className="flex items-center gap-4 px-8 py-10 sm:gap-6 sm:px-12 lg:px-14">
+              <div className="flex items-center gap-2 px-5 py-6 sm:gap-4 sm:px-10 sm:py-8 lg:px-14">
                 <div className="text-center">
                   <div className="relative">
                     <div className="absolute inset-0 rounded-xl bg-black/20 shadow-inner" />
-                    <div className="relative font-sans text-3xl font-bold leading-none text-white sm:text-4xl lg:text-5xl tabular-nums px-4 py-3">{fmt(hours)}</div>
+                    <div className="relative font-sans text-2xl font-bold leading-none text-white px-3 py-2 tabular-nums sm:text-4xl sm:px-4 sm:py-3 lg:text-5xl">{fmt(hours)}</div>
                   </div>
-                  <span className="mt-2 block text-[7px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[8px]">Hours</span>
+                  <span className="mt-1.5 block text-[6px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[7px] lg:text-[8px]">Hours</span>
                 </div>
-                <span className="pb-5 text-2xl font-bold text-yellow-300/60">:</span>
+                <span className="pb-4 text-xl font-bold text-yellow-300/60 sm:text-2xl">:</span>
                 <div className="text-center">
                   <div className="relative">
                     <div className="absolute inset-0 rounded-xl bg-black/20 shadow-inner" />
-                    <div className="relative font-sans text-3xl font-bold leading-none text-white sm:text-4xl lg:text-5xl tabular-nums px-4 py-3">{fmt(minutes)}</div>
+                    <div className="relative font-sans text-2xl font-bold leading-none text-white px-3 py-2 tabular-nums sm:text-4xl sm:px-4 sm:py-3 lg:text-5xl">{fmt(minutes)}</div>
                   </div>
-                  <span className="mt-2 block text-[7px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[8px]">Minutes</span>
+                  <span className="mt-1.5 block text-[6px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[7px] lg:text-[8px]">Minutes</span>
                 </div>
-                <span className="pb-5 text-2xl font-bold text-yellow-300/60">:</span>
+                <span className="pb-4 text-xl font-bold text-yellow-300/60 sm:text-2xl">:</span>
                 <div className="text-center">
                   <div className="relative">
                     <div className="absolute inset-0 rounded-xl bg-black/20 shadow-inner" />
-                    <div className="relative font-sans text-3xl font-bold leading-none text-white sm:text-4xl lg:text-5xl tabular-nums px-4 py-3">{fmt(seconds)}</div>
+                    <div className="relative font-sans text-2xl font-bold leading-none text-white px-3 py-2 tabular-nums sm:text-4xl sm:px-4 sm:py-3 lg:text-5xl">{fmt(seconds)}</div>
                   </div>
-                  <span className="mt-2 block text-[7px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[8px]">Seconds</span>
+                  <span className="mt-1.5 block text-[6px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[7px] lg:text-[8px]">Seconds</span>
                 </div>
               </div>
             </div>
           )}
 
           {/* Right — Content */}
-          <div className="flex flex-col justify-center px-8 py-10 sm:px-12 sm:py-12 lg:px-16">
-            <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-yellow-300/80">✦ Special Offer</span>
-            <h1 className="mt-3 font-serif text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[0.85] text-white uppercase">Flash<br />Sale</h1>
-            <p className="mt-4 font-serif text-xl font-medium text-white sm:text-2xl">Up to <span className="text-yellow-300 font-bold">20% Off</span></p>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
-              <Link href="/shop" className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-7 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-[#c72d55] shadow-lg shadow-yellow-400/20 transition-all duration-300 hover:bg-yellow-300 hover:shadow-xl">
+          <div className="flex flex-col justify-center px-5 py-8 sm:px-10 sm:py-10 lg:px-16">
+            <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-yellow-300/80 sm:text-[9px]">✦ Special Offer</span>
+            <h1 className="mt-2 font-serif text-[clamp(1.8rem,5vw,4.5rem)] font-bold leading-[0.85] text-white uppercase sm:mt-3">Flash<br />Sale</h1>
+            <p className="mt-3 font-serif text-lg font-medium text-white sm:text-xl lg:text-2xl">Up to <span className="text-yellow-300 font-bold">20% Off</span></p>
+            <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-6 sm:gap-4">
+              <Link href="/shop" className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-2.5 text-[9px] font-bold uppercase tracking-[0.15em] text-[#c72d55] shadow-lg shadow-yellow-400/20 transition-all duration-300 hover:bg-yellow-300 hover:shadow-xl sm:px-7 sm:py-3 sm:text-[10px]">
                 Shop Now <ArrowRight size={12} />
               </Link>
-              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">⚡ Limited Time Only ⚡</span>
+              <span className="hidden items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-white/60 sm:flex sm:text-[10px]">⚡ Limited Time Only ⚡</span>
             </div>
           </div>
 
@@ -139,59 +142,68 @@ export default function FlashSalePage() {
       {/* ═══════════════════════════════════════════
           PRODUCTS GRID
       ═══════════════════════════════════════════ */}
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-3 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
 
-        <div className="flex items-center justify-between border-b border-[#E7E1D8] pb-6">
+        <div className="flex items-center justify-between border-b border-[#E7E1D8] pb-4 sm:pb-6">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Don&apos;t Miss Out</p>
-            <h2 className="mt-1 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Today&apos;s Deals</h2>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93] sm:text-[10px]">Don&apos;t Miss Out</p>
+            <h2 className="mt-1 font-serif text-xl font-medium text-[#171412] sm:text-2xl lg:text-3xl">Today&apos;s Deals</h2>
           </div>
           <Link href="/shop" className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:text-[#fd6f93] sm:inline-flex">
             View All <ArrowRight size={14} />
           </Link>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-7">
           {dealProducts.map((product) => (
             <article key={product.id} className="group relative flex flex-col overflow-hidden border border-[#E7E1D8] bg-white transition-all duration-300 hover:shadow-lg hover:shadow-[#171412]/5">
 
               {/* Image */}
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#F5F2EC]">
-                <Image src={product.image} alt={product.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+              <div className="relative aspect-square w-full overflow-hidden bg-[#F5F2EC] sm:aspect-[4/5]">
+                <Image src={product.image} alt={product.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center transition-transform duration-700 group-hover:scale-105" />
 
                 {/* Discount badge */}
-                <div className="absolute left-3 top-3 z-10">
-                  <span className="bg-[#171412] px-2.5 py-1.5 text-[8px] font-semibold uppercase tracking-[0.15em] text-white sm:text-[9px]">-{product.discount}%</span>
+                <div className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3">
+                  <span className="bg-[#171412] px-1.5 py-1 text-[7px] font-semibold uppercase tracking-[0.15em] text-white sm:px-2.5 sm:py-1.5 sm:text-[8px] lg:text-[9px]">-{product.discount}%</span>
                 </div>
 
                 {/* Wishlist */}
-                <button type="button" aria-label={`Add ${product.name} to wishlist`} className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[#171412] shadow-sm backdrop-blur-sm transition-all duration-300 hover:bg-[#fd6f93] hover:text-white">
-                  <Heart size={14} />
+                <button
+                  type="button"
+                  aria-label={`Add ${product.name} to wishlist`}
+                  onClick={() => toggleWishlist({ id: product.id, name: product.name, category: product.category, price: `৳${product.price}`, image: product.image } as any)}
+                  className={`absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full shadow-sm backdrop-blur-sm transition-all duration-300 sm:right-3 sm:top-3 sm:h-8 sm:w-8 ${wishlist.some((p) => p.name === product.name) ? "bg-[#fd6f93] text-white" : "bg-white/90 text-[#171412] hover:bg-[#fd6f93] hover:text-white"}`}
+                >
+                  <Heart size={12} fill={wishlist.some((p) => p.name === product.name) ? "currentColor" : "none"} className="sm:size-3.5" />
                 </button>
 
-                {/* Quick add */}
-                <div className="absolute inset-x-0 bottom-0 z-10 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
-                  <button type="button" className="flex w-full items-center justify-center gap-2 bg-[#171412] py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#fd6f93]">
-                    <ShoppingBag size={13} /> Add to Cart
+                {/* Quick add — always visible on mobile, hover on desktop */}
+                <div className="absolute inset-x-0 bottom-0 z-10 translate-y-0 sm:translate-y-full sm:transition-transform sm:duration-300 sm:group-hover:translate-y-0">
+                  <button
+                    type="button"
+                    onClick={() => addToCart({ id: product.id, name: product.name, category: product.category, price: `৳${product.price}`, image: product.image } as any, 1, "", "")}
+                    className="flex w-full items-center justify-center gap-1.5 bg-[#171412] py-2.5 text-[9px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#fd6f93] sm:gap-2 sm:py-3 sm:text-[10px]"
+                  >
+                    <ShoppingBag size={12} /> Add to Cart
                   </button>
                 </div>
               </div>
 
               {/* Info */}
-              <div className="flex flex-1 flex-col p-4 sm:p-5">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#6B6560]">{product.category}</p>
-                <Link href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`} className="mt-1 font-serif text-sm font-medium text-[#171412] transition-colors duration-300 hover:text-[#fd6f93] sm:text-base">{product.name}</Link>
-                <div className="mt-auto flex items-baseline gap-2 pt-3">
-                  <span className="font-serif text-base font-semibold text-[#fd6f93] sm:text-lg">৳{product.price.toLocaleString()}</span>
-                  <span className="text-xs text-[#6B6560] line-through">৳{product.oldPrice.toLocaleString()}</span>
+              <div className="flex flex-1 flex-col p-3 sm:p-4 lg:p-5">
+                <p className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#6B6560] sm:text-[9px]">{product.category}</p>
+                <Link href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`} className="mt-0.5 font-serif text-xs font-medium text-[#171412] transition-colors duration-300 hover:text-[#fd6f93] sm:text-sm lg:text-base">{product.name}</Link>
+                <div className="mt-auto flex items-baseline gap-1.5 pt-2 sm:gap-2 sm:pt-3">
+                  <span className="font-serif text-sm font-semibold text-[#fd6f93] sm:text-base lg:text-lg">৳{product.price.toLocaleString()}</span>
+                  <span className="text-[10px] text-[#6B6560] line-through sm:text-xs">৳{product.oldPrice.toLocaleString()}</span>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-10 text-center sm:hidden">
-          <Link href="/shop" className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:text-[#fd6f93]">
+        <div className="mt-8 text-center sm:hidden">
+          <Link href="/shop" className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:text-[#fd6f93]">
             View All Deals <ArrowRight size={14} />
           </Link>
         </div>

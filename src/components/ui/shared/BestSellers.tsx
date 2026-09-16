@@ -59,7 +59,8 @@ const products: Product[] = [
 
 export default function BestSellers() {
   const { addToCart } = useCartStore();
-  const { toggleWishlist, isWishlisted } = useWishlistStore();
+  const { toggleWishlist, wishlist } = useWishlistStore();
+  const isWishlisted = (name: string) => wishlist.some((p) => p.name === name);
 
   return (
     <section className="w-full bg-white py-14 sm:py-20 lg:py-32">
@@ -235,9 +236,11 @@ export default function BestSellers() {
 
                   <button
                     type="button"
-                    onClick={() =>
-                      toggleWishlist(product as any)
-                    }
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleWishlist(product as any);
+                    }}
                     aria-label={
                       wishlisted
                         ? "Remove from wishlist"

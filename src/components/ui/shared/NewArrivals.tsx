@@ -70,7 +70,8 @@ const products: Product[] = [
 
 export default function NewArrivals() {
   const { addToCart } = useCartStore();
-  const { toggleWishlist, isWishlisted } = useWishlistStore();
+  const { toggleWishlist, wishlist } = useWishlistStore();
+  const isWishlisted = (name: string) => wishlist.some((p) => p.name === name);
 
   return (
     <section className="w-full bg-[#F7F5F0] py-20 sm:py-24 lg:py-32">
@@ -312,9 +313,11 @@ export default function NewArrivals() {
                           ? `Remove ${product.name} from wishlist`
                           : `Add ${product.name} to wishlist`
                       }
-                      onClick={() =>
-                        toggleWishlist(product as any)
-                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleWishlist(product as any);
+                      }}
                     className="
                       absolute
                       right-3

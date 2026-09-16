@@ -78,9 +78,8 @@ export const useWishlistStore = create<WishlistStore>()(
             return { wishlist: [...state.wishlist, product] };
           }
         }),
-      isWishlisted: (productName) => {
-        return get().wishlist.some((p) => p.name === productName);
-      },
+      isWishlisted: (productName) =>
+        get().wishlist.some((p) => p.name === productName),
       removeFromWishlist: (productName) =>
         set((state) => ({
           wishlist: state.wishlist.filter((p) => p.name !== productName),

@@ -50,8 +50,8 @@ export default function ProductDetail({ product, allProducts }: { product: Produ
   const addToCartStore = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
-  const { toggleWishlist, isWishlisted } = useWishlistStore();
-  const wishlisted = isWishlisted(product.name);
+  const { toggleWishlist, wishlist } = useWishlistStore();
+  const wishlisted = wishlist.some((p) => p.name === product.name);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
