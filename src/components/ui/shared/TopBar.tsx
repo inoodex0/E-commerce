@@ -9,10 +9,10 @@ export default function TopBar() {
         {/* Desktop */}
         <div className="hidden h-full items-center justify-between sm:flex">
           <a
-            href="mailto:novara@example.com"
+            href="mailto:zurii@example.com"
             className="shrink-0 text-[10px] font-medium tracking-[0.12em] text-white/80 transition-colors duration-300 hover:text-white"
           >
-            novara@example.com
+            zurii@example.com
           </a>
 
           <div className="mx-6 flex-1 overflow-hidden">

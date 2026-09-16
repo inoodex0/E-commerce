@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 const milestones = [
   { year: "2018", title: "The Beginning", desc: "Founded in Dhaka with a vision to redefine luxury accessories for the modern era." },
   { year: "2019", title: "First Collection", desc: "Launched our debut leather goods collection, earning recognition from fashion editors worldwide." },
-  { year: "2021", title: "Global Expansion", desc: "Opened flagship studios in London and Dubai, bringing NOVARA to the international stage." },
+  { year: "2021", title: "Global Expansion", desc: "Opened flagship studios in London and Dubai, bringing ZURII to the international stage." },
   { year: "2023", title: "Sustainability Pledge", desc: "Committed to 100% sustainable sourcing and carbon-neutral operations by 2025." },
   { year: "2025", title: "New Era", desc: "Launching our most ambitious collection yet — merging heritage craft with futuristic design." },
 ];
@@ -58,7 +58,7 @@ export default function OurStoryPage() {
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <Image
           src="/images/a4.avif"
-          alt="NOVARA Craftsmanship"
+          alt="ZURII Craftsmanship"
           fill
           className="object-cover"
           priority
@@ -123,7 +123,7 @@ export default function OurStoryPage() {
               <h2 className="font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Handcrafted<br />With Soul</h2>
               <div className="h-px w-12 bg-[#fd6f93]" />
               <p className="text-sm leading-relaxed text-[#6B6560]">
-                Every NOVARA piece begins as a sketch and evolves through hundreds of hours of meticulous handwork.
+                Every ZURII piece begins as a sketch and evolves through hundreds of hours of meticulous handwork.
                 Our artisans — many with over 20 years of experience — bring each design to life with techniques
                 passed down through generations. We don&apos;t mass-produce; we create one masterpiece at a time.
               </p>
@@ -146,7 +146,7 @@ export default function OurStoryPage() {
                 Every material is chosen not just for its beauty, but for its integrity and longevity.
               </p>
               <p className="text-sm leading-relaxed text-[#6B6560]">
-                Our leather is tanned using centuries-old methods that produce rich patinas — meaning your NOVARA
+                Our leather is tanned using centuries-old methods that produce rich patinas — meaning your ZURII
                 piece gets more beautiful the longer you own it.
               </p>
             </div>
@@ -328,7 +328,7 @@ export default function OurStoryPage() {
             <div className="group relative hidden overflow-hidden md:block">
               <Image
                 src="/images/a5.avif"
-                alt="NOVARA Collection"
+                alt="ZURII Collection"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -336,10 +336,10 @@ export default function OurStoryPage() {
             </div>
             <div className="flex flex-col items-start justify-center p-8 sm:p-10">
               <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Become Part of the Story</p>
-              <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412]">Experience NOVARA</h2>
+              <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412]">Experience ZURII</h2>
               <div className="mt-3 h-px w-8 bg-[#fd6f93]" />
               <p className="mt-4 text-sm leading-relaxed text-[#6B6560]">
-                Discover why thousands of discerning customers choose NOVARA for the moments that matter.
+                Discover why thousands of discerning customers choose ZURII for the moments that matter.
               </p>
               <div className="mt-6 flex gap-3">
                 <Link

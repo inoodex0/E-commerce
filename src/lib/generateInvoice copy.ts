@@ -47,7 +47,7 @@ function buildPDF(data: InvoiceData): jsPDF {
   doc.setFontSize(5);
   doc.setFont(F, "bold");
   doc.setTextColor(...dk);
-  doc.text("NOVARA", 32, 22, { align: "center" });
+  doc.text("ZURII", 32, 22, { align: "center" });
   doc.text("LOGO", 32, 27, { align: "center" });
 
   doc.setFontSize(20);
@@ -154,7 +154,7 @@ function buildPDF(data: InvoiceData): jsPDF {
 
   doc.text("Account Name:", 26, bankY + 15);
   doc.setFont(F, "bold"); doc.setTextColor(...dk);
-  doc.text("NOVARA", 58, bankY + 15);
+  doc.text("ZURII", 58, bankY + 15);
 
   doc.setFont(F, "normal"); doc.setTextColor(...gy);
   doc.text("Bank:", 26, bankY + 20);
@@ -190,9 +190,9 @@ function buildPDF(data: InvoiceData): jsPDF {
   const footerParts = [
     "+880 1XXXXXXXXX",
     "|",
-    "support@novara.com",
+    "support@zurii.com",
     "|",
-    "www.novara.com",
+    "www.zurii.com",
     heart,
   ];
   const footerText = footerParts.join("  ");
@@ -209,7 +209,7 @@ function buildPDF(data: InvoiceData): jsPDF {
 
 export function downloadInvoicePDF(data: InvoiceData): void {
   const doc = buildPDF(data);
-  doc.save(`NOVARA-Invoice-${data.orderId}.pdf`);
+  doc.save(`ZURII-Invoice-${data.orderId}.pdf`);
 }
 
 export function printInvoicePDF(data: InvoiceData): void {

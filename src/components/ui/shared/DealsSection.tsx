@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock, Heart } from "lucide-react";
+import { ArrowRight, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface DealProduct {
@@ -157,163 +157,128 @@ export default function DealsSection() {
 
 
         {/* =====================================================
-            SALE BANNER
+            SALE BANNER — Flash Sale Style
         ====================================================== */}
 
-        <div className="mt-8 overflow-hidden border border-[#fd6f93]/20 bg-[#fd6f93] shadow-lg shadow-[#fd6f93]/20">
+        <div className="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-[#e8446d] via-[#fd6f93] to-[#c72d55] shadow-xl shadow-[#fd6f93]/30">
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto]">
+          {/* Bokeh / light dots */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute left-[10%] top-[15%] h-3 w-3 rounded-full bg-yellow-300/40 blur-[1px]" />
+            <div className="absolute left-[25%] top-[60%] h-2 w-2 rounded-full bg-yellow-200/50 blur-[1px]" />
+            <div className="absolute left-[40%] top-[20%] h-4 w-4 rounded-full bg-white/20 blur-[2px]" />
+            <div className="absolute left-[55%] top-[70%] h-2 w-2 rounded-full bg-yellow-300/30 blur-[1px]" />
+            <div className="absolute left-[70%] top-[25%] h-3 w-3 rounded-full bg-white/15 blur-[2px]" />
+            <div className="absolute left-[85%] top-[55%] h-2 w-2 rounded-full bg-yellow-200/40 blur-[1px]" />
+            <div className="absolute left-[15%] top-[80%] h-2 w-2 rounded-full bg-white/20 blur-[1px]" />
+            <div className="absolute left-[60%] top-[40%] h-5 w-5 rounded-full bg-yellow-100/15 blur-[3px]" />
+            <div className="absolute left-[80%] top-[85%] h-3 w-3 rounded-full bg-yellow-300/20 blur-[2px]" />
+            <div className="absolute left-[35%] top-[45%] h-2 w-2 rounded-full bg-white/25 blur-[1px]" />
+          </div>
 
-            {/* Offer */}
+          {/* Confetti pieces */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute left-[8%] top-[10%] h-4 w-1 rotate-45 bg-yellow-400/50" />
+            <div className="absolute left-[18%] top-[75%] h-3 w-1 -rotate-30 bg-pink-300/40" />
+            <div className="absolute left-[32%] top-[8%] h-1 w-4 rotate-[60deg] bg-yellow-300/50" />
+            <div className="absolute left-[48%] top-[82%] h-3 w-1 rotate-12 bg-white/30" />
+            <div className="absolute left-[62%] top-[12%] h-4 w-1 -rotate-45 bg-yellow-200/40" />
+            <div className="absolute left-[75%] top-[78%] h-1 w-3 rotate-[75deg] bg-pink-200/40" />
+            <div className="absolute left-[88%] top-[15%] h-3 w-1 rotate-[30deg] bg-yellow-400/40" />
+            <div className="absolute left-[42%] top-[5%] h-1 w-4 -rotate-20 bg-white/25" />
+          </div>
 
-            <div className="flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:px-14">
+          {/* Large decorative circle */}
+          <div className="pointer-events-none absolute -left-20 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full border-[3px] border-dashed border-white/10" />
+          <div className="pointer-events-none absolute -left-12 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full border-2 border-white/5" />
 
-              <div className="flex items-center gap-3">
+          <div className="relative grid grid-cols-1 lg:grid-cols-[auto_1fr]">
 
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#fd6f93] sm:h-8 sm:w-8">
-                  <Clock
-                    size={12}
-                    strokeWidth={1.4}
-                    className="sm:hidden"
-                  />
-                  <Clock
-                    size={14}
-                    strokeWidth={1.4}
-                    className="hidden sm:block"
-                  />
-                </span>
+            {/* Left — Timer */}
+            <div className="flex items-center border-b border-white/15 lg:border-b-0 lg:border-r">
 
-                <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-white/80 sm:text-[9px] sm:tracking-[0.2em]">
-                  Ending Soon
-                </span>
+              <div className="flex items-center gap-4 px-8 py-10 sm:gap-6 sm:px-12 lg:px-14">
 
-              </div>
-
-
-              <h3
-                className="
-                  mt-5
-                  font-sans
-                  text-[clamp(2rem,4vw,3.5rem)]
-                  font-medium
-                  leading-none
-                  text-white
-                "
-              >
-                Up to{" "}
-                <span className="italic">
-                  20% Off
-                </span>
-              </h3>
-
-
-             
-
-            </div>
-
-
-            {/* =================================================
-                COUNTDOWN
-            ================================================== */}
-
-            <div className="border-t border-neutral-200 lg:border-l lg:border-t-0">
-
-              <div className="flex h-full items-center justify-center px-6 py-8 sm:px-10 lg:px-14">
-
-                <div className="flex items-center gap-3 sm:gap-5">
-
-                  {/* Hours */}
-
-                  <div className="text-center">
-
-                    <div
-                      className="
-                        font-sans
-                        text-3xl
-                        font-medium
-                        leading-none
-                        text-neutral-950
-                        sm:text-4xl
-                        lg:text-5xl
-                      "
-                    >
+                {/* Hours */}
+                <div className="text-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-xl bg-black/20 shadow-inner" />
+                    <div className="relative font-sans text-3xl font-bold leading-none text-white sm:text-4xl lg:text-5xl tabular-nums px-4 py-3">
                       {formatNumber(hours)}
                     </div>
-
-                    <span className="mt-1 block text-[6px] font-semibold uppercase tracking-[0.15em] text-black sm:mt-2 sm:text-[7px] sm:tracking-[0.2em]">
-                      Hours
-                    </span>
-
                   </div>
-
-
-                  <span className="pb-4 text-lg text-black sm:pb-5 sm:text-xl">
-                    :
+                  <span className="mt-2 block text-[7px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[8px]">
+                    Hours
                   </span>
+                </div>
 
+                <span className="pb-5 text-2xl font-bold text-yellow-300/60">:</span>
 
-                  {/* Minutes */}
-
-                  <div className="text-center">
-
-                    <div
-                      className="
-                        font-sans
-                        text-3xl
-                        font-medium
-                        leading-none
-                        text-neutral-950
-                        sm:text-4xl
-                        lg:text-5xl
-                      "
-                    >
+                {/* Minutes */}
+                <div className="text-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-xl bg-black/20 shadow-inner" />
+                    <div className="relative font-sans text-3xl font-bold leading-none text-white sm:text-4xl lg:text-5xl tabular-nums px-4 py-3">
                       {formatNumber(minutes)}
                     </div>
-
-                    <span className="mt-1 block text-[6px] font-semibold uppercase tracking-[0.15em] text-black sm:mt-2 sm:text-[7px] sm:tracking-[0.2em]">
-                      Minutes
-                    </span>
-
                   </div>
-
-
-                  <span className="pb-4 text-lg text-black sm:pb-5 sm:text-xl">
-                    :
+                  <span className="mt-2 block text-[7px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[8px]">
+                    Minutes
                   </span>
+                </div>
 
+                <span className="pb-5 text-2xl font-bold text-yellow-300/60">:</span>
 
-                  {/* Seconds */}
-
-                  <div className="text-center">
-
-                    <div
-                      className="
-                        font-sans
-                        text-3xl
-                        font-medium
-                        leading-none
-                        text-neutral-950
-                        sm:text-4xl
-                        lg:text-5xl
-                      "
-                    >
+                {/* Seconds */}
+                <div className="text-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-xl bg-black/20 shadow-inner" />
+                    <div className="relative font-sans text-3xl font-bold leading-none text-white sm:text-4xl lg:text-5xl tabular-nums px-4 py-3">
                       {formatNumber(seconds)}
                     </div>
-
-                    <span className="mt-1 block text-[6px] font-semibold uppercase tracking-[0.15em] text-black sm:mt-2 sm:text-[7px] sm:tracking-[0.2em]">
-                      Seconds
-                    </span>
-
                   </div>
-
+                  <span className="mt-2 block text-[7px] font-bold uppercase tracking-[0.2em] text-white/50 sm:text-[8px]">
+                    Seconds
+                  </span>
                 </div>
 
               </div>
-
             </div>
 
-          </div>
+            {/* Right — Content */}
+            <div className="flex flex-col justify-center px-8 py-10 sm:px-12 sm:py-12 lg:px-16">
 
+              {/* Special Offer tag */}
+              <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-yellow-300/80">
+                ✦ Special Offer
+              </span>
+
+              {/* Flash Sale title */}
+              <h3 className="mt-3 font-serif text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[0.85] text-white uppercase">
+                Flash<br />Sale
+              </h3>
+
+              {/* Discount */}
+              <p className="mt-4 font-serif text-xl font-medium text-white sm:text-2xl">
+                Up to <span className="text-yellow-300 font-bold">20% Off</span>
+              </p>
+
+              {/* Shop Now + Limited */}
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/deals/flash-sale"
+                  className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-7 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-[#c72d55] shadow-lg shadow-yellow-400/20 transition-all duration-300 hover:bg-yellow-300 hover:shadow-xl"
+                >
+                  Shop Now
+                  <ArrowRight size={12} />
+                </Link>
+                <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">
+                  ⚡ Limited Time Only ⚡
+                </span>
+              </div>
+
+            </div>
+          </div>
         </div>
 
 
@@ -321,7 +286,7 @@ export default function DealsSection() {
             PRODUCTS
         ====================================================== */}
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-6">
 
           {dealProducts.map((product, index) => (
             <article
@@ -331,7 +296,7 @@ export default function DealsSection() {
 
               {/* Image */}
 
-              <div className="relative aspect-[1.05] overflow-hidden bg-white">
+              <div className="relative aspect-[0.88] overflow-hidden bg-white">
 
                 <Link
                   href={`/products/${product.id}`}
@@ -425,12 +390,12 @@ export default function DealsSection() {
 
                 <p
                   className="
-                    text-[8px]
+                    text-[7px]
                     font-semibold
                     uppercase
                     tracking-[0.2em]
                     text-neutral-400
-                    sm:text-[9px]
+                    sm:text-[8px]
                   "
                 >
                   {product.category}
@@ -444,16 +409,16 @@ export default function DealsSection() {
 
                   <h3
                     className="
-                      mt-2
+                      mt-1.5
                       font-sans
-                      text-[20px]
+                      text-[14px]
                       font-medium
-                      leading-none
+                      leading-tight
                       text-neutral-950
                       transition-opacity
                       duration-300
                       group-hover:opacity-60
-                      sm:text-[25px]
+                      sm:text-[15px]
                     "
                   >
                     {product.name}
@@ -464,7 +429,7 @@ export default function DealsSection() {
 
                 {/* Price */}
 
-                <div className="mt-3 flex items-center gap-2 sm:gap-3">
+                <div className="mt-2 flex items-center gap-1.5 sm:gap-2">
 
                   <span className="text-[11px] font-semibold text-neutral-950 sm:text-[13px]">
                     ৳ {product.price.toLocaleString()}
@@ -479,7 +444,7 @@ export default function DealsSection() {
 
                 {/* Progress */}
 
-                <div className="mt-4">
+                <div className="mt-3">
 
                   <div className="mb-2 flex justify-between">
 

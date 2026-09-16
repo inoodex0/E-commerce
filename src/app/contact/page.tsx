@@ -22,7 +22,7 @@ export default function ContactPage() {
               <Mail className="mt-1 text-[#fd6f93]" size={20} />
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-[#fd6f93]">Email Us</h4>
-                <p className="mt-1 text-sm font-medium text-[#171412]">novara@example.com</p>
+                <p className="mt-1 text-sm font-medium text-[#171412]">zurii@example.com</p>
               </div>
             </div>
 
@@ -30,7 +30,7 @@ export default function ContactPage() {
               <Phone className="mt-1 text-[#fd6f93]" size={20} />
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-[#fd6f93]">Call Concierge</h4>
-                <p className="mt-1 text-sm font-medium text-[#171412]">+1 (800) 555-NOVARA</p>
+                <p className="mt-1 text-sm font-medium text-[#171412]">+1 (800) 555-ZURII</p>
               </div>
             </div>
 

@@ -80,7 +80,7 @@ export default function WhyChooseUsPage() {
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <Image
           src="/images/a6.avif"
-          alt="NOVARA Quality"
+          alt="ZURII Quality"
           fill
           className="object-cover"
           priority
@@ -89,7 +89,7 @@ export default function WhyChooseUsPage() {
         <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#fd6f93] via-[#fd8faa] to-[#fd6f93]" />
 
         <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">The NOVARA Difference</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">The ZURII Difference</p>
           <h1 className="mt-4 font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
             Why Choose <span className="text-[#fd6f93]">Us</span>
           </h1>
@@ -116,7 +116,7 @@ export default function WhyChooseUsPage() {
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">What Sets Us Apart</p>
-            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Six Reasons to Choose <span className="text-[#fd6f93]">NOVARA</span></h2>
+            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Six Reasons to Choose <span className="text-[#fd6f93]">ZURII</span></h2>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -186,7 +186,7 @@ export default function WhyChooseUsPage() {
                   <div className="h-1 w-1 rounded-full bg-[#fd6f93]" />
                 </div>
                 <p className="mt-5 text-sm leading-relaxed text-[#6B6560]">
-                  We believe luxury is defined by what you <em>don&apos;t</em> compromise on. That&apos;s why every NOVARA
+                  We believe luxury is defined by what you <em>don&apos;t</em> compromise on. That&apos;s why every ZURII
                   product undergoes 47 quality checks before it reaches your hands. From the tension of each
                   stitch to the polish on every clasp — perfection is not a goal, it&apos;s a standard.
                 </p>
@@ -235,14 +235,14 @@ export default function WhyChooseUsPage() {
                   <div className="h-1 w-1 rounded-full bg-[#fd6f93]" />
                 </div>
                 <p className="mt-5 text-sm leading-relaxed text-[#6B6560]">
-                  Buying a NOVARA product isn&apos;t just a transaction — it&apos;s the beginning of a relationship.
+                  Buying a ZURII product isn&apos;t just a transaction — it&apos;s the beginning of a relationship.
                   From the moment you unbox your order to years down the line when the leather has developed
                   its unique patina, we&apos;re with you every step of the way.
                 </p>
                 {/* Testimonial */}
                 <div className="mt-6 border-l-2 border-[#fd6f93] pl-6 py-2">
                   <p className="font-serif text-sm italic leading-relaxed text-[#171412]">
-                    &ldquo;The attention to detail is unlike anything I&apos;ve experienced. My NOVARA wallet is
+                    &ldquo;The attention to detail is unlike anything I&apos;ve experienced. My ZURII wallet is
                     three years old and looks better than the day I bought it.&rdquo;
                   </p>
                   <div className="mt-3 flex items-center gap-2">
@@ -335,7 +335,7 @@ export default function WhyChooseUsPage() {
                 { step: "03", title: "Quality Check", desc: "47-point inspection ensures every detail meets our exacting standards.", icon: (
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
                 )},
-                { step: "04", title: "Delivered to You", desc: "Insured, tracked shipping delivers your NOVARA piece safely to your door.", icon: (
+                { step: "04", title: "Delivered to You", desc: "Insured, tracked shipping delivers your ZURII piece safely to your door.", icon: (
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H21a2.25 2.25 0 002.25-2.25V6.375c0-1.125-.9-2.063-2.018-2.182a48.039 48.039 0 00-1.965-.149H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h3.284a48.056 48.056 0 011.965-.149m13.5 0h-3" /></svg>
                 )},
               ].map((s, i) => (
@@ -377,7 +377,7 @@ export default function WhyChooseUsPage() {
                 { step: "03", title: "Quality Check", desc: "47-point inspection ensures every detail meets our exacting standards.", icon: (
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
                 )},
-                { step: "04", title: "Delivered to You", desc: "Insured, tracked shipping delivers your NOVARA piece safely to your door.", icon: (
+                { step: "04", title: "Delivered to You", desc: "Insured, tracked shipping delivers your ZURII piece safely to your door.", icon: (
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H21a2.25 2.25 0 002.25-2.25V6.375c0-1.125-.9-2.063-2.018-2.182a48.039 48.039 0 00-1.965-.149H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h3.284a48.056 48.056 0 011.965-.149m13.5 0h-3" /></svg>
                 )},
               ].map((s, i) => (
@@ -413,7 +413,7 @@ export default function WhyChooseUsPage() {
             <div className="group relative hidden overflow-hidden md:block">
               <Image
                 src="/images/a3avif.avif"
-                alt="NOVARA Collection"
+                alt="ZURII Collection"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -421,7 +421,7 @@ export default function WhyChooseUsPage() {
             </div>
             <div className="flex flex-col items-start justify-center p-8 sm:p-10">
               <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Ready to Experience the Difference?</p>
-              <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412]">Shop NOVARA Today</h2>
+              <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412]">Shop ZURII Today</h2>
               <div className="mt-3 h-px w-8 bg-[#fd6f93]" />
               <p className="mt-4 text-sm leading-relaxed text-[#6B6560]">
                 Join 50,000+ customers who&apos;ve discovered what luxury truly feels like.

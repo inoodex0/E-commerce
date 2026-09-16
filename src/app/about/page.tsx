@@ -8,7 +8,7 @@ export default function AboutPage() {
        
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">About NOVARA</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">About ZURII</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             Redefining Everyday Luxury
           </h1>
@@ -16,10 +16,10 @@ export default function AboutPage() {
 
         <div className="mt-8 space-y-6 text-[#6B6560] leading-relaxed">
           <p>
-            At <strong>NOVARA</strong>, we craft timeless luxury accessories designed to empower personal expression. Every timepiece, bag, and item in our collection embodies meticulous craftsmanship, premium raw materials, and enduring style.
+            At <strong>ZURII</strong>, we craft timeless luxury accessories designed to empower personal expression. Every timepiece, bag, and item in our collection embodies meticulous craftsmanship, premium raw materials, and enduring style.
           </p>
           <p>
-            Founded with a passion for architectural design and uncompromised detail, NOVARA creates quiet luxury essentials that seamlessly bridge classic elegance with modern versatility.
+            Founded with a passion for architectural design and uncompromised detail, ZURII creates quiet luxury essentials that seamlessly bridge classic elegance with modern versatility.
           </p>
 
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">

@@ -99,7 +99,7 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    const popupTimer = setTimeout(() => setShowPopup(true), 3000);
+    const popupTimer = setTimeout(() => setShowPopup(true), 0);
     return () => clearTimeout(popupTimer);
   }, []);
 
@@ -371,61 +371,95 @@ export default function HeroSection() {
       `}</style>
 
       {/* =====================================================
-          20% OFF POPUP
+          FLASH SALE POPUP
       ====================================================== */}
       {showPopup && (
-        <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm">
-          <div className="popup-enter relative flex w-full max-w-[680px] overflow-hidden bg-white shadow-2xl sm:rounded-sm">
+        <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+          <div className="popup-enter relative w-full max-w-[520px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#fd6f93] via-[#e8446d] to-[#c72d55] shadow-2xl shadow-[#fd6f93]/30">
 
             {/* Close button */}
             <button
               type="button"
               onClick={() => setShowPopup(false)}
-              className="absolute right-3 top-3 z-30 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#171412] transition-colors hover:bg-white hover:text-[#fd6f93]"
+              className="absolute right-3 top-3 z-30 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-colors hover:bg-white/30"
             >
               <X size={16} />
             </button>
 
-            {/* Left — Image */}
-            <div className="relative hidden w-[45%] sm:block">
-              <Image
-                src="/images/products/bracelet-1.avif"
-                alt="20% Off"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            {/* Decorative lightning bolts */}
+            <div className="pointer-events-none absolute left-6 top-8 text-yellow-300/60">
+              <svg width="32" height="48" viewBox="0 0 24 36" fill="currentColor"><path d="M13 0L0 18h9l-2 18L24 16h-9l2-16z" /></svg>
+            </div>
+            <div className="pointer-events-none absolute right-8 top-10 text-yellow-300/40">
+              <svg width="24" height="36" viewBox="0 0 24 36" fill="currentColor"><path d="M13 0L0 18h9l-2 18L24 16h-9l2-16z" /></svg>
             </div>
 
-            {/* Right — Content */}
-            <div className="flex flex-1 flex-col items-center justify-center p-8 text-center sm:p-10">
-              <span className="rounded-full border border-[#fd6f93]/30 bg-[#fd6f93]/5 px-4 py-1.5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">
-                Limited Time Offer
-              </span>
+            {/* Decorative circles */}
+            <div className="pointer-events-none absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-white/5" />
+            <div className="pointer-events-none absolute -left-6 -top-6 h-28 w-28 rounded-full bg-white/5" />
 
-              <h2 className="mt-5 font-serif text-4xl font-medium text-[#171412] sm:text-5xl">
-                <span className="text-[#fd6f93]">20%</span> OFF
+            {/* Content */}
+            <div className="relative flex flex-col items-center px-8 pt-12 pb-10 text-center">
+
+              {/* Flash Sale title */}
+              <h2 className="font-serif text-5xl font-bold uppercase leading-[0.85] text-white sm:text-6xl">
+                Flash<br />Sale
               </h2>
 
-              <p className="mt-2 font-serif text-lg font-medium text-[#171412]">
-                On Your First Purchase
-              </p>
+              {/* Discount */}
+              <div className="mt-5 flex items-center gap-2">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/80">Up to</span>
+                <span className="font-serif text-4xl font-bold text-yellow-300 sm:text-5xl">20%</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/80">Off</span>
+              </div>
 
-              <p className="mt-3 max-w-xs text-xs leading-5 text-[#6B6560]">
-                Discover timeless elegance. Enjoy an exclusive discount on our entire luxury collection.
-              </p>
+              {/* Product image */}
+              <div className="relative mt-6 h-40 w-56 overflow-hidden">
+                <Image
+                  src="/images/pop up.jpg"
+                  alt="Flash Sale"
+                  fill
+                  className="object-cover object-center drop-shadow-2xl"
+                  sizes="224px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#c72d55]/50 to-transparent" />
+              </div>
 
-              <div className="mt-5 flex items-center gap-2 text-xs text-[#6B6560]">
+              {/* 24 hour badge */}
+              <div className="relative -mt-4 flex items-center justify-center">
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-red-600 shadow-lg shadow-red-600/30">
+                  <svg className="absolute inset-0 h-full w-full" viewBox="0 0 64 64">
+                    {Array.from({ length: 12 }).map((_, i) => {
+                      const angle = (i * 30 * Math.PI) / 180;
+                      const r1 = 28;
+                      const r2 = 32;
+                      const x1 = 32 + r1 * Math.sin(angle);
+                      const y1 = 32 - r1 * Math.cos(angle);
+                      const x2 = 32 + r2 * Math.sin(angle);
+                      const y2 = 32 - r2 * Math.cos(angle);
+                      return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="white" strokeWidth="2" />;
+                    })}
+                  </svg>
+                  <div className="text-center leading-none">
+                    <span className="block text-lg font-bold text-white">24</span>
+                    <span className="block text-[6px] font-bold uppercase tracking-wider text-white/80">Hour Only</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Code */}
+              <div className="mt-5 flex items-center gap-2 text-xs text-white/70">
                 Use code{" "}
-                <span className="rounded border border-[#E7E1D8] bg-[#FBF8F3] px-3 py-1.5 font-mono text-[11px] font-semibold tracking-wider text-[#171412]">
-                  NOVARA20
+                <span className="rounded border border-white/30 bg-white/10 px-3 py-1.5 font-mono text-[11px] font-bold tracking-wider text-white backdrop-blur-sm">
+                  ZURII20
                 </span>
               </div>
 
+              {/* Shop Now */}
               <Link
                 href="/shop"
                 onClick={() => setShowPopup(false)}
-                className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-8 py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-10 py-3.5 text-[11px] font-bold uppercase tracking-[0.15em] text-[#c72d55] shadow-lg shadow-black/10 transition-all duration-300 hover:bg-yellow-300 hover:text-[#171412] hover:shadow-xl"
               >
                 Shop Now
               </Link>
@@ -435,8 +469,8 @@ export default function HeroSection() {
           <style>{`
             .popup-enter {
               opacity: 0;
-              transform: scale(0.9) translateY(20px);
-              animation: popupIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+              transform: scale(0.85) translateY(30px);
+              animation: popupIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
             }
             @keyframes popupIn {
               to {

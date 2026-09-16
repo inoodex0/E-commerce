@@ -31,7 +31,7 @@ const collectionsData: Record<string, {
     tag: "Curated Excellence",
     title: "Signature Collection",
     subtitle: "perfect choices",
-    description: "Our handpicked selection of timeless pieces — each one representing the finest craftsmanship and design that defines the NOVARA identity. Every piece tells a story of dedication, precision, and an unwavering commitment to luxury that transcends fleeting trends.",
+    description: "Our handpicked selection of timeless pieces — each one representing the finest craftsmanship and design that defines the ZURII identity. Every piece tells a story of dedication, precision, and an unwavering commitment to luxury that transcends fleeting trends.",
     heroImage: "/images/collections/3.avif",
     features: [
       { icon: "gem", title: "Premium Quality", desc: "Only the finest materials make it into our signature pieces, ensuring lasting beauty and durability." },

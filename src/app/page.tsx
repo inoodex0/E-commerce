@@ -13,12 +13,12 @@ export default function Home() {
   return (
     <main className="flex flex-col flex-1 overflow-x-hidden">
       <HeroSection />
+      <DealsSection/>
       <ShopByCategory />
       <NewArrivalsSection />
       
       <FeaturedCollection/>
       <BestSellers/>
-      <DealsSection/>
       <Testimonials/>
       <Partnership/>
       <Newsletter/>

@@ -11,7 +11,7 @@ const collections = [
     name: "Signature",
     slug: "signature",
     tag: "Curated Excellence",
-    description: "Our handpicked selection of timeless pieces — each one representing the finest craftsmanship and design that defines the NOVARA identity.",
+    description: "Our handpicked selection of timeless pieces — each one representing the finest craftsmanship and design that defines the ZURII identity.",
     image: "/images/collections/signature.jpg",
     productCount: 6,
   },

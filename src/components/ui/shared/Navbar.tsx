@@ -233,7 +233,7 @@ export default function Navbar() {
             href="/"
             className="absolute left-1/2 -translate-x-1/2 font-serif text-[20px] font-semibold tracking-[0.22em] text-[#171412] transition-opacity duration-300 hover:opacity-70 sm:text-[24px] lg:static lg:translate-x-0 lg:text-[26px] xl:tracking-[0.28em]"
           >
-            NOVARA
+            ZURII
           </Link>
 
           {/* =================================================
@@ -329,9 +329,6 @@ export default function Navbar() {
                     ))}
                   </div>
 
-                  {/* View All */}
-
-                  
                 </div>
               </div>
             </div>
@@ -862,7 +859,7 @@ export default function Navbar() {
               onClick={closeMobileMenu}
               className="font-serif text-lg font-semibold tracking-[0.2em] text-[#171412] sm:text-xl sm:tracking-[0.22em]"
             >
-              NOVARA
+              ZURII
             </Link>
 
             <button

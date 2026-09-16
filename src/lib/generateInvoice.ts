@@ -78,7 +78,7 @@ function buildPDF(data: InvoiceData, paper: PaperSize = "a4"): jsPDF {
   doc.text("N", pad + 8, sy + 1, { align: "center" });
 
   doc.setFontSize(11);
-  doc.text("NOVARA", pad + 22, sy - 2);
+  doc.text("ZURII", pad + 22, sy - 2);
   doc.setFontSize(5);
   doc.setFont(F, "normal");
   doc.setTextColor(255, 255, 255);
@@ -274,7 +274,7 @@ function buildPDF(data: InvoiceData, paper: PaperSize = "a4"): jsPDF {
 
   totY += 5;
   doc.text("A/C Name:", totLabelX, totY);
-  doc.text("NOVARA", totX, totY, { align: "right" });
+  doc.text("ZURII", totX, totY, { align: "right" });
 
   totY += 5;
   doc.text("Bank Details:", totLabelX, totY);
@@ -302,7 +302,7 @@ function buildPDF(data: InvoiceData, paper: PaperSize = "a4"): jsPDF {
 
 export function downloadInvoicePDF(data: InvoiceData, paper: PaperSize = "a4"): void {
   const doc = buildPDF(data, paper);
-  doc.save(`NOVARA-Invoice-${data.orderId}.pdf`);
+  doc.save(`ZURII-Invoice-${data.orderId}.pdf`);
 }
 
 export function printInvoicePDF(data: InvoiceData, paper: PaperSize = "a4"): void {

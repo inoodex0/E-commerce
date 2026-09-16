@@ -68,7 +68,7 @@ export default function Footer() {
                 href="/"
                 className="font-serif text-4xl font-medium tracking-[0.15em] text-white transition-opacity duration-300 hover:opacity-75 sm:text-5xl"
               >
-                NOVARA
+                ZURII
               </Link>
               <p className="mt-4 max-w-sm font-serif text-sm italic leading-relaxed text-neutral-400">
                 Crafting premium accessories for those who believe elegance lies in the details.
@@ -78,11 +78,11 @@ export default function Footer() {
             {/* Contact Details */}
             <div className="space-y-2.5 pt-2">
               <a
-                href="mailto:hello@novara.com"
+                href="mailto:hello@zurii.com"
                 className="flex items-center gap-3 text-xs text-neutral-300 transition-colors duration-300 hover:text-[#fd6f93]"
               >
                 <Mail size={14} strokeWidth={1.5} className="text-[#fd6f93]" />
-                hello@novara.com
+                hello@zurii.com
               </a>
               <span className="flex items-center gap-3 text-xs text-neutral-400">
                 <Phone size={14} strokeWidth={1.5} className="text-[#fd6f93]" />
@@ -164,7 +164,7 @@ export default function Footer() {
 
             {subscribed && (
               <p className="text-[10px] text-[#fd6f93] animate-pulse font-medium tracking-wide">
-                ✓ Welcome to Novara. Check your inbox.
+                ✓ Welcome to Zurii. Check your inbox.
               </p>
             )}
           </div>
@@ -176,7 +176,7 @@ export default function Footer() {
         <div className="mt-8 border-t border-white/5 pt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-2">
             <p className="text-[9px] uppercase tracking-[0.16em] text-neutral-400">
-              © {new Date().getFullYear()} NOVARA. All rights reserved.
+              © {new Date().getFullYear()} ZURII. All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-[9px] uppercase tracking-[0.15em] text-neutral-400">
               <Link href="/privacy" className="transition-colors hover:text-white">

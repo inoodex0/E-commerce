@@ -52,7 +52,7 @@ export const useCartStore = create<CartStore>()(
       clearCart: () => set({ cart: [] }),
     }),
     {
-      name: "novara-cart-storage",
+      name: "zurii-cart-storage",
     }
   )
 );
@@ -88,7 +88,7 @@ export const useWishlistStore = create<WishlistStore>()(
       clearWishlist: () => set({ wishlist: [] }),
     }),
     {
-      name: "novara-wishlist-storage",
+      name: "zurii-wishlist-storage",
     }
   )
 );

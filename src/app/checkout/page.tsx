@@ -13,6 +13,18 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<"cod" | "bkash" | "nagad">("cod");
   const [invoiceData, setInvoiceData] = useState<InvoiceData | null>(null);
   const [paperSize, setPaperSize] = useState<PaperSize>("a4");
+  const [showPaperModal, setShowPaperModal] = useState(false);
+  const [pendingAction, setPendingAction] = useState<"print" | "download">("print");
+
+  const handlePaperSelect = (size: PaperSize) => {
+    setPaperSize(size);
+    setShowPaperModal(false);
+    if (pendingAction === "print") {
+      printInvoicePDF(invoiceData!, size);
+    } else {
+      downloadInvoicePDF(invoiceData!, size);
+    }
+  };
 
   const [form, setForm] = useState({
     name: "",
@@ -89,41 +101,16 @@ export default function CheckoutPage() {
             <p className="mt-1 text-sm text-[#6B6560]">Your invoice is ready. Print or download it below.</p>
           </div>
 
-          {/* Paper Size Selector */}
-          <div className="mb-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560]">Paper Size:</span>
-            <div className="flex gap-2">
-              {([
-                { id: "a4" as const, label: "A4", desc: "210 × 297 mm" },
-                { id: "a5" as const, label: "A5", desc: "148 × 210 mm" },
-                { id: "letter" as const, label: "Letter", desc: "8.5 × 11 in" },
-              ]).map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => setPaperSize(s.id)}
-                  className={`px-4 py-2 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 ${
-                    paperSize === s.id
-                      ? "border border-[#171412] bg-[#171412] text-white"
-                      : "border border-[#E7E1D8] bg-white text-[#6B6560] hover:border-[#fd6f93] hover:text-[#fd6f93]"
-                  }`}
-                >
-                  {s.label}
-                  <span className="ml-1 hidden text-[8px] font-normal normal-case tracking-normal text-[#6B6560]/60 sm:inline">({s.desc})</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
-              onClick={() => printInvoicePDF(invoiceData, paperSize)}
+              onClick={() => { setPendingAction("print"); setShowPaperModal(true); }}
               className="flex items-center justify-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
             >
               <Printer size={14} />
               Print Invoice
             </button>
             <button
-              onClick={() => downloadInvoicePDF(invoiceData, paperSize)}
+              onClick={() => { setPendingAction("download"); setShowPaperModal(true); }}
               className="flex items-center justify-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
             >
               <Download size={14} />
@@ -159,7 +146,7 @@ export default function CheckoutPage() {
                         <span className="font-serif text-base font-bold text-white">N</span>
                       </div>
                       <div>
-                        <h2 className="text-base font-bold tracking-[0.12em] text-white">NOVARA</h2>
+                        <h2 className="text-base font-bold tracking-[0.12em] text-white">ZURII</h2>
                         <p className="text-[8px] uppercase tracking-[0.2em] text-white/50">Premium Accessories</p>
                       </div>
                     </div>
@@ -283,7 +270,7 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex gap-2 text-[11px]">
                         <span className="font-medium text-[#6B6560]">A/C Name:</span>
-                        <span className="text-[#171412]">NOVARA</span>
+                        <span className="text-[#171412]">ZURII</span>
                       </div>
                       <div className="flex gap-2 text-[11px]">
                         <span className="font-medium text-[#6B6560]">Bank Details:</span>
@@ -306,6 +293,44 @@ export default function CheckoutPage() {
           </div>
 
         </div>
+
+        {/* Paper Size Modal */}
+        {showPaperModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setShowPaperModal(false)}>
+            <div className="bg-white rounded-2xl shadow-2xl p-6 w-[90vw] max-w-sm" onClick={(e) => e.stopPropagation()}>
+              <div className="mb-4 text-center">
+                <h3 className="font-serif text-lg font-medium text-[#171412]">Select Paper Size</h3>
+                <p className="mt-1 text-xs text-[#6B6560]">Choose a paper size for your invoice</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                {([
+                  { id: "a4" as const, label: "A4", desc: "210 × 297 mm" },
+                  { id: "a5" as const, label: "A5", desc: "148 × 210 mm" },
+                  { id: "letter" as const, label: "Letter", desc: "8.5 × 11 in" },
+                ]).map((s) => (
+                  <button
+                    key={s.id}
+                    onClick={() => handlePaperSelect(s.id)}
+                    className={`flex items-center justify-between px-4 py-3 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 ${
+                      paperSize === s.id
+                        ? "border border-[#171412] bg-[#171412] text-white"
+                        : "border border-[#E7E1D8] bg-white text-[#6B6560] hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                    }`}
+                  >
+                    <span>{s.label}</span>
+                    <span className={`text-[9px] font-normal normal-case tracking-normal ${paperSize === s.id ? "text-white/60" : "text-[#6B6560]/60"}`}>{s.desc}</span>
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setShowPaperModal(false)}
+                className="mt-4 w-full border border-[#E7E1D8] bg-white py-2 text-[11px] font-semibold uppercase tracking-wider text-[#6B6560] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
       </main>
     );
   }
