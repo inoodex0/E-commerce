@@ -5,11 +5,12 @@ import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { products } from "@/lib/products";
-import { use } from "react";
+import { use, useState } from "react";
 
 export default function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const { addToCart } = useCartStore();
+  const [addedId, setAddedId] = useState<number | null>(null);
 
   const formattedCategory = slug
     .split("-")
@@ -19,6 +20,12 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   const filtered = products.filter(
     (p) => p.category.toLowerCase() === formattedCategory.toLowerCase()
   );
+
+  const handleAddToCart = (item: typeof products[0]) => {
+    addToCart(item, 1, "", "");
+    setAddedId(item.id);
+    setTimeout(() => setAddedId(null), 1500);
+  };
 
   return (
     <main className="min-h-screen bg-[#FBF8F3] px-4 py-12 sm:px-6 lg:px-8">
@@ -59,10 +66,14 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                   <div className="mt-auto flex items-center justify-between pt-4">
                     <span className="text-sm font-semibold text-[#171412]">{item.price}</span>
                     <button
-                      onClick={() => addToCart(item, 1, "", "")}
-                      className="flex items-center gap-1.5 border border-[#171412] bg-[#171412] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                      onClick={() => handleAddToCart(item)}
+                      className={`flex items-center gap-1.5 border px-4 py-2 text-xs font-semibold text-white transition-colors ${
+                        addedId === item.id
+                          ? "border-emerald-600 bg-emerald-600"
+                          : "border-[#171412] bg-[#171412] hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                      }`}
                     >
-                      <ShoppingBag size={14} /> Add to Cart
+                      <ShoppingBag size={14} /> {addedId === item.id ? "Added!" : "Add to Cart"}
                     </button>
                   </div>
                 </div>
