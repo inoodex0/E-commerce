@@ -11,10 +11,10 @@ const products = [
   { id: 2, name: "Signature Leather Bag", price: 4850, image: "/images/products/bag-1.avif", category: "Bags", badge: "" },
   { id: 3, name: "Classic Frame Sunglasses", price: 2200, oldPrice: 2800, image: "/images/products/sunglasses-1.avif", category: "Sunglasses", badge: "Best Selling" },
   { id: 4, name: "Minimal Gold Bracelet", price: 1850, image: "/images/products/bracelet-1.avif", category: "Jewelry", badge: "" },
-  { id: 5, name: "Obsidian Aviator Shades", price: 2800, oldPrice: 3200, image: "/images/products/sunglasses-2.avif", category: "Sunglasses", badge: "New Arrival" },
-  { id: 6, name: "Sienna Tuscan Tote", price: 5200, oldPrice: 6000, image: "/images/products/bag-2.avif", category: "Bags", badge: "" },
-  { id: 7, name: "Midnight Onyx Chrono", price: 4500, oldPrice: 5200, image: "/images/products/watch-2.avif", category: "Watches", badge: "Best Selling" },
-  { id: 8, name: "Imperial Gold Bangle", price: 3100, oldPrice: 3800, image: "/images/products/bracelet-2.avif", category: "Jewelry", badge: "" },
+  { id: 5, name: "Obsidian Aviator Shades", price: 2800, oldPrice: 3200, image: "/images/products/sunglasses-1.avif", category: "Sunglasses", badge: "New Arrival" },
+  { id: 6, name: "Sienna Tuscan Tote", price: 5200, oldPrice: 6000, image: "/images/products/bag-1.avif", category: "Bags", badge: "" },
+  { id: 7, name: "Midnight Onyx Chrono", price: 4500, oldPrice: 5200, image: "/images/products/watch-1.avif", category: "Watches", badge: "Best Selling" },
+  { id: 8, name: "Imperial Gold Bangle", price: 3100, oldPrice: 3800, image: "/images/products/bracelet-1.avif", category: "Jewelry", badge: "" },
 ];
 
 export default function JustForYou() {
