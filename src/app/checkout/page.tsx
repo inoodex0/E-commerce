@@ -77,6 +77,10 @@ export default function CheckoutPage() {
         : undefined,
     };
 
+    const existing = JSON.parse(localStorage.getItem("zurii-orders") || "[]");
+    existing.push({ ...data, status: "confirmed", createdAt: now.toISOString() });
+    localStorage.setItem("zurii-orders", JSON.stringify(existing));
+
     setInvoiceData(data);
     setOrderPlaced(true);
     clearCart();

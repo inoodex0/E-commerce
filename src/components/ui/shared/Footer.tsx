@@ -70,7 +70,7 @@ export default function Footer() {
               >
                 ZURII
               </Link>
-              <p className="mt-4 max-w-sm font-serif text-sm italic leading-relaxed text-neutral-400">
+              <p className="mt-4 max-w-sm font-serif text-base italic leading-relaxed text-neutral-400">
                 Crafting premium accessories for those who believe elegance lies in the details.
               </p>
             </div>
@@ -79,16 +79,16 @@ export default function Footer() {
             <div className="space-y-2.5 pt-2">
               <a
                 href="mailto:hello@zurii.com"
-                className="flex items-center gap-3 text-xs text-neutral-300 transition-colors duration-300 hover:text-[#E8852A]"
+                className="flex items-center gap-3 text-sm text-neutral-300 transition-colors duration-300 hover:text-[#E8852A]"
               >
                 <Mail size={14} strokeWidth={1.5} className="text-[#E8852A]" />
                 hello@zurii.com
               </a>
-              <span className="flex items-center gap-3 text-xs text-neutral-400">
+              <span className="flex items-center gap-3 text-sm text-neutral-400">
                 <Phone size={14} strokeWidth={1.5} className="text-[#E8852A]" />
                 +880 1700-000000
               </span>
-              <span className="flex items-start gap-3 text-xs text-neutral-400">
+              <span className="flex items-start gap-3 text-sm text-neutral-400">
                 <MapPin size={14} strokeWidth={1.5} className="text-[#E8852A] shrink-0 mt-0.5" />
                 Dhaka, Bangladesh
               </span>
@@ -134,13 +134,13 @@ export default function Footer() {
 
           {/* Newsletter Section */}
           <div className="flex flex-col space-y-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#E8852A]">
               Boutique Newsletter
             </p>
-            <h3 className="font-serif text-lg font-medium text-neutral-200 leading-tight">
+            <h3 className="font-serif text-xl font-medium text-neutral-200 leading-tight">
               Subscribe to stay updated.
             </h3>
-            <p className="text-xs text-neutral-500 leading-relaxed max-w-xs">
+            <p className="text-sm text-neutral-500 leading-relaxed max-w-xs">
               Receive notifications for exclusive collections, signature arrivals, and seasonal drops.
             </p>
 
@@ -151,7 +151,7 @@ export default function Footer() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-11 w-full border-b border-white/20 bg-transparent text-xs text-white outline-none placeholder:text-neutral-600 focus:border-[#E8852A] transition-colors pr-10"
+                className="h-11 w-full border-b border-white/20 bg-transparent text-sm text-white outline-none placeholder:text-neutral-600 focus:border-[#E8852A] transition-colors pr-10"
               />
               <button
                 type="submit"
@@ -175,10 +175,10 @@ export default function Footer() {
         ====================================================== */}
         <div className="mt-8 border-t border-white/5 pt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-2">
-            <p className="text-[9px] uppercase tracking-[0.16em] text-neutral-400">
+            <p className="text-xs uppercase tracking-[0.16em] text-neutral-400">
               © {new Date().getFullYear()} ZURII. All rights reserved.
             </p>
-            <div className="flex items-center gap-4 text-[9px] uppercase tracking-[0.15em] text-neutral-400">
+            <div className="flex items-center gap-4 text-xs uppercase tracking-[0.15em] text-neutral-400">
               <Link href="/privacy" className="transition-colors hover:text-white">
                 Privacy Policy
               </Link>
@@ -249,19 +249,19 @@ interface FooterColumnProps {
 function FooterColumn({ title, links }: FooterColumnProps) {
   return (
     <div className="flex flex-col space-y-4">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#E8852A]">
         {title}
       </p>
-      <ul className="space-y-2.5">
+      <ul className="space-y-3">
         {links.map((link) => (
           <li key={link.name}>
             <Link
               href={link.href}
-              className="group inline-flex items-center gap-1 text-[11px] text-neutral-400 transition-colors duration-300 hover:text-white"
+              className="group inline-flex items-center gap-1 text-sm text-neutral-400 transition-colors duration-300 hover:text-white"
             >
               {link.name}
               <ArrowUpRight
-                size={11}
+                size={12}
                 strokeWidth={1}
                 className="-translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-[#E8852A]"
               />

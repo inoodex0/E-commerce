@@ -28,13 +28,6 @@ const allColours = [
   { name: "White", hex: "#F5F5F5" },
 ];
 
-const priceRanges = [
-  { label: "Under $100", min: 0, max: 100 },
-  { label: "$100 – $300", min: 100, max: 300 },
-  { label: "$300 – $500", min: 300, max: 500 },
-  { label: "Over $500", min: 500, max: Infinity },
-];
-
 const discountRanges = [
   { label: "10% or more", min: 10 },
   { label: "20% or more", min: 20 },
@@ -42,16 +35,16 @@ const discountRanges = [
 ];
 
 const newItems = [
-  { id: 1, name: "Midnight Onyx Chrono", price: 450, oldPrice: 520, colours: ["Black", "Silver"], sizes: ["One Size"], discount: 13, category: "Watches", image: "/images/a1.jpg", href: "/product/midnight-onyx-chrono", bestSeller: true },
-  { id: 2, name: "Sienna Tuscan Tote", price: 520, oldPrice: 600, colours: ["Brown", "Black", "Gold"], sizes: ["Medium", "Large"], discount: 13, category: "Bags", image: "/images/a4.avif", href: "/product/sienna-tuscan-tote", bestSeller: false },
-  { id: 3, name: "Imperial Gold Bangle", price: 310, oldPrice: 380, colours: ["Gold", "Silver"], sizes: ["S", "M", "L"], discount: 18, category: "Jewelry", image: "/images/a3avif.avif", href: "/product/imperial-gold-bangle", bestSeller: true },
-  { id: 4, name: "Obsidian Aviator Shades", price: 280, oldPrice: 320, colours: ["Black", "Gold", "Silver", "Navy"], sizes: ["One Size"], discount: 12, category: "Sunglasses", image: "/images/a5.avif", href: "/product/obsidian-aviator-shades", bestSeller: false },
-  { id: 5, name: "Heritage Canvas Weekender", price: 395, oldPrice: 450, colours: ["Brown", "Navy"], sizes: ["Medium", "Large"], discount: 12, category: "Bags", image: "/images/a6.avif", href: "/product/heritage-canvas-weekender", bestSeller: true },
-  { id: 6, name: "Aura Noir Perfume", price: 185, oldPrice: 220, colours: ["Black", "Gold", "Brown"], sizes: ["One Size"], discount: 16, category: "Perfumes", image: "/images/a2.avif", href: "/product/aura-noir-perfume", bestSeller: false },
-  { id: 7, name: "Slate Leather Wallet", price: 120, oldPrice: 150, colours: ["Black", "Brown"], sizes: ["One Size"], discount: 20, category: "Wallets", image: "/images/a4.avif", href: "/product/slate-leather-wallet", bestSeller: true },
-  { id: 8, name: "Woven Nappa Belt", price: 95, oldPrice: 120, colours: ["Brown", "Black", "Navy"], sizes: ["S", "M", "L", "XL"], discount: 21, category: "Belts", image: "/images/a6.avif", href: "/product/woven-nappa-belt", bestSeller: false },
-  { id: 9, name: "Wireless Charging Pad", price: 65, oldPrice: 80, colours: ["Black"], sizes: ["One Size"], discount: 19, category: "Tech Accessories", image: "/images/a1.jpg", href: "/product/wireless-charging-pad", bestSeller: false },
-  { id: 10, name: "Rose Gold Chrono", price: 480, oldPrice: 550, colours: ["Gold", "Silver"], sizes: ["One Size"], discount: 13, category: "Watches", image: "/images/a5.avif", href: "/product/rose-gold-chrono", bestSeller: true },
+  { id: 1, name: "Midnight Onyx Chrono", price: 4500, oldPrice: 5200, colours: ["Black", "Silver"], sizes: ["One Size"], discount: 13, category: "Watches", image: "/images/a1.jpg", href: "/product/midnight-onyx-chrono", bestSeller: true },
+  { id: 2, name: "Sienna Tuscan Tote", price: 5200, oldPrice: 6000, colours: ["Brown", "Black", "Gold"], sizes: ["Medium", "Large"], discount: 13, category: "Bags", image: "/images/a4.avif", href: "/product/sienna-tuscan-tote", bestSeller: false },
+  { id: 3, name: "Imperial Gold Bangle", price: 3100, oldPrice: 3800, colours: ["Gold", "Silver"], sizes: ["S", "M", "L"], discount: 18, category: "Jewelry", image: "/images/a3avif.avif", href: "/product/imperial-gold-bangle", bestSeller: true },
+  { id: 4, name: "Obsidian Aviator Shades", price: 2800, oldPrice: 3200, colours: ["Black", "Gold", "Silver", "Navy"], sizes: ["One Size"], discount: 12, category: "Sunglasses", image: "/images/a5.avif", href: "/product/obsidian-aviator-shades", bestSeller: false },
+  { id: 5, name: "Heritage Canvas Weekender", price: 3950, oldPrice: 4500, colours: ["Brown", "Navy"], sizes: ["Medium", "Large"], discount: 12, category: "Bags", image: "/images/a6.avif", href: "/product/heritage-canvas-weekender", bestSeller: true },
+  { id: 6, name: "Aura Noir Perfume", price: 1850, oldPrice: 2200, colours: ["Black", "Gold", "Brown"], sizes: ["One Size"], discount: 16, category: "Perfumes", image: "/images/a2.avif", href: "/product/aura-noir-perfume", bestSeller: false },
+  { id: 7, name: "Slate Leather Wallet", price: 1200, oldPrice: 1500, colours: ["Black", "Brown"], sizes: ["One Size"], discount: 20, category: "Wallets", image: "/images/a4.avif", href: "/product/slate-leather-wallet", bestSeller: true },
+  { id: 8, name: "Woven Nappa Belt", price: 950, oldPrice: 1200, colours: ["Brown", "Black", "Navy"], sizes: ["S", "M", "L", "XL"], discount: 21, category: "Belts", image: "/images/a6.avif", href: "/product/woven-nappa-belt", bestSeller: false },
+  { id: 9, name: "Wireless Charging Pad", price: 650, oldPrice: 800, colours: ["Black"], sizes: ["One Size"], discount: 19, category: "Tech Accessories", image: "/images/a1.jpg", href: "/product/wireless-charging-pad", bestSeller: false },
+  { id: 10, name: "Rose Gold Chrono", price: 4800, oldPrice: 5500, colours: ["Gold", "Silver"], sizes: ["One Size"], discount: 13, category: "Watches", image: "/images/a5.avif", href: "/product/rose-gold-chrono", bestSeller: true },
 ];
 
 function CollapsibleSection({ title, defaultOpen = true, children }: { title: string; defaultOpen?: boolean; children: React.ReactNode }) {
@@ -73,7 +66,8 @@ export default function NewArrivalPage() {
   const [activeCategories, setActiveCategories] = useState<string[]>(allSubcategories.map((s) => s.name));
   const [activeSizes, setActiveSizes] = useState<string[]>([]);
   const [activeColours, setActiveColours] = useState<string[]>([]);
-  const [activePriceRange, setActivePriceRange] = useState<{ label: string; min: number; max: number } | null>(null);
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(6250);
   const [activeDiscount, setActiveDiscount] = useState<number | null>(null);
   const [view, setView] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState<"default" | "price-asc" | "price-desc">("default");
@@ -99,7 +93,8 @@ export default function NewArrivalPage() {
     setActiveCategories(allSubcategories.map((s) => s.name));
     setActiveSizes([]);
     setActiveColours([]);
-    setActivePriceRange(null);
+    setPriceMin(0);
+    setPriceMax(6250);
     setActiveDiscount(null);
     setSortBy("default");
   }, []);
@@ -108,7 +103,7 @@ export default function NewArrivalPage() {
     if (type === "category" && value) setActiveCategories((prev) => prev.filter((c) => c !== value));
     if (type === "size" && value) setActiveSizes((prev) => prev.filter((s) => s !== value));
     if (type === "colour" && value) setActiveColours((prev) => prev.filter((c) => c !== value));
-    if (type === "price") setActivePriceRange(null);
+    if (type === "price") { setPriceMin(0); setPriceMax(6250); }
     if (type === "discount") setActiveDiscount(null);
   }, []);
 
@@ -116,7 +111,7 @@ export default function NewArrivalPage() {
     (activeCategories.length < allSubcategories.length ? allSubcategories.length - activeCategories.length : 0) +
     activeSizes.length +
     activeColours.length +
-    (activePriceRange ? 1 : 0) +
+    (priceMin > 0 || priceMax < 6250 ? 1 : 0) +
     (activeDiscount ? 1 : 0);
 
   const filteredItems = useMemo(() => {
@@ -134,8 +129,8 @@ export default function NewArrivalPage() {
       items = items.filter((item) => item.colours.some((c) => activeColours.includes(c)));
     }
 
-    if (activePriceRange) {
-      items = items.filter((item) => item.price >= activePriceRange.min && item.price < activePriceRange.max);
+    if (priceMin > 0 || priceMax < 6250) {
+      items = items.filter((item) => item.price >= priceMin && item.price <= priceMax);
     }
 
     if (activeDiscount) {
@@ -148,12 +143,12 @@ export default function NewArrivalPage() {
     }
 
     return items;
-  }, [activeCategories, activeSizes, activeColours, activePriceRange, activeDiscount, sortBy]);
+  }, [activeCategories, activeSizes, activeColours, priceMin, priceMax, activeDiscount, sortBy]);
 
   const handleAddToCart = (e: React.MouseEvent, item: typeof newItems[0]) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart({ id: item.id, name: item.name, category: item.category, price: `$${item.price}`, image: item.image } as any, 1, "", "");
+    addToCart({ id: item.id, name: item.name, category: item.category, price: `৳${item.price.toLocaleString()}`, image: item.image } as any, 1, "", "");
     setAddedId(item.id);
     setTimeout(() => setAddedId(null), 1500);
   };
@@ -256,26 +251,27 @@ export default function NewArrivalPage() {
         </div>
       </CollapsibleSection>
 
-      {/* Price */}
+      {/* Price — Slider */}
       <CollapsibleSection title="Price">
-        <div className="space-y-1.5">
-          {priceRanges.map((range) => {
-            const isActive = activePriceRange?.label === range.label;
-            return (
-              <button
-                key={range.label}
-                onClick={() => setActivePriceRange(isActive ? null : range)}
-                className={`flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left transition-all duration-200 ${
-                  isActive ? "border-[#E8852A] bg-[#E8852A]/5 shadow-sm" : "border-transparent bg-[#FBF8F3] hover:bg-[#F5F2EC]"
-                }`}
-              >
-                <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${isActive ? "border-[#E8852A] bg-[#E8852A]" : "border-[#D5D0C8]"}`}>
-                  {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
-                </span>
-                <span className={`text-sm font-medium ${isActive ? "text-[#171412]" : "text-[#6B6560]"}`}>{range.label}</span>
-              </button>
-            );
-          })}
+        <div className="space-y-3">
+          <div className="relative h-2 w-full">
+            <div className="absolute inset-0 rounded-full bg-[#F5F2EC]" />
+            <div className="absolute inset-y-0 rounded-full bg-gradient-to-r from-[#D4A574] to-[#171412]" style={{ left: `${(priceMin / 6250) * 100}%`, right: `${100 - (priceMax / 6250) * 100}%` }} />
+            <input type="range" min={0} max={6250} value={priceMin} onChange={(e) => { const v = Number(e.target.value); if (v < priceMax) setPriceMin(v); }} className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#D4A574] [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow" />
+            <input type="range" min={0} max={6250} value={priceMax} onChange={(e) => { const v = Number(e.target.value); if (v > priceMin) setPriceMax(v); }} className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#171412] [&::-webkit-slider-thumb]:bg-[#171412] [&::-webkit-slider-thumb]:shadow" />
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex flex-1 items-center gap-1.5 rounded-lg border border-[#E7E1D8] bg-white px-3 py-2.5">
+              <span className="text-sm font-medium text-[#6B6560]">৳</span>
+              <input type="number" value={priceMin} onChange={(e) => setPriceMin(Number(e.target.value))} className="w-full bg-transparent text-sm font-medium text-[#171412] outline-none" />
+            </div>
+            <span className="text-sm text-[#6B6560]">to</span>
+            <div className="flex flex-1 items-center gap-1.5 rounded-lg border border-[#E7E1D8] bg-white px-3 py-2.5">
+              <span className="text-sm font-medium text-[#6B6560]">৳</span>
+              <input type="number" value={priceMax} onChange={(e) => setPriceMax(Number(e.target.value))} className="w-full bg-transparent text-sm font-medium text-[#171412] outline-none" />
+            </div>
+          </div>
+          <p className="text-sm text-[#6B6560]">The highest price is ৳6,250</p>
         </div>
       </CollapsibleSection>
 
@@ -375,9 +371,9 @@ export default function NewArrivalPage() {
                 {c} <X size={10} />
               </button>
             ))}
-            {activePriceRange && (
+            {(priceMin > 0 || priceMax < 6250) && (
               <button onClick={() => removeFilter("price")} className="flex items-center gap-1.5 rounded-full border border-[#E7E1D8] bg-white px-3 py-1.5 text-[10px] font-medium text-[#171412] transition-colors hover:border-[#E8852A]">
-                {activePriceRange.label} <X size={10} />
+                ৳{priceMin.toLocaleString()} – ৳{priceMax.toLocaleString()} <X size={10} />
               </button>
             )}
             {activeDiscount && (
@@ -451,8 +447,8 @@ export default function NewArrivalPage() {
                     <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
                       <Link href={item.href} className="text-xs font-medium leading-tight text-[#171412] transition-colors hover:text-[#E8852A] sm:text-sm">{item.name}</Link>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-sm font-bold text-[#E8852A] sm:text-base">${item.price.toFixed(2)}</span>
-                        {item.oldPrice > item.price && <span className="text-[10px] text-[#6B6560] line-through">${item.oldPrice.toFixed(2)}</span>}
+                        <span className="text-sm font-bold text-[#E8852A] sm:text-base">৳{item.price.toLocaleString()}</span>
+                        {item.oldPrice > item.price && <span className="text-[10px] text-[#6B6560] line-through">৳{item.oldPrice.toLocaleString()}</span>}
                       </div>
                       <div className="mt-1 flex items-center gap-2">
                         <div className="flex gap-0.5">

@@ -29,7 +29,7 @@ export default function TopBar() {
           </div>
 
           <Link
-            href="/account"
+            href="/sign-in"
             className="shrink-0 flex items-center gap-1.5 text-[10px] font-medium tracking-[0.12em] text-white/80 transition-colors duration-300 hover:text-white"
           >
             Login

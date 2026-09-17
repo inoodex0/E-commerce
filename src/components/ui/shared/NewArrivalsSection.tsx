@@ -51,9 +51,7 @@ export default function NewArrivalsSection() {
             </h2>
             <div className="mt-3 h-[3px] w-14 rounded-full bg-[#E8852A] sm:w-20" />
           </div>
-          <Link href="/new-arrivals" className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#E8852A] transition-colors hover:text-[#c96f1f] sm:text-xs">
-            VIEW ALL <ChevronRight size={14} />
-          </Link>
+        
         </div>
 
         {/* Collection Grid */}
