@@ -3,9 +3,9 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, SlidersHorizontal, X, ChevronDown, Check, RotateCcw } from "lucide-react";
+import { ShoppingBag, SlidersHorizontal, X, ChevronDown, Check, RotateCcw, Search } from "lucide-react";
 import { useState, useMemo, useCallback } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { products } from "@/lib/products";
 import { useCartStore, useWishlistStore } from "@/lib/store";
 
@@ -49,11 +49,13 @@ function FilterSection({ title, defaultOpen = true, children }: { title: string;
 
 function ShopContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const query = searchParams.get("q") || "";
   const categoryParam = searchParams.get("category") || "";
   const { addToCart } = useCartStore();
   const { toggleWishlist, wishlist } = useWishlistStore();
 
+  const [localQuery, setLocalQuery] = useState(query);
   const [activeCategory, setActiveCategory] = useState(categoryParam ? categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1) : "All");
   const [activeColors, setActiveColors] = useState<string[]>([]);
   const [activeSizes, setActiveSizes] = useState<string[]>([]);
@@ -80,7 +82,9 @@ function ShopContent() {
     setPriceMin(0);
     setPriceMax(6250);
     setSortBy("default");
-  }, []);
+    setLocalQuery("");
+    router.push("/shop");
+  }, [router]);
 
   const removeFilter = useCallback((type: string, value?: string) => {
     if (type === "category") setActiveCategory("All");
@@ -99,8 +103,9 @@ function ShopContent() {
   const filtered = useMemo(() => {
     let list = [...products];
 
-    if (query.trim()) {
-      const q = query.toLowerCase();
+    const searchTerm = query || localQuery;
+    if (searchTerm.trim()) {
+      const q = searchTerm.toLowerCase();
       list = list.filter((p) => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
     }
 
@@ -143,7 +148,7 @@ function ShopContent() {
     }
 
     return list;
-  }, [query, activeCategory, activeColors, activeSizes, activePriceRange, sortBy, priceMin, priceMax]);
+  }, [query, localQuery, activeCategory, activeColors, activeSizes, activePriceRange, sortBy, priceMin, priceMax]);
 
   const handleAddToCart = (product: typeof products[0]) => {
     addToCart(product, 1, "", "");
@@ -284,7 +289,25 @@ function ShopContent() {
               {query ? `Results for "${query}"` : categoryParam ? `${categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)}` : "Shop All Products"}
             </h1>
           </div>
-          <div className="mt-2 flex items-center gap-3 sm:mt-0">
+          <div className="mt-3 flex items-center gap-3 sm:mt-0">
+            <div className="relative flex items-center">
+              <input
+                type="text"
+                value={localQuery}
+                onChange={(e) => setLocalQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    const params = new URLSearchParams(window.location.search);
+                    if (localQuery.trim()) params.set("q", localQuery.trim());
+                    else params.delete("q");
+                    router.push(`/shop?${params.toString()}`);
+                  }
+                }}
+                placeholder="Search products..."
+                className="w-40 rounded-lg border border-[#E7E1D8] bg-white px-3 py-1.5 pr-8 text-[11px] text-[#171412] outline-none transition-colors focus:border-[#E8852A] sm:w-52 sm:text-xs"
+              />
+              <Search size={13} className="absolute right-2.5 text-[#6B6560]/40" />
+            </div>
             <p className="text-[11px] text-[#6B6560] sm:text-sm">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
 
             <select

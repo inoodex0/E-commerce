@@ -217,7 +217,7 @@ export default function Footer() {
           </div>
 
           {/* Interactive Floating / Contained Back to Top */}
-          <button
+          {/* <button
             type="button"
             onClick={scrollToTop}
             className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-all duration-300 hover:border-[#E8852A] hover:bg-neutral-900 hover:text-white"
@@ -228,7 +228,7 @@ export default function Footer() {
               strokeWidth={1.5}
               className="transition-transform duration-300 group-hover:-translate-y-0.5"
             />
-          </button>
+          </button> */}
         </div>
       </div>
     </footer>

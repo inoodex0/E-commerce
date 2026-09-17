@@ -49,6 +49,7 @@ const navCategories = [
   { label: "Shop", href: "/shop" },
   { label: "New Arrivals", href: "/new-arrivals" },
   { label: "Best Sellers", href: "/shop?sort=best-selling" },
+  { label: "Offers", href: "/offers" },
   { label: "Deals", href: "/deals/flash-sale" },
 ];
 
@@ -83,9 +84,9 @@ export default function Navbar() {
     body.style.top = "";
     body.style.left = "";
     body.style.right = "";
-    if (mobileOpen) { lenis?.stop(); body.style.overflow = "hidden"; }
-    else { lenis?.start(); body.style.overflow = ""; }
-    return () => { lenis?.start(); body.style.overflow = ""; html.removeAttribute("data-lenis-prevent"); html.style.overflow = ""; html.style.touchAction = ""; body.style.position = ""; body.style.top = ""; body.style.left = ""; body.style.right = ""; };
+    if (mobileOpen) { lenis?.stop(); }
+    else { lenis?.start(); }
+    return () => { lenis?.start(); html.removeAttribute("data-lenis-prevent"); };
   }, [mobileOpen, lenis]);
 
   useEffect(() => {
@@ -312,6 +313,7 @@ export default function Navbar() {
               </div>
             </div>
             <Link href="/new-arrivals" onClick={closeMobileMenu} className="block border-b border-[#E7E1D8] py-4 text-sm font-medium text-[#171412]">New Arrivals</Link>
+            <Link href="/offers" onClick={closeMobileMenu} className="block border-b border-[#E7E1D8] py-4 text-sm font-medium text-[#171412]">Offers</Link>
             <Link href="/contact" onClick={closeMobileMenu} className="block border-b border-[#E7E1D8] py-4 text-sm font-medium text-[#171412]">Contact</Link>
             <Link href="/sign-in" onClick={closeMobileMenu} className="block border-b border-[#E7E1D8] py-4 text-sm font-medium text-[#171412]">Sign In</Link>
           </div>

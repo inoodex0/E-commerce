@@ -5,6 +5,8 @@ import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
 import GsapProvider from "@/components/shared/GsapProvider";
 import "./globals.css";
 import Footer from "@/components/ui/shared/Footer";
+import ChatBox from "@/components/ui/shared/ChatBox";
+import ScrollToTop from "@/components/ui/shared/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </GsapProvider>
         </SmoothScrollProvider>
         <Footer/>
+        <ChatBox />
+        <ScrollToTop />
       </body>
     </html>
   );

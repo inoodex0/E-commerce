@@ -84,7 +84,7 @@ export default function BestSellers() {
 
   return (
     <section className="w-full bg-[#FBF8F3] py-14 sm:py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 xl:px-12">
 
         {/* Header */}
         <div className="mb-10 text-center sm:mb-14">
@@ -126,43 +126,40 @@ export default function BestSellers() {
                     )}
                   </div>
 
-                  {/* Actions */}
-                  <div className="mt-3 flex flex-wrap items-center gap-3">
-                    {qty > 0 ? (
-                      <div className="flex items-center rounded-lg border border-[#E7E1D8]">
-                        <button
-                          onClick={() => { const idx = getCartIndex(product.id); if (idx >= 0) updateQuantity(idx, qty - 1); }}
-                          className="flex h-10 w-10 items-center justify-center text-[#171412] transition-colors hover:bg-[#FBF8F3]"
-                        >
-                          <Minus size={14} />
-                        </button>
-                        <span className="flex h-10 w-12 items-center justify-center border-x border-[#E7E1D8] text-sm font-medium text-[#171412]">
-                          {qty}
-                        </span>
-                        <button
-                          onClick={() => { const idx = getCartIndex(product.id); if (idx >= 0) updateQuantity(idx, qty + 1); }}
-                          className="flex h-10 w-10 items-center justify-center text-[#171412] transition-colors hover:bg-[#FBF8F3]"
-                        >
-                          <Plus size={14} />
-                        </button>
-                      </div>
-                    ) : (
-                      <button
-                        onClick={() => handleAdd(product)}
-                        className="flex items-center gap-2 rounded-lg border border-[#E8852A] px-5 py-2.5 text-sm font-semibold text-[#E8852A] transition-all duration-300 hover:bg-[#E8852A] hover:text-white"
-                      >
-                        <ShoppingBag size={15} />
-                        {addedId === product.id ? "Added!" : "Add To Cart"}
-                      </button>
-                    )}
-
+                {/* Actions */}
+                <div className="mt-3 flex flex-wrap items-center gap-3">
+                  <div className="flex items-center rounded-lg border border-[#E8852A]">
                     <button
-                      onClick={() => handleBuyNow(product)}
-                      className="flex items-center gap-2 rounded-lg bg-[#E8852A] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#e55a7f]"
+                      onClick={() => {
+                        const idx = getCartIndex(product.id);
+                        if (idx >= 0 && qty > 1) updateQuantity(idx, qty - 1);
+                        else if (idx >= 0 && qty === 1) { const { removeFromCart } = useCartStore.getState(); removeFromCart(idx); }
+                      }}
+                      className="flex h-10 w-10 items-center justify-center text-[#E8852A] transition-colors hover:bg-[#E8852A]/10"
                     >
-                      <ShoppingCart size={15} /> Buy now
+                      <Minus size={14} />
+                    </button>
+                    <span className="flex h-10 w-12 items-center justify-center border-x border-[#E8852A] text-sm font-semibold text-[#171412]">
+                      {qty}
+                    </span>
+                    <button
+                      onClick={() => {
+                        if (qty === 0) handleAdd(product);
+                        else { const idx = getCartIndex(product.id); if (idx >= 0) updateQuantity(idx, qty + 1); }
+                      }}
+                      className="flex h-10 w-10 items-center justify-center text-[#E8852A] transition-colors hover:bg-[#E8852A]/10"
+                    >
+                      <Plus size={14} />
                     </button>
                   </div>
+
+                  <button
+                    onClick={() => handleBuyNow(product)}
+                    className="flex items-center gap-2 rounded-lg bg-[#E8852A] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#e55a7f]"
+                  >
+                    <ShoppingCart size={15} /> Buy now
+                  </button>
+                </div>
                 </div>
 
                 {/* Best Selling badge */}

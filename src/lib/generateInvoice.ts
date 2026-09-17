@@ -47,7 +47,7 @@ function buildPDF(data: InvoiceData, paper: PaperSize = "a4"): jsPDF {
   const dk: [number, number, number] = [23, 20, 18];
   const gy: [number, number, number] = [107, 101, 96];
   const lt: [number, number, number] = [231, 225, 216];
-  const pk: [number, number, number] = [253, 111, 147];
+  const pk: [number, number, number] = [232, 133, 42];
 
   const sidebarW = 62;
   const pad = 14;
