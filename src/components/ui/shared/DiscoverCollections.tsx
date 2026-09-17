@@ -34,7 +34,7 @@ export default function DiscoverCollections() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#fd6f93]">Discover</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#E8852A]">Discover</p>
           <h2 className="mt-2 font-serif text-2xl font-medium tracking-tight text-[#171412] sm:text-3xl md:text-4xl lg:text-5xl">
             Our Collections
           </h2>
@@ -72,7 +72,7 @@ export default function DiscoverCollections() {
 
                 {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
-                  <p className="text-[9px] font-semibold uppercase tracking-widest text-[#fd6f93] sm:text-[11px]">
+                  <p className="text-[9px] font-semibold uppercase tracking-widest text-[#E8852A] sm:text-[11px]">
                     {col.productCount} Products
                   </p>
                   <h3 className="mt-1 font-serif text-xl font-medium text-white sm:text-2xl lg:text-3xl">

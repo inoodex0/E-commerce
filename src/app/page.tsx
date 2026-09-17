@@ -8,6 +8,10 @@ import DealsSection from "@/components/ui/shared/DealsSection";
 import Testimonials from "@/components/ui/shared/Testimonials";
 import Newsletter from "@/components/ui/shared/Newsletter";
 import Partnership from "@/components/ui/shared/Partnership";
+import TrendingNow from "@/components/ui/shared/TrendingNow";
+import PromoBanner from "@/components/ui/shared/PromoBanner";
+import OurBrands from "@/components/ui/shared/OurBrands";
+import JustForYou from "@/components/ui/shared/JustForYou";
 
 export default function Home() {
   return (
@@ -15,10 +19,14 @@ export default function Home() {
       <HeroSection />
       <DealsSection/>
       <ShopByCategory />
+      <TrendingNow />
+      <PromoBanner />
       <NewArrivalsSection />
       
-      <FeaturedCollection/>
+      {/* <FeaturedCollection/> */}
       <BestSellers/>
+      <JustForYou/>
+      {/* <OurBrands/> */}
       <Testimonials/>
       <Partnership/>
       <Newsletter/>

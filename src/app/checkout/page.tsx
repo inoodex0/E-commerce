@@ -96,7 +96,7 @@ export default function CheckoutPage() {
         <div className="mx-auto max-w-3xl">
 
           <div className="mb-6 text-center">
-            <CheckCircle className="mx-auto text-[#fd6f93]" size={48} strokeWidth={1.5} />
+            <CheckCircle className="mx-auto text-[#E8852A]" size={48} strokeWidth={1.5} />
             <h1 className="mt-3 font-serif text-2xl font-medium text-[#171412]">Order Placed Successfully!</h1>
             <p className="mt-1 text-sm text-[#6B6560]">Your invoice is ready. Print or download it below.</p>
           </div>
@@ -104,21 +104,21 @@ export default function CheckoutPage() {
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               onClick={() => { setPendingAction("print"); setShowPaperModal(true); }}
-              className="flex items-center justify-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+              className="flex items-center justify-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#E8852A] hover:border-[#E8852A]"
             >
               <Printer size={14} />
               Print Invoice
             </button>
             <button
               onClick={() => { setPendingAction("download"); setShowPaperModal(true); }}
-              className="flex items-center justify-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
+              className="flex items-center justify-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:border-[#E8852A] hover:text-[#E8852A]"
             >
               <Download size={14} />
               Download PDF
             </button>
             <Link
               href="/shop"
-              className="flex items-center justify-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#6B6560] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
+              className="flex items-center justify-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#6B6560] transition-colors hover:border-[#E8852A] hover:text-[#E8852A]"
             >
               Continue Shopping
             </Link>
@@ -132,10 +132,10 @@ export default function CheckoutPage() {
               <div className="relative w-full shrink-0 bg-[#171412] px-6 py-10 sm:px-8 md:w-[260px] lg:w-[280px]">
                 {/* Pink curved wave overlay */}
                 <svg className="pointer-events-none absolute right-0 top-0 h-full w-[120px]" viewBox="0 0 120 600" preserveAspectRatio="none" fill="none">
-                  <path d="M120,0 C40,80 0,160 20,300 C40,440 100,520 120,600 L120,0 Z" fill="#fd6f93" opacity="0.85" />
+                  <path d="M120,0 C40,80 0,160 20,300 C40,440 100,520 120,600 L120,0 Z" fill="#E8852A" opacity="0.85" />
                 </svg>
                 <svg className="pointer-events-none absolute right-[30px] top-0 h-full w-[80px]" viewBox="0 0 80 600" preserveAspectRatio="none" fill="none">
-                  <path d="M80,0 C20,100 0,200 10,340 C20,480 70,540 80,600 L80,0 Z" fill="#fd6f93" opacity="0.4" />
+                  <path d="M80,0 C20,100 0,200 10,340 C20,480 70,540 80,600 L80,0 Z" fill="#E8852A" opacity="0.4" />
                 </svg>
 
                 <div className="relative z-10">
@@ -181,7 +181,7 @@ export default function CheckoutPage() {
                 <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div />
                   <div className="text-left sm:text-right">
-                    <h2 className="text-3xl font-light tracking-[0.15em] text-[#fd6f93] sm:text-4xl">INVOICE</h2>
+                    <h2 className="text-3xl font-light tracking-[0.15em] text-[#E8852A] sm:text-4xl">INVOICE</h2>
                     <div className="mt-3 space-y-1">
                       <div className="flex gap-3 sm:justify-end">
                         <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6560]">Invoice#</span>
@@ -240,13 +240,13 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex justify-between text-xs">
                       <span className="font-medium text-[#171412]">Shipping:</span>
-                      <span className={invoiceData.shipping === 0 ? "font-medium text-[#fd6f93]" : "text-[#171412]"}>
+                      <span className={invoiceData.shipping === 0 ? "font-medium text-[#E8852A]" : "text-[#171412]"}>
                         {invoiceData.shipping === 0 ? "Free" : `৳${invoiceData.shipping}`}
                       </span>
                     </div>
                     <div className="flex justify-between border-t border-[#E7E1D8] pt-3">
                       <span className="text-sm font-bold text-[#171412]">Total:</span>
-                      <span className="text-sm font-bold text-[#fd6f93]">৳{invoiceData.total.toLocaleString()}</span>
+                      <span className="text-sm font-bold text-[#E8852A]">৳{invoiceData.total.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -314,7 +314,7 @@ export default function CheckoutPage() {
                     className={`flex items-center justify-between px-4 py-3 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 ${
                       paperSize === s.id
                         ? "border border-[#171412] bg-[#171412] text-white"
-                        : "border border-[#E7E1D8] bg-white text-[#6B6560] hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                        : "border border-[#E7E1D8] bg-white text-[#6B6560] hover:border-[#E8852A] hover:text-[#E8852A]"
                     }`}
                   >
                     <span>{s.label}</span>
@@ -324,7 +324,7 @@ export default function CheckoutPage() {
               </div>
               <button
                 onClick={() => setShowPaperModal(false)}
-                className="mt-4 w-full border border-[#E7E1D8] bg-white py-2 text-[11px] font-semibold uppercase tracking-wider text-[#6B6560] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                className="mt-4 w-full border border-[#E7E1D8] bg-white py-2 text-[11px] font-semibold uppercase tracking-wider text-[#6B6560] transition-colors hover:border-[#E8852A] hover:text-[#E8852A]"
               >
                 Cancel
               </button>
@@ -340,7 +340,7 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-6xl">
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Secure Checkout</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Secure Checkout</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             Checkout
           </h1>
@@ -353,7 +353,7 @@ export default function CheckoutPage() {
             {/* Shipping Information */}
             <div className="border border-[#E7E1D8] bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3 border-b border-[#E7E1D8] pb-4">
-                <Truck size={18} className="text-[#fd6f93]" />
+                <Truck size={18} className="text-[#E8852A]" />
                 <h2 className="font-serif text-lg font-medium text-[#171412]">Shipping Information</h2>
               </div>
 
@@ -366,7 +366,7 @@ export default function CheckoutPage() {
                     placeholder="John Doe"
                     value={form.name}
                     onChange={(e) => updateForm("name", e.target.value)}
-                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                   />
                 </div>
                 <div>
@@ -377,7 +377,7 @@ export default function CheckoutPage() {
                     placeholder="+880 1XXXXXXXXX"
                     value={form.phone}
                     onChange={(e) => updateForm("phone", e.target.value)}
-                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -388,7 +388,7 @@ export default function CheckoutPage() {
                     placeholder="john@example.com"
                     value={form.email}
                     onChange={(e) => updateForm("email", e.target.value)}
-                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -399,7 +399,7 @@ export default function CheckoutPage() {
                     placeholder="House 12, Road 5, Block B"
                     value={form.address}
                     onChange={(e) => updateForm("address", e.target.value)}
-                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                   />
                 </div>
                 <div>
@@ -410,7 +410,7 @@ export default function CheckoutPage() {
                     placeholder="Dhaka"
                     value={form.city}
                     onChange={(e) => updateForm("city", e.target.value)}
-                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                   />
                 </div>
                 <div>
@@ -421,7 +421,7 @@ export default function CheckoutPage() {
                     placeholder="Gulshan"
                     value={form.area}
                     onChange={(e) => updateForm("area", e.target.value)}
-                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -431,7 +431,7 @@ export default function CheckoutPage() {
                     placeholder="Special delivery instructions..."
                     value={form.notes}
                     onChange={(e) => updateForm("notes", e.target.value)}
-                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93] resize-none"
+                    className="mt-1.5 w-full border border-[#E7E1D8] bg-[#FBF8F3] px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A] resize-none"
                   />
                 </div>
               </div>
@@ -440,7 +440,7 @@ export default function CheckoutPage() {
             {/* Payment Method */}
             <div className="border border-[#E7E1D8] bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3 border-b border-[#E7E1D8] pb-4">
-                <CreditCard size={18} className="text-[#fd6f93]" />
+                <CreditCard size={18} className="text-[#E8852A]" />
                 <h2 className="font-serif text-lg font-medium text-[#171412]">Payment Method</h2>
               </div>
 
@@ -455,7 +455,7 @@ export default function CheckoutPage() {
                     className={`flex cursor-pointer items-center gap-4 border p-4 transition-all duration-200 ${
                       paymentMethod === method.id
                         ? "border-[#171412] bg-[#FBF8F3]"
-                        : "border-[#E7E1D8] hover:border-[#fd6f93]"
+                        : "border-[#E7E1D8] hover:border-[#E8852A]"
                     }`}
                   >
                     <input
@@ -464,7 +464,7 @@ export default function CheckoutPage() {
                       value={method.id}
                       checked={paymentMethod === method.id}
                       onChange={() => setPaymentMethod(method.id)}
-                      className="accent-[#fd6f93]"
+                      className="accent-[#E8852A]"
                     />
                     <div>
                       <p className="text-sm font-medium text-[#171412]">{method.label}</p>
@@ -493,7 +493,7 @@ export default function CheckoutPage() {
                       placeholder="01XXXXXXXXX"
                       value={form.bkashNumber}
                       onChange={(e) => updateForm("bkashNumber", e.target.value)}
-                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                     />
                   </div>
                   <div>
@@ -503,7 +503,7 @@ export default function CheckoutPage() {
                       placeholder="e.g. 8A3B5C7D9E"
                       value={form.transactionId}
                       onChange={(e) => updateForm("transactionId", e.target.value)}
-                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                     />
                   </div>
                 </div>
@@ -528,7 +528,7 @@ export default function CheckoutPage() {
                       placeholder="01XXXXXXXXX"
                       value={form.nagadNumber}
                       onChange={(e) => updateForm("nagadNumber", e.target.value)}
-                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                     />
                   </div>
                   <div>
@@ -538,7 +538,7 @@ export default function CheckoutPage() {
                       placeholder="e.g. 8A3B5C7D9E"
                       value={form.transactionId}
                       onChange={(e) => updateForm("transactionId", e.target.value)}
-                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#fd6f93]"
+                      className="mt-1.5 w-full border border-[#E7E1D8] bg-white px-4 py-3 text-sm text-[#171412] outline-none transition-colors focus:border-[#E8852A]"
                     />
                   </div>
                 </div>
@@ -588,7 +588,7 @@ export default function CheckoutPage() {
                 <span className="text-[#6B6560]">Shipping</span>
                 <span className="font-medium text-[#171412]">
                   {shipping === 0 ? (
-                    <span className="text-[#fd6f93]">Free</span>
+                    <span className="text-[#E8852A]">Free</span>
                   ) : (
                     `৳${shipping}`
                   )}
@@ -611,18 +611,18 @@ export default function CheckoutPage() {
                 (paymentMethod === "bkash" && (!form.bkashNumber || !form.transactionId)) ||
                 (paymentMethod === "nagad" && (!form.nagadNumber || !form.transactionId))
               }
-              className="w-full border border-[#171412] bg-[#171412] py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#171412] disabled:hover:border-[#171412]"
+              className="w-full border border-[#171412] bg-[#171412] py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#171412] disabled:hover:border-[#171412]"
             >
               Place Order — ৳{total.toLocaleString()}
             </button>
 
             <div className="mt-4 space-y-2 border-t border-[#E7E1D8] pt-4">
               <div className="flex items-center gap-2 text-[10px] text-[#6B6560]">
-                <ShieldCheck size={12} className="text-[#fd6f93]" />
+                <ShieldCheck size={12} className="text-[#E8852A]" />
                 256-bit SSL encrypted payment
               </div>
               <div className="flex items-center gap-2 text-[10px] text-[#6B6560]">
-                <Truck size={12} className="text-[#fd6f93]" />
+                <Truck size={12} className="text-[#E8852A]" />
                 Delivery within 3-5 business days
               </div>
             </div>

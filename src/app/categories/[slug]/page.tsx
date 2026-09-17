@@ -32,7 +32,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
       <div className="mx-auto max-w-7xl">
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Category</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Category</p>
           <h1 className="mt-1 font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
             {formattedCategory}
           </h1>
@@ -59,7 +59,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <span className="text-[11px] font-semibold uppercase tracking-widest text-[#fd6f93]">
+                  <span className="text-[11px] font-semibold uppercase tracking-widest text-[#E8852A]">
                     {item.category}
                   </span>
                   <h3 className="mt-1 font-serif text-lg font-medium text-[#171412]">{item.name}</h3>
@@ -70,7 +70,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                       className={`flex items-center gap-1.5 border px-4 py-2 text-xs font-semibold text-white transition-colors ${
                         addedId === item.id
                           ? "border-emerald-600 bg-emerald-600"
-                          : "border-[#171412] bg-[#171412] hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                          : "border-[#171412] bg-[#171412] hover:bg-[#E8852A] hover:border-[#E8852A]"
                       }`}
                     >
                       <ShoppingBag size={14} /> {addedId === item.id ? "Added!" : "Add to Cart"}

@@ -156,7 +156,7 @@ export default function FeaturedCollection() {
                   {/* CTA */}
                   <Link
                     href={item.href}
-                    className="group/btn relative mt-5 flex h-10 w-fit items-center gap-3 border border-neutral-900 px-5 text-[8px] font-semibold uppercase tracking-[0.18em] text-neutral-900 transition-all duration-300 hover:border-[#fd6f93] hover:bg-[#fd6f93] hover:text-white sm:mt-6 sm:h-11 sm:px-6 sm:text-[9px] sm:tracking-[0.2em]"
+                    className="group/btn relative mt-5 flex h-10 w-fit items-center gap-3 rounded-full border border-[#171412] bg-white px-5 text-[8px] font-semibold uppercase tracking-[0.18em] text-[#171412] transition-all duration-300 hover:border-[#E8852A] hover:bg-[#E8852A] hover:text-white sm:mt-6 sm:h-11 sm:px-6 sm:text-[9px] sm:tracking-[0.2em]"
                   >
                     {item.cta}
                     <ArrowRight

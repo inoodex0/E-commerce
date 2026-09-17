@@ -23,9 +23,9 @@ export default function AccountPage() {
                 <input
                   type="email"
                   placeholder="client@example.com"
-                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#fd6f93]"
+                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#E8852A]"
                 />
-                <User className="absolute right-3 text-[#fd6f93]" size={18} />
+                <User className="absolute right-3 text-[#E8852A]" size={18} />
               </div>
             </div>
 
@@ -35,23 +35,23 @@ export default function AccountPage() {
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#fd6f93]"
+                  className="w-full border border-[#E7E1D8] p-3 text-sm outline-none focus:border-[#E8852A]"
                 />
-                <Lock className="absolute right-3 text-[#fd6f93]" size={18} />
+                <Lock className="absolute right-3 text-[#E8852A]" size={18} />
               </div>
             </div>
 
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+              className="flex w-full items-center justify-center gap-2 border border-[#171412] bg-[#171412] py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#E8852A] hover:border-[#E8852A]"
             >
               Sign In <ArrowRight size={14} />
             </button>
           </div>
 
           <div className="mt-6 flex items-center justify-between text-xs text-[#6B6560]">
-            <a href="#" className="hover:text-[#fd6f93]">Forgot Password?</a>
-            <a href="#" className="font-semibold text-[#171412] hover:text-[#fd6f93]">Create Account</a>
+            <a href="#" className="hover:text-[#E8852A]">Forgot Password?</a>
+            <a href="#" className="font-semibold text-[#171412] hover:text-[#E8852A]">Create Account</a>
           </div>
         </form>
       </div>

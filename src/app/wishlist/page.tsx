@@ -21,7 +21,7 @@ export default function WishlistPage() {
         </Link>
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Saved Items</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Saved Items</p>
           <div className="mt-1 flex items-center justify-between">
             <h1 className="font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
               My Wishlist
@@ -34,12 +34,12 @@ export default function WishlistPage() {
 
         {wishlist.length === 0 ? (
           <div className="mt-8 border border-[#E7E1D8] bg-white p-12 text-center shadow-sm">
-            <Heart className="mx-auto text-[#fd6f93]" size={48} strokeWidth={1.5} />
+            <Heart className="mx-auto text-[#E8852A]" size={48} strokeWidth={1.5} />
             <h3 className="mt-4 font-serif text-xl font-medium text-[#171412]">Your Wishlist is Empty</h3>
             <p className="mt-2 text-sm text-[#6B6560]">Save your favorite luxury pieces to view them later.</p>
             <Link
               href="/shop"
-              className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
             >
               <ShoppingBag size={14} /> Explore Collection
             </Link>
@@ -61,14 +61,14 @@ export default function WishlistPage() {
                     />
                     <button
                       onClick={() => removeFromWishlist(product.name)}
-                      className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center bg-white/90 text-[#6B6560] shadow-sm transition-colors hover:text-[#fd6f93]"
+                      className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center bg-white/90 text-[#6B6560] shadow-sm transition-colors hover:text-[#E8852A]"
                     >
                       <Trash2 size={14} />
                     </button>
                   </div>
 
                   <div className="p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#fd6f93]">
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#E8852A]">
                       {product.category}
                     </p>
                     <h3 className="mt-1 font-serif text-base font-medium text-[#171412]">
@@ -81,13 +81,13 @@ export default function WishlistPage() {
                     <div className="mt-4 flex gap-2">
                       <button
                         onClick={() => addToCart(product, 1, "", "")}
-                        className="flex flex-1 items-center justify-center gap-1.5 border border-[#171412] bg-[#171412] py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                        className="flex flex-1 items-center justify-center gap-1.5 border border-[#171412] bg-[#171412] py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A]"
                       >
                         <ShoppingBag size={12} /> Add to Cart
                       </button>
                       <Link
                         href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="flex items-center justify-center border border-[#E7E1D8] px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#171412] transition-all duration-300 hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                        className="flex items-center justify-center border border-[#E7E1D8] px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#171412] transition-all duration-300 hover:border-[#E8852A] hover:text-[#E8852A]"
                       >
                         View
                       </Link>
@@ -100,13 +100,13 @@ export default function WishlistPage() {
             <div className="mt-8 flex items-center justify-between">
               <button
                 onClick={clearWishlist}
-                className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560] transition-colors hover:text-[#fd6f93]"
+                className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560] transition-colors hover:text-[#E8852A]"
               >
                 Clear All
               </button>
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                className="inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
               >
                 Continue Shopping
               </Link>

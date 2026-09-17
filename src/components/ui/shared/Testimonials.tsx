@@ -51,7 +51,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="relative bg-[#fd6f93]/10 py-10 sm:py-12 lg:py-16">
+    <section className="relative bg-[#E8852A]/10 py-10 sm:py-12 lg:py-16">
 
       {/* =====================================================
           DECORATIVE BACKGROUND
@@ -96,7 +96,7 @@ export default function Testimonials() {
               text-3xl
               italic
               leading-none
-              text-[#fd6f93]/60
+              text-[#E8852A]/60
               sm:text-4xl
             "
           >

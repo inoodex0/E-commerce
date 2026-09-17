@@ -66,12 +66,12 @@ export default function OurStoryPage() {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#171412]/80 via-[#171412]/60 to-[#171412]/90" />
         {/* Pink accent line */}
-        <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#fd6f93] via-[#fd8faa] to-[#fd6f93]" />
+        <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#E8852A] via-[#fd8faa] to-[#E8852A]" />
 
         <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">Est. 2018 — Dhaka, Bangladesh</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E8852A] sm:text-xs">Est. 2018 — Dhaka, Bangladesh</p>
           <h1 className="mt-4 font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Our <span className="text-[#fd6f93]">Story</span>
+            Our <span className="text-[#E8852A]">Story</span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base">
             A journey of passion, precision, and the relentless pursuit of perfection.
@@ -82,16 +82,16 @@ export default function OurStoryPage() {
       {/* ═══ Mission Statement ═══ */}
       <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <svg className="mx-auto h-8 w-8 text-[#fd6f93]/30" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="mx-auto h-8 w-8 text-[#E8852A]/30" fill="currentColor" viewBox="0 0 24 24">
             <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
           </svg>
           <p className="mt-6 font-serif text-xl leading-relaxed text-[#171412] sm:text-2xl lg:text-3xl">
             Luxury should be felt in every detail — from the weight of the leather in your hand to the click of a clasp.
           </p>
           <div className="mt-6 flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-[#fd6f93]" />
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Our Philosophy</p>
-            <div className="h-px w-8 bg-[#fd6f93]" />
+            <div className="h-px w-8 bg-[#E8852A]" />
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Our Philosophy</p>
+            <div className="h-px w-8 bg-[#E8852A]" />
           </div>
         </div>
       </section>
@@ -112,16 +112,16 @@ export default function OurStoryPage() {
                 />
               </div>
               {/* Overlay border accent on hover */}
-              <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#fd6f93]/30" />
+              <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#E8852A]/30" />
               {/* Corner tag */}
               <div className="absolute left-4 top-4 bg-[#171412] px-3 py-1.5">
                 <span className="text-[9px] font-bold uppercase tracking-widest text-white">01</span>
               </div>
             </div>
             <div className="space-y-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Craftsmanship</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">Craftsmanship</p>
               <h2 className="font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Handcrafted<br />With Soul</h2>
-              <div className="h-px w-12 bg-[#fd6f93]" />
+              <div className="h-px w-12 bg-[#E8852A]" />
               <p className="text-sm leading-relaxed text-[#6B6560]">
                 Every ZURII piece begins as a sketch and evolves through hundreds of hours of meticulous handwork.
                 Our artisans — many with over 20 years of experience — bring each design to life with techniques
@@ -137,9 +137,9 @@ export default function OurStoryPage() {
           {/* Block 2 — Materials */}
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
             <div className="order-2 space-y-5 lg:order-1">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Materials</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">Materials</p>
               <h2 className="font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Only The<br />Finest</h2>
-              <div className="h-px w-12 bg-[#fd6f93]" />
+              <div className="h-px w-12 bg-[#E8852A]" />
               <p className="text-sm leading-relaxed text-[#6B6560]">
                 We source exclusively from the world&apos;s most renowned tanneries and mills. Vegetable-tanned Italian
                 leather that ages beautifully with time. Precision-machined stainless steel. Swiss-made movements.
@@ -159,7 +159,7 @@ export default function OurStoryPage() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#fd6f93]/30" />
+              <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#E8852A]/30" />
               <div className="absolute left-4 top-4 bg-[#171412] px-3 py-1.5">
                 <span className="text-[9px] font-bold uppercase tracking-widest text-white">02</span>
               </div>
@@ -177,15 +177,15 @@ export default function OurStoryPage() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#fd6f93]/30" />
+              <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#E8852A]/30" />
               <div className="absolute left-4 top-4 bg-[#171412] px-3 py-1.5">
                 <span className="text-[9px] font-bold uppercase tracking-widest text-white">03</span>
               </div>
             </div>
             <div className="space-y-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Design</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">Design</p>
               <h2 className="font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Where Heritage<br />Meets Future</h2>
-              <div className="h-px w-12 bg-[#fd6f93]" />
+              <div className="h-px w-12 bg-[#E8852A]" />
               <p className="text-sm leading-relaxed text-[#6B6560]">
                 Our design philosophy is rooted in tension — the space between tradition and innovation. We draw
                 inspiration from architectural geometry, natural textures, and the quiet confidence of minimalism.
@@ -221,10 +221,10 @@ export default function OurStoryPage() {
                 {/* Hover overlay */}
                 <div className="absolute inset-0 flex items-end bg-gradient-to-t from-[#171412]/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                   <div className="w-full p-4">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#fd6f93]">{img.label}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E8852A]">{img.label}</p>
                   </div>
                 </div>
-                <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#fd6f93]/30" />
+                <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-[#E8852A]/30" />
               </div>
             ))}
           </div>
@@ -235,13 +235,13 @@ export default function OurStoryPage() {
       <section className="bg-[#171412] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">What Drives Us</p>
-            <h2 className="mt-3 font-serif text-2xl font-medium text-white sm:text-3xl">Our <span className="text-[#fd6f93]">Values</span></h2>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E8852A] sm:text-xs">What Drives Us</p>
+            <h2 className="mt-3 font-serif text-2xl font-medium text-white sm:text-3xl">Our <span className="text-[#E8852A]">Values</span></h2>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
-              <div key={v.title} className="group border border-white/10 bg-white/5 p-6 transition-all duration-500 hover:border-[#fd6f93]/40 hover:bg-[#fd6f93]/5 hover:shadow-lg hover:shadow-[#fd6f93]/5">
-                <div className="text-[#fd6f93] transition-transform duration-500 group-hover:scale-110">{v.icon}</div>
+              <div key={v.title} className="group border border-white/10 bg-white/5 p-6 transition-all duration-500 hover:border-[#E8852A]/40 hover:bg-[#E8852A]/5 hover:shadow-lg hover:shadow-[#E8852A]/5">
+                <div className="text-[#E8852A] transition-transform duration-500 group-hover:scale-110">{v.icon}</div>
                 <h3 className="mt-4 text-sm font-semibold text-white">{v.title}</h3>
                 <p className="mt-2 text-xs leading-relaxed text-white/50">{v.desc}</p>
               </div>
@@ -254,34 +254,34 @@ export default function OurStoryPage() {
       <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">Milestones</p>
-            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Our <span className="text-[#fd6f93]">Journey</span></h2>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E8852A] sm:text-xs">Milestones</p>
+            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Our <span className="text-[#E8852A]">Journey</span></h2>
           </div>
 
           {/* Desktop: Alternating cards */}
           <div className="relative mt-14 hidden sm:block">
             {/* Vertical line */}
-            <div className="absolute left-1/2 top-0 h-full w-px -translate-x-px bg-gradient-to-b from-[#E7E1D8] via-[#fd6f93]/30 to-[#E7E1D8]" />
+            <div className="absolute left-1/2 top-0 h-full w-px -translate-x-px bg-gradient-to-b from-[#E7E1D8] via-[#E8852A]/30 to-[#E7E1D8]" />
 
             <div className="space-y-12">
               {milestones.map((m, i) => (
                 <div key={m.year} className={`relative flex items-center ${i % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
                   {/* Dot */}
                   <div className="absolute left-1/2 flex h-4 w-4 -translate-x-2 items-center justify-center">
-                    <div className="h-3 w-3 rounded-full border-2 border-[#fd6f93] bg-white" />
+                    <div className="h-3 w-3 rounded-full border-2 border-[#E8852A] bg-white" />
                   </div>
 
                   {/* Content card — left or right */}
                   <div className={`w-[calc(50%-32px)] ${i % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"}`}>
-                    <div className="group relative overflow-hidden border border-[#E7E1D8] bg-white p-6 transition-all duration-500 hover:border-[#fd6f93]/30 hover:shadow-lg hover:shadow-[#fd6f93]/5">
+                    <div className="group relative overflow-hidden border border-[#E7E1D8] bg-white p-6 transition-all duration-500 hover:border-[#E8852A]/30 hover:shadow-lg hover:shadow-[#E8852A]/5">
                       {/* Large faded number */}
-                      <div className={`pointer-events-none absolute top-2 font-serif text-[80px] font-bold leading-none text-[#E7E1D8]/50 transition-colors duration-500 group-hover:text-[#fd6f93]/10 ${i % 2 === 0 ? "right-4" : "left-4"}`}>
+                      <div className={`pointer-events-none absolute top-2 font-serif text-[80px] font-bold leading-none text-[#E7E1D8]/50 transition-colors duration-500 group-hover:text-[#E8852A]/10 ${i % 2 === 0 ? "right-4" : "left-4"}`}>
                         {String(i + 1).padStart(2, "0")}
                       </div>
                       <div className="relative">
-                        <span className="text-xs font-bold tracking-wider text-[#fd6f93]">{m.year}</span>
+                        <span className="text-xs font-bold tracking-wider text-[#E8852A]">{m.year}</span>
                         <h3 className="mt-1 font-serif text-base font-medium text-[#171412]">{m.title}</h3>
-                        <div className={`my-2 h-px w-6 bg-[#fd6f93]/40 transition-all duration-500 group-hover:w-10 group-hover:bg-[#fd6f93] ${i % 2 === 0 ? "ml-auto" : ""}`} />
+                        <div className={`my-2 h-px w-6 bg-[#E8852A]/40 transition-all duration-500 group-hover:w-10 group-hover:bg-[#E8852A] ${i % 2 === 0 ? "ml-auto" : ""}`} />
                         <p className="text-xs leading-relaxed text-[#6B6560]">{m.desc}</p>
                       </div>
                     </div>
@@ -296,20 +296,20 @@ export default function OurStoryPage() {
 
           {/* Mobile: Simple vertical list */}
           <div className="relative mt-12 sm:hidden">
-            <div className="absolute left-[15px] top-0 h-full w-px bg-gradient-to-b from-[#E7E1D8] via-[#fd6f93]/30 to-[#E7E1D8]" />
+            <div className="absolute left-[15px] top-0 h-full w-px bg-gradient-to-b from-[#E7E1D8] via-[#E8852A]/30 to-[#E7E1D8]" />
             <div className="space-y-8">
               {milestones.map((m, i) => (
                 <div key={m.year} className="relative flex items-start gap-5">
                   <div className="relative flex h-[30px] w-[30px] shrink-0 items-center justify-center">
-                    <div className="h-3 w-3 rounded-full border-2 border-[#fd6f93] bg-white" />
+                    <div className="h-3 w-3 rounded-full border-2 border-[#E8852A] bg-white" />
                   </div>
-                  <div className="relative overflow-hidden border border-[#E7E1D8] bg-white p-4 transition-all duration-300 hover:border-[#fd6f93]/30">
+                  <div className="relative overflow-hidden border border-[#E7E1D8] bg-white p-4 transition-all duration-300 hover:border-[#E8852A]/30">
                     {/* Large faded number */}
                     <div className="pointer-events-none absolute -right-2 -top-3 font-serif text-[60px] font-bold leading-none text-[#E7E1D8]/50">
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     <div className="relative">
-                      <span className="text-xs font-bold tracking-wider text-[#fd6f93]">{m.year}</span>
+                      <span className="text-xs font-bold tracking-wider text-[#E8852A]">{m.year}</span>
                       <h3 className="mt-1 font-serif text-sm font-medium text-[#171412]">{m.title}</h3>
                       <p className="mt-1 text-xs leading-relaxed text-[#6B6560]">{m.desc}</p>
                     </div>
@@ -335,22 +335,22 @@ export default function OurStoryPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#171412]/10" />
             </div>
             <div className="flex flex-col items-start justify-center p-8 sm:p-10">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Become Part of the Story</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">Become Part of the Story</p>
               <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412]">Experience ZURII</h2>
-              <div className="mt-3 h-px w-8 bg-[#fd6f93]" />
+              <div className="mt-3 h-px w-8 bg-[#E8852A]" />
               <p className="mt-4 text-sm leading-relaxed text-[#6B6560]">
                 Discover why thousands of discerning customers choose ZURII for the moments that matter.
               </p>
               <div className="mt-6 flex gap-3">
                 <Link
                   href="/shop"
-                  className="inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
                 >
                   Shop Collection
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
                 >
                   Contact Us
                 </Link>

@@ -2,94 +2,124 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
-const newItems = [
-  { id: 1, name: "Midnight Onyx Chrono", tag: "Watches", price: "$450.00", image: "/images/a1.jpg", href: "/product/midnight-onyx-chrono" },
-  { id: 2, name: "Sienna Tuscan Tote", tag: "Bags", price: "$520.00", image: "/images/a4.avif", href: "/product/sienna-tuscan-tote" },
-  { id: 3, name: "Imperial Gold Bangle", tag: "Jewelry", price: "$310.00", image: "/images/a3avif.avif", href: "/product/imperial-gold-bangle" },
-  { id: 4, name: "Obsidian Aviator Shades", tag: "Sunglasses", price: "$280.00", image: "/images/a5.avif", href: "/product/obsidian-aviator-shades" },
-  { id: 5, name: "Heritage Canvas Weekender", tag: "Bags", price: "$395.00", image: "/images/a6.avif", href: "/product/heritage-canvas-weekender" },
-  { id: 6, name: "Aura Noir Perfume", tag: "Perfumes", price: "$185.00", image: "/images/a2.avif", href: "/product/aura-noir-perfume" },
+const collections = [
+  {
+    title: "Watches Collection",
+    subtitle: "REFINED ESSENTIALS",
+    image: "/images/products/watch-1.avif",
+    href: "/categories/watches",
+    comingSoon: false,
+  },
+  {
+    title: "Bags Collection",
+    subtitle: "TAILORED GRACE",
+    image: "/images/products/bag-1.avif",
+    href: "/categories/bags",
+    comingSoon: false,
+  },
+  {
+    title: "Jewelry Collection",
+    subtitle: "OCCASION READY",
+    image: "/images/products/bracelet-1.avif",
+    href: "/categories/jewelry",
+    comingSoon: false,
+  },
+  {
+    title: "Sunglasses Collection",
+    subtitle: "COMING SOON",
+    image: "/images/products/sunglasses-1.avif",
+    href: "/categories/sunglasses",
+    comingSoon: true,
+  },
 ];
 
 export default function NewArrivalsSection() {
   return (
-    <section className="bg-white py-12 sm:py-16 md:py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-6 xl:px-8">
+    <section className="bg-[#FBF8F3] py-12 sm:py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="mb-10 text-center sm:mb-14 md:mb-16">
-          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#fd6f93]/60 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
-            just arrived
-          </span>
-          <h2 className="mt-3 font-serif text-2xl font-medium tracking-[0.1em] text-[#171412] sm:text-3xl md:text-4xl lg:text-[42px]">
-            NEW ARRIVALS
-          </h2>
-          <div className="mx-auto mt-4 h-[1.5px] w-14 bg-[#fd6f93]/70 sm:w-20" />
+        <div className="mb-10 flex items-end justify-between sm:mb-14">
+          <div>
+            <span className="block font-[family-name:var(--font-dancing-script)] text-[1.8rem] leading-none text-[#E8852A]/60 sm:text-[2.2rem] lg:text-[2.8rem]">
+              just arrived
+            </span>
+            <h2 className="mt-2 font-serif text-2xl font-medium tracking-wide text-[#171412] sm:text-3xl md:text-4xl">
+              NEW ARRIVALS
+            </h2>
+            <div className="mt-3 h-[3px] w-14 rounded-full bg-[#E8852A] sm:w-20" />
+          </div>
+          <Link href="/new-arrivals" className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#E8852A] transition-colors hover:text-[#c96f1f] sm:text-xs">
+            VIEW ALL <ChevronRight size={14} />
+          </Link>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-6 lg:gap-7">
-
-          {newItems.slice(0, 6).map((item) => (
+        {/* Collection Grid */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          {collections.map((item, i) => (
             <Link
-              key={item.id}
+              key={item.title}
               href={item.href}
-              className="new-arrival-card group relative aspect-square overflow-hidden rounded-sm border border-[#171412]/10 bg-[#FBF8F3] shadow-sm transition-shadow duration-300 hover:shadow-lg"
+              className={`group relative block overflow-hidden rounded-2xl bg-[#171412] ${
+                i === 0 ? "aspect-[3/4]" : "aspect-[3/4]"
+              }`}
             >
-              {/* Text behind image */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-[#FBF8F3] px-4">
-                <p className="text-[8px] font-medium uppercase tracking-[0.25em] text-[#fd6f93] sm:text-[9px]">
-                  {item.tag}
+              {/* Image */}
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+              />
+
+              {/* Dark gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+              {/* Top-left subtle line */}
+              <div className="absolute left-0 top-0 h-12 w-[1px] bg-white/20" />
+              <div className="absolute left-0 top-0 h-[1px] w-12 bg-white/20" />
+
+              {/* Corner brackets */}
+              <div className="absolute bottom-20 left-5 h-6 w-6 border-b border-l border-white/30 sm:h-7 sm:w-7" />
+              <div className="absolute bottom-20 right-5 h-6 w-6 border-b border-r border-white/30 sm:h-7 sm:w-7" />
+
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.25em] text-[#E8852A] sm:text-[10px]">
+                  {item.subtitle}
                 </p>
-                <h3 className="text-center font-serif text-xs font-medium leading-snug tracking-wide text-[#171412] sm:text-sm md:text-base lg:text-lg">
-                  {item.name}
+                <h3 className="font-serif text-xl font-medium text-white sm:text-2xl">
+                  {item.title}
                 </h3>
-                <p className="text-[10px] font-medium tracking-wider text-[#6B6560] sm:text-[11px]">
-                  {item.price}
-                </p>
+                {item.comingSoon && (
+                  <p className="mt-3 inline-block rounded-full border border-white/30 px-3 py-1 text-[8px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-[9px]">
+                    COMING SOON
+                  </p>
+                )}
+                {!item.comingSoon && (
+                  <div className="mt-3 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/70 transition-colors group-hover:text-[#E8852A] sm:text-xs">
+                    EXPLORE <ChevronRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
+                )}
               </div>
-
-              {/* Image — slides left on hover */}
-              <div className="new-arrival-image absolute inset-0 z-10">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, 33vw"
-                  className="object-cover object-center"
-                />
-              </div>
-
-              {/* NEW badge — stays on top of the image */}
-              <span className="absolute left-3 top-3 z-20 rounded-full bg-white/90 px-2.5 py-1 text-[8px] font-semibold uppercase tracking-[0.15em] text-[#171412] shadow-sm backdrop-blur-sm sm:text-[9px]">
-                New
-              </span>
             </Link>
           ))}
-
         </div>
 
         {/* View All */}
-        <div className="mt-10 text-center sm:mt-12 md:mt-14">
+        <div className="mt-10 flex justify-center sm:mt-12">
           <Link
             href="/new-arrivals"
-            className="group inline-flex items-center gap-2 border border-[#171412] bg-white px-7 py-3 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93] hover:text-white sm:px-9 sm:py-3.5 sm:text-[10px] sm:tracking-[0.2em]"
+            className="group inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:border-[#E8852A] hover:bg-[#E8852A] hover:text-white"
           >
             View All New Arrivals
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            <ChevronRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>
-
-      <style>{`
-        .new-arrival-card:hover .new-arrival-image {
-          transform: translateX(-100%);
-        }
-        .new-arrival-image {
-          transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-      `}</style>
     </section>
   );
 }

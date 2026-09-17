@@ -2,13 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Heart,
-  ShoppingBag,
-} from "lucide-react";
+import { ArrowRight, ShoppingBag, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import { useCartStore, useWishlistStore } from "@/lib/store";
+import { useCartStore } from "@/lib/store";
 
 interface Product {
   id: number;
@@ -17,7 +13,6 @@ interface Product {
   price: number;
   oldPrice?: number;
   image: string;
-  reviews: number;
 }
 
 const products: Product[] = [
@@ -28,7 +23,6 @@ const products: Product[] = [
     price: 3850,
     oldPrice: 4500,
     image: "/images/products/watch-1.avif",
-    reviews: 48,
   },
   {
     id: 2,
@@ -36,7 +30,6 @@ const products: Product[] = [
     category: "Bags",
     price: 4850,
     image: "/images/products/bag-1.avif",
-    reviews: 36,
   },
   {
     id: 3,
@@ -45,7 +38,6 @@ const products: Product[] = [
     price: 2200,
     oldPrice: 2800,
     image: "/images/products/sunglasses-1.avif",
-    reviews: 29,
   },
   {
     id: 4,
@@ -53,436 +45,146 @@ const products: Product[] = [
     category: "Jewelry",
     price: 1850,
     image: "/images/products/bracelet-1.avif",
-    reviews: 24,
   },
 ];
 
 export default function BestSellers() {
-  const { addToCart } = useCartStore();
-  const { toggleWishlist, wishlist } = useWishlistStore();
-  const isWishlisted = (name: string) => wishlist.some((p) => p.name === name);
+  const { addToCart, cart, updateQuantity } = useCartStore();
+  const [addedId, setAddedId] = useState<number | null>(null);
+
+  const getCartIndex = (id: number) => cart.findIndex((item) => item.product.id === id);
+  const getQty = (id: number) => {
+    const idx = getCartIndex(id);
+    return idx >= 0 ? cart[idx].quantity : 0;
+  };
+
+  const handleAdd = (product: Product) => {
+    addToCart(
+      { id: product.id, name: product.name, category: product.category, price: `৳${product.price.toLocaleString()}`, image: product.image, colors: [], sizes: [] },
+      1,
+      "",
+      ""
+    );
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 1500);
+  };
+
+  const handleBuyNow = (product: Product) => {
+    const qty = getQty(product.id);
+    if (qty === 0) {
+      addToCart(
+        { id: product.id, name: product.name, category: product.category, price: `৳${product.price.toLocaleString()}`, image: product.image, colors: [], sizes: [] },
+        1,
+        "",
+        ""
+      );
+    }
+    window.location.href = "/checkout";
+  };
 
   return (
-    <section className="w-full bg-white py-14 sm:py-20 lg:py-32">
+    <section className="w-full bg-[#FBF8F3] py-14 sm:py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-      <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 xl:px-16">
-
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-
-        <div className="grid grid-cols-1 gap-8 border-b border-neutral-200 pb-8 lg:grid-cols-[1fr_auto] lg:items-end">
-
-          {/* Left */}
-
-          <div>
-
-            <div className="flex items-center gap-3">
-
-              <span className="h-px w-8 bg-neutral-900" />
-
-              <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-neutral-500 sm:text-[10px]">
-                Customer Favorites
-              </p>
-
-            </div>
-
-            <h2
-              className="
-                mt-5
-                font-[family-name:var(--font-cormorant)]
-                text-[clamp(3rem,6vw,6rem)]
-                font-medium
-                leading-[0.85]
-                tracking-[-0.04em]
-                text-neutral-950
-              "
-            >
-              Best{" "}
-              <span className="italic text-neutral-500">
-                Sellers
-              </span>
-            </h2>
-
-          </div>
-
-          {/* Right */}
-
-          <div className="max-w-sm lg:text-right">
-
-          
-
-          </div>
-
+        {/* Header */}
+        <div className="mb-10 text-center sm:mb-14">
+          <h2 className="font-serif text-2xl font-medium tracking-wide text-[#171412] sm:text-3xl md:text-4xl">
+            Top Selling Products
+          </h2>
         </div>
 
-
-        {/* =====================================================
-            PRODUCTS
-        ====================================================== */}
-
-        <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-12 sm:mt-14 sm:gap-x-5 lg:grid-cols-4 lg:gap-x-7">
-
-          {products.map((product, index) => {
-            const wishlisted = isWishlisted(product.name);
-
+        {/* Products Grid — 2 columns */}
+        <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
+          {products.map((product) => {
+            const qty = getQty(product.id);
             return (
               <article
                 key={product.id}
-                className="group"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-[#E7E1D8] bg-white shadow-sm transition-all duration-300 hover:shadow-md sm:flex-row"
               >
-
-                {/* =================================================
-                    IMAGE
-                ================================================== */}
-
-                <div className="relative aspect-[0.88] overflow-hidden bg-[#F5F4F1]">
-
-                  <Link
-                    href={`/products/${product.id}`}
-                    className="absolute inset-0 z-0"
-                  >
-
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes="
-                        (max-width: 640px) 50vw,
-                        (max-width: 1024px) 33vw,
-                        25vw
-                      "
-                      className="
-                        object-cover
-                        transition-transform
-                        duration-[1000ms]
-                        ease-out
-                        group-hover:scale-[1.045]
-                      "
-                    />
-
-                  </Link>
-
-
-                  {/* =================================================
-                      RANK
-                  ================================================== */}
-
-                  <div
-                    className="
-                      absolute
-                      left-3
-                      top-3
-                      z-10
-                      sm:left-4
-                      sm:top-4
-                    "
-                  >
-
-                    <span
-                      className="
-                        bg-white
-                        px-2.5
-                        py-1.5
-                        text-[8px]
-                        font-semibold
-                        tracking-[0.15em]
-                        text-neutral-900
-                        shadow-sm
-                      "
-                    >
-                      0{index + 1}
-                    </span>
-
-                  </div>
-
-
-                  {/* =================================================
-                      BEST SELLER
-                  ================================================== */}
-
-                  <div
-                    className="
-                      absolute
-                      bottom-3
-                      left-3
-                      z-10
-                      sm:bottom-4
-                      sm:left-4
-                    "
-                  >
-
-                    <span
-                      className="
-                        bg-neutral-950
-                        px-2.5
-                        py-1.5
-                        text-[7px]
-                        font-semibold
-                        uppercase
-                        tracking-[0.14em]
-                        text-white
-                      "
-                    >
-                      Best Seller
-                    </span>
-
-                  </div>
-
-
-                  {/* =================================================
-                      WISHLIST
-                  ================================================== */}
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      toggleWishlist(product as any);
-                    }}
-                    aria-label={
-                      wishlisted
-                        ? "Remove from wishlist"
-                        : "Add to wishlist"
-                    }
-                    className="
-                      absolute
-                      right-3
-                      top-3
-                      z-20
-                      flex
-                      h-9
-                      w-9
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-white/95
-                      transition-all
-                      duration-300
-                      hover:scale-105
-                      sm:right-4
-                      sm:top-4
-                    "
-                  >
-
-                    <Heart
-                      size={15}
-                      strokeWidth={1.4}
-                      className={
-                        wishlisted
-                          ? "fill-[#fd6f93] text-[#fd6f93]"
-                          : "text-neutral-800"
-                      }
-                    />
-
-                  </button>
-
+                {/* Image — left side */}
+                <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-[#FAFAFA] sm:aspect-auto sm:h-[200px] md:h-[220px] md:w-[320px] lg:h-[240px] lg:w-[340px]">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 240px"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
 
+                {/* Info — right side */}
+                <div className="flex flex-1 flex-col justify-center gap-3 p-6 sm:p-8">
+                  <h3 className="text-lg font-medium text-[#171412] sm:text-xl lg:text-2xl">
+                    {product.name}
+                  </h3>
 
-                {/* =================================================
-                    PRODUCT INFO
-                ================================================== */}
-
-                <div className="pt-4 sm:pt-5">
-
-                  {/* Category */}
-
-                  <p
-                    className="
-                      text-[8px]
-                      font-medium
-                      uppercase
-                      tracking-[0.2em]
-                      text-neutral-400
-                      sm:text-[9px]
-                    "
-                  >
-                    {product.category}
-                  </p>
-
-
-                  {/* Name */}
-
-                  <Link
-                    href={`/products/${product.id}`}
-                    className="block"
-                  >
-
-                    <h3
-                      className="
-                        mt-2
-                        font-[family-name:var(--font-cormorant)]
-                        text-[21px]
-                        font-medium
-                        leading-tight
-                        tracking-[-0.01em]
-                        text-neutral-950
-                        transition-opacity
-                        duration-300
-                        group-hover:opacity-60
-                        sm:text-[25px]
-                      "
-                    >
-                      {product.name}
-                    </h3>
-
-                  </Link>
-
-
-                  {/* Reviews */}
-
-                  <div className="mt-2 flex items-center gap-2">
-
-                    <div className="flex gap-0.5">
-
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <span
-                          key={star}
-                          className="text-[8px] text-neutral-800"
-                        >
-                          ★
-                        </span>
-                      ))}
-
-                    </div>
-
-                    <span className="text-[9px] text-neutral-400">
-                      {product.reviews} reviews
-                    </span>
-
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-xl font-bold text-[#E8852A] sm:text-2xl">৳{product.price.toLocaleString()}</span>
+                    {product.oldPrice && (
+                      <span className="text-sm text-[#6B6560] line-through">৳{product.oldPrice.toLocaleString()}</span>
+                    )}
                   </div>
 
-
-                  {/* Price */}
-
-                  <div className="mt-2 flex items-center gap-2">
-
-                    <span className="text-[12px] font-semibold text-neutral-950 sm:text-[13px]">
-                      ৳ {product.price.toLocaleString()}
-                    </span>
-
-                    {product.oldPrice && (
-                      <span className="text-[10px] text-neutral-400 line-through">
-                        ৳ {product.oldPrice.toLocaleString()}
-                      </span>
+                  {/* Actions */}
+                  <div className="mt-3 flex flex-wrap items-center gap-3">
+                    {qty > 0 ? (
+                      <div className="flex items-center rounded-lg border border-[#E7E1D8]">
+                        <button
+                          onClick={() => { const idx = getCartIndex(product.id); if (idx >= 0) updateQuantity(idx, qty - 1); }}
+                          className="flex h-10 w-10 items-center justify-center text-[#171412] transition-colors hover:bg-[#FBF8F3]"
+                        >
+                          <Minus size={14} />
+                        </button>
+                        <span className="flex h-10 w-12 items-center justify-center border-x border-[#E7E1D8] text-sm font-medium text-[#171412]">
+                          {qty}
+                        </span>
+                        <button
+                          onClick={() => { const idx = getCartIndex(product.id); if (idx >= 0) updateQuantity(idx, qty + 1); }}
+                          className="flex h-10 w-10 items-center justify-center text-[#171412] transition-colors hover:bg-[#FBF8F3]"
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => handleAdd(product)}
+                        className="flex items-center gap-2 rounded-lg border border-[#E8852A] px-5 py-2.5 text-sm font-semibold text-[#E8852A] transition-all duration-300 hover:bg-[#E8852A] hover:text-white"
+                      >
+                        <ShoppingBag size={15} />
+                        {addedId === product.id ? "Added!" : "Add To Cart"}
+                      </button>
                     )}
 
+                    <button
+                      onClick={() => handleBuyNow(product)}
+                      className="flex items-center gap-2 rounded-lg bg-[#E8852A] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#e55a7f]"
+                    >
+                      <ShoppingCart size={15} /> Buy now
+                    </button>
                   </div>
-
-
-                  {/* Add to cart */}
-
-                  <button
-                    type="button"
-                    onClick={() => addToCart({ id: product.id, name: product.name, category: product.category, price: `৳${product.price.toLocaleString()}`, image: product.image }, 1, "", "")}
-                    className="
-                      mt-4
-                      flex
-                      h-9
-                      w-full
-                      items-center
-                      justify-center
-                      gap-2
-                      border
-                      border-neutral-200
-                      text-[8px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.14em]
-                      text-neutral-900
-                      transition-all
-                      duration-300
-                      hover:border-[#fd6f93]
-                      hover:bg-[#fd6f93]
-                      hover:text-white
-                      sm:h-10
-                      sm:text-[8px]
-                      sm:tracking-[0.16em]
-                    "
-                  >
-
-                    <ShoppingBag
-                      size={13}
-                      strokeWidth={1.4}
-                    />
-
-                    Add to Cart
-
-                  </button>
-
                 </div>
 
+                {/* Best Selling badge */}
+                <span className="absolute right-3 top-3 rounded bg-[#E8852A] px-2.5 py-1 text-[9px] font-bold text-white shadow-sm">
+                  Best Selling
+                </span>
               </article>
             );
           })}
-
         </div>
 
-
-        {/* =====================================================
-            BOTTOM CTA
-        ====================================================== */}
-
-        <div
-          className="
-            mt-14
-            flex
-            justify-center
-            border-t
-            border-neutral-200
-            pt-8
-            sm:mt-16
-          "
-        >
-
+        {/* Bottom CTA */}
+        <div className="mt-12 flex justify-center sm:mt-16">
           <Link
             href="/shop?sort=best-selling"
-            className="
-              group
-              inline-flex
-              h-11
-              items-center
-              gap-3
-              border
-              border-[#171412]
-              bg-white
-              px-6
-              text-[8px]
-              font-semibold
-              uppercase
-              tracking-[0.18em]
-              text-[#171412]
-              transition-all
-              duration-300
-              hover:bg-[#fd6f93]
-              hover:border-[#fd6f93]
-              hover:text-white
-              sm:h-12
-              sm:px-7
-              sm:text-[9px]
-              sm:tracking-[0.2em]
-            "
+            className="group inline-flex items-center gap-3 rounded-full border border-[#171412] bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:border-[#E8852A] hover:bg-[#E8852A] hover:text-white"
           >
             Shop All Best Sellers
-
-            <ArrowRight
-              size={14}
-              strokeWidth={1.4}
-              className="
-                transition-transform
-                duration-300
-                group-hover:translate-x-1
-              "
-            />
-
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
-
         </div>
-
       </div>
-
     </section>
   );
 }

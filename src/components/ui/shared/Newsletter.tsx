@@ -17,7 +17,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#fd6f93]/10 py-16 sm:py-20 lg:py-24">
+    <section className="relative w-full overflow-hidden bg-[#E8852A]/10 py-16 sm:py-20 lg:py-24">
 
       <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-8">
 
@@ -32,7 +32,7 @@ export default function Newsletter() {
               font-medium
               italic
               leading-none
-              text-[#fd6f93]/40
+              text-[#E8852A]/40
             "
           >
             Subscribe
@@ -73,7 +73,7 @@ export default function Newsletter() {
                   text-neutral-900
                   outline-none
                   placeholder:text-neutral-400
-                  focus:border-[#fd6f93]
+                  focus:border-[#E8852A]
                 "
               />
 
@@ -96,7 +96,7 @@ export default function Newsletter() {
                   text-white
                   transition-all
                   duration-300
-                  hover:bg-[#fd6f93]
+                  hover:bg-[#E8852A]
                   sm:px-6
                 "
               >
@@ -130,7 +130,7 @@ export default function Newsletter() {
                   items-center
                   justify-center
                   rounded-full
-                  bg-[#fd6f93]
+                  bg-[#E8852A]
                   text-white
                 "
               >

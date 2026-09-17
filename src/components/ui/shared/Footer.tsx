@@ -54,7 +54,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#0a0a0a] text-white border-t border-white/5 relative overflow-hidden">
       {/* Accent gradient line at the very top */}
-      <div className="h-[1.5px] w-full bg-gradient-to-r from-transparent via-[#fd6f93]/70 to-transparent" />
+      <div className="h-[1.5px] w-full bg-gradient-to-r from-transparent via-[#E8852A]/70 to-transparent" />
 
       {/* =====================================================
           MAIN FOOTER CONTENT
@@ -79,17 +79,17 @@ export default function Footer() {
             <div className="space-y-2.5 pt-2">
               <a
                 href="mailto:hello@zurii.com"
-                className="flex items-center gap-3 text-xs text-neutral-300 transition-colors duration-300 hover:text-[#fd6f93]"
+                className="flex items-center gap-3 text-xs text-neutral-300 transition-colors duration-300 hover:text-[#E8852A]"
               >
-                <Mail size={14} strokeWidth={1.5} className="text-[#fd6f93]" />
+                <Mail size={14} strokeWidth={1.5} className="text-[#E8852A]" />
                 hello@zurii.com
               </a>
               <span className="flex items-center gap-3 text-xs text-neutral-400">
-                <Phone size={14} strokeWidth={1.5} className="text-[#fd6f93]" />
+                <Phone size={14} strokeWidth={1.5} className="text-[#E8852A]" />
                 +880 1700-000000
               </span>
               <span className="flex items-start gap-3 text-xs text-neutral-400">
-                <MapPin size={14} strokeWidth={1.5} className="text-[#fd6f93] shrink-0 mt-0.5" />
+                <MapPin size={14} strokeWidth={1.5} className="text-[#E8852A] shrink-0 mt-0.5" />
                 Dhaka, Bangladesh
               </span>
             </div>
@@ -120,7 +120,7 @@ export default function Footer() {
                   key={social.label}
                   href="#"
                   aria-label={social.label}
-                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-all duration-300 hover:scale-105 hover:border-[#fd6f93] hover:bg-[#fd6f93] hover:text-white"
+                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-all duration-300 hover:scale-105 hover:border-[#E8852A] hover:bg-[#E8852A] hover:text-white"
                 >
                   {social.icon}
                 </a>
@@ -134,7 +134,7 @@ export default function Footer() {
 
           {/* Newsletter Section */}
           <div className="flex flex-col space-y-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">
               Boutique Newsletter
             </p>
             <h3 className="font-serif text-lg font-medium text-neutral-200 leading-tight">
@@ -151,19 +151,19 @@ export default function Footer() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-11 w-full border-b border-white/20 bg-transparent text-xs text-white outline-none placeholder:text-neutral-600 focus:border-[#fd6f93] transition-colors pr-10"
+                className="h-11 w-full border-b border-white/20 bg-transparent text-xs text-white outline-none placeholder:text-neutral-600 focus:border-[#E8852A] transition-colors pr-10"
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="absolute right-0 top-0 flex h-11 w-8 items-center justify-center text-neutral-400 transition-colors duration-300 hover:text-[#fd6f93]"
+                className="absolute right-0 top-0 flex h-11 w-8 items-center justify-center text-neutral-400 transition-colors duration-300 hover:text-[#E8852A]"
               >
                 <ArrowUpRight size={16} strokeWidth={1.5} />
               </button>
             </form>
 
             {subscribed && (
-              <p className="text-[10px] text-[#fd6f93] animate-pulse font-medium tracking-wide">
+              <p className="text-[10px] text-[#E8852A] animate-pulse font-medium tracking-wide">
                 ✓ Welcome to Zurii. Check your inbox.
               </p>
             )}
@@ -220,7 +220,7 @@ export default function Footer() {
           <button
             type="button"
             onClick={scrollToTop}
-            className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-all duration-300 hover:border-[#fd6f93] hover:bg-neutral-900 hover:text-white"
+            className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-all duration-300 hover:border-[#E8852A] hover:bg-neutral-900 hover:text-white"
             aria-label="Scroll to top"
           >
             <ArrowUp
@@ -249,7 +249,7 @@ interface FooterColumnProps {
 function FooterColumn({ title, links }: FooterColumnProps) {
   return (
     <div className="flex flex-col space-y-4">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">
         {title}
       </p>
       <ul className="space-y-2.5">
@@ -263,7 +263,7 @@ function FooterColumn({ title, links }: FooterColumnProps) {
               <ArrowUpRight
                 size={11}
                 strokeWidth={1}
-                className="-translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-[#fd6f93]"
+                className="-translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-[#E8852A]"
               />
             </Link>
           </li>

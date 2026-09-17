@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, ShoppingBag, Heart } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useCartStore, useWishlistStore } from "@/lib/store";
+import { useCartStore } from "@/lib/store";
 
 const SALE_DURATION = 24 * 60 * 60;
 
@@ -21,7 +21,6 @@ export default function FlashSalePage() {
   const [timeLeft, setTimeLeft] = useState(SALE_DURATION);
   const [mounted, setMounted] = useState(false);
   const { addToCart } = useCartStore();
-  const { toggleWishlist, wishlist } = useWishlistStore();
 
   useEffect(() => {
     setMounted(true);
@@ -58,7 +57,7 @@ export default function FlashSalePage() {
       {/* ═══════════════════════════════════════════
           FLASH SALE BANNER
       ═══════════════════════════════════════════ */}
-      <div className="relative overflow-hidden rounded-none bg-gradient-to-br from-[#e8446d] via-[#fd6f93] to-[#c72d55]">
+      <div className="relative overflow-hidden rounded-none bg-gradient-to-br from-[#e8446d] via-[#E8852A] to-[#c72d55]">
 
         {/* Bokeh / light dots */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -146,64 +145,40 @@ export default function FlashSalePage() {
 
         <div className="flex items-center justify-between border-b border-[#E7E1D8] pb-4 sm:pb-6">
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93] sm:text-[10px]">Don&apos;t Miss Out</p>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#E8852A] sm:text-[10px]">Don&apos;t Miss Out</p>
             <h2 className="mt-1 font-serif text-xl font-medium text-[#171412] sm:text-2xl lg:text-3xl">Today&apos;s Deals</h2>
           </div>
-          <Link href="/shop" className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:text-[#fd6f93] sm:inline-flex">
+          <Link href="/shop" className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:text-[#E8852A] sm:inline-flex">
             View All <ArrowRight size={14} />
           </Link>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-7">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 lg:gap-7">
           {dealProducts.map((product) => (
-            <article key={product.id} className="group relative flex flex-col overflow-hidden border border-[#E7E1D8] bg-white transition-all duration-300 hover:shadow-lg hover:shadow-[#171412]/5">
-
+            <article key={product.id} className="group flex flex-col overflow-hidden rounded-xl border border-[#E7E1D8] bg-white transition-all duration-300 hover:shadow-md">
               {/* Image */}
-              <div className="relative aspect-square w-full overflow-hidden bg-[#F5F2EC] sm:aspect-[4/5]">
-                <Image src={product.image} alt={product.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center transition-transform duration-700 group-hover:scale-105" />
-
-                {/* Discount badge */}
-                <div className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3">
-                  <span className="bg-[#171412] px-1.5 py-1 text-[7px] font-semibold uppercase tracking-[0.15em] text-white sm:px-2.5 sm:py-1.5 sm:text-[8px] lg:text-[9px]">-{product.discount}%</span>
-                </div>
-
-                {/* Wishlist */}
-                <button
-                  type="button"
-                  aria-label={`Add ${product.name} to wishlist`}
-                  onClick={() => toggleWishlist({ id: product.id, name: product.name, category: product.category, price: `৳${product.price}`, image: product.image } as any)}
-                  className={`absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full shadow-sm backdrop-blur-sm transition-all duration-300 sm:right-3 sm:top-3 sm:h-8 sm:w-8 ${wishlist.some((p) => p.name === product.name) ? "bg-[#fd6f93] text-white" : "bg-white/90 text-[#171412] hover:bg-[#fd6f93] hover:text-white"}`}
-                >
-                  <Heart size={12} fill={wishlist.some((p) => p.name === product.name) ? "currentColor" : "none"} className="sm:size-3.5" />
-                </button>
-
-                {/* Quick add — always visible on mobile, hover on desktop */}
-                <div className="absolute inset-x-0 bottom-0 z-10 translate-y-0 sm:translate-y-full sm:transition-transform sm:duration-300 sm:group-hover:translate-y-0">
-                  <button
-                    type="button"
-                    onClick={() => addToCart({ id: product.id, name: product.name, category: product.category, price: `৳${product.price}`, image: product.image } as any, 1, "", "")}
-                    className="flex w-full items-center justify-center gap-1.5 bg-[#171412] py-2.5 text-[9px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#fd6f93] sm:gap-2 sm:py-3 sm:text-[10px]"
-                  >
-                    <ShoppingBag size={12} /> Add to Cart
-                  </button>
-                </div>
+              <div className="relative aspect-square w-full overflow-hidden bg-[#FAFAFA]">
+                <Image src={product.image} alt={product.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center transition-transform duration-500 group-hover:scale-105" />
+                <span className="absolute left-3 top-3 rounded bg-[#171412] px-2 py-0.5 text-[8px] font-bold text-white sm:text-[9px]">-{product.discount}%</span>
               </div>
 
               {/* Info */}
-              <div className="flex flex-1 flex-col p-3 sm:p-4 lg:p-5">
-                <p className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#6B6560] sm:text-[9px]">{product.category}</p>
-                <Link href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`} className="mt-0.5 font-serif text-xs font-medium text-[#171412] transition-colors duration-300 hover:text-[#fd6f93] sm:text-sm lg:text-base">{product.name}</Link>
-                <div className="mt-auto flex items-baseline gap-1.5 pt-2 sm:gap-2 sm:pt-3">
-                  <span className="font-serif text-sm font-semibold text-[#fd6f93] sm:text-base lg:text-lg">৳{product.price.toLocaleString()}</span>
-                  <span className="text-[10px] text-[#6B6560] line-through sm:text-xs">৳{product.oldPrice.toLocaleString()}</span>
+              <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
+                <Link href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`} className="text-xs font-medium leading-tight text-[#171412] transition-colors hover:text-[#E8852A] sm:text-sm">{product.name}</Link>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-sm font-bold text-[#E8852A] sm:text-base">৳{product.price.toLocaleString()}</span>
+                  <span className="text-[10px] text-[#6B6560] line-through">৳{product.oldPrice.toLocaleString()}</span>
                 </div>
+                <button type="button" onClick={() => addToCart({ id: product.id, name: product.name, category: product.category, price: `৳${product.price}`, image: product.image } as any, 1, "", "")} className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg border border-[#171412]/20 py-2.5 text-[10px] font-bold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:border-[#171412] hover:bg-[#171412] hover:text-white sm:text-xs">
+                  <ShoppingBag size={13} /> Add to Cart
+                </button>
               </div>
             </article>
           ))}
         </div>
 
         <div className="mt-8 text-center sm:hidden">
-          <Link href="/shop" className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:text-[#fd6f93]">
+          <Link href="/shop" className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:text-[#E8852A]">
             View All Deals <ArrowRight size={14} />
           </Link>
         </div>

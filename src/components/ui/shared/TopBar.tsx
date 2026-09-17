@@ -17,13 +17,13 @@ export default function TopBar() {
 
           <div className="mx-6 flex-1 overflow-hidden">
             <div className="animate-marquee whitespace-nowrap flex items-center gap-8">
-              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Flash Sale</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Flash Sale</span>
               <span className="text-[9px] uppercase tracking-[0.15em] text-white/70">Up to 20% Off — Watches, Bags &amp; Sunglasses</span>
-              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Limited Time Only</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Limited Time Only</span>
               <span className="text-[9px] uppercase tracking-[0.15em] text-white/70">Free Shipping on Orders Over ৳5,000</span>
-              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Flash Sale</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Flash Sale</span>
               <span className="text-[9px] uppercase tracking-[0.15em] text-white/70">Up to 20% Off — Watches, Bags &amp; Sunglasses</span>
-              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Limited Time Only</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Limited Time Only</span>
               <span className="text-[9px] uppercase tracking-[0.15em] text-white/70">Free Shipping on Orders Over ৳5,000</span>
             </div>
           </div>
@@ -40,13 +40,13 @@ export default function TopBar() {
         {/* Mobile - full width marquee */}
         <div className="absolute inset-0 flex items-center sm:hidden">
           <div className="animate-marquee whitespace-nowrap flex items-center gap-6">
-            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Flash Sale</span>
+            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Flash Sale</span>
             <span className="text-[8px] uppercase tracking-[0.15em] text-white/70">Up to 20% Off — Watches, Bags &amp; Sunglasses</span>
-            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Limited Time Only</span>
+            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Limited Time Only</span>
             <span className="text-[8px] uppercase tracking-[0.15em] text-white/70">Free Shipping on Orders Over ৳5,000</span>
-            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Flash Sale</span>
+            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Flash Sale</span>
             <span className="text-[8px] uppercase tracking-[0.15em] text-white/70">Up to 20% Off — Watches, Bags &amp; Sunglasses</span>
-            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Limited Time Only</span>
+            <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Limited Time Only</span>
             <span className="text-[8px] uppercase tracking-[0.15em] text-white/70">Free Shipping on Orders Over ৳5,000</span>
           </div>
         </div>

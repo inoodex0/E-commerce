@@ -125,7 +125,6 @@ export default function DealsSection() {
 
     const start = () => {
       stop();
-      if (!checkMobile()) return;
       timer = setInterval(() => {
         if (isHovered.current || !container.isConnected) return;
         const maxScroll = container.scrollWidth - container.clientWidth;
@@ -142,9 +141,7 @@ export default function DealsSection() {
     };
 
     start();
-    const resize = () => { checkMobile() ? start() : stop(); };
-    window.addEventListener("resize", resize);
-    return () => { stop(); window.removeEventListener("resize", resize); };
+    return () => { stop(); };
   }, [mounted]);
 
   const hours = Math.floor(timeLeft / 3600);
@@ -262,7 +259,7 @@ export default function DealsSection() {
                         </div>
                       </div>
                     ) : (
-                      <span className="text-[8px] font-semibold text-[#fd6f93] sm:text-[9px]">Limited Stock!</span>
+                      <span className="text-[8px] font-semibold text-[#E8852A] sm:text-[9px]">Limited Stock!</span>
                     )}
                   </div>
 

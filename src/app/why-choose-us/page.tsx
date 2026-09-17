@@ -86,12 +86,12 @@ export default function WhyChooseUsPage() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#171412]/80 via-[#171412]/60 to-[#171412]/90" />
-        <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#fd6f93] via-[#fd8faa] to-[#fd6f93]" />
+        <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#E8852A] via-[#fd8faa] to-[#E8852A]" />
 
         <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">The ZURII Difference</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E8852A] sm:text-xs">The ZURII Difference</p>
           <h1 className="mt-4 font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Why Choose <span className="text-[#fd6f93]">Us</span>
+            Why Choose <span className="text-[#E8852A]">Us</span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base">
             We don&apos;t just make accessories — we craft experiences that last a lifetime.
@@ -115,27 +115,27 @@ export default function WhyChooseUsPage() {
       <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">What Sets Us Apart</p>
-            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Six Reasons to Choose <span className="text-[#fd6f93]">ZURII</span></h2>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E8852A] sm:text-xs">What Sets Us Apart</p>
+            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Six Reasons to Choose <span className="text-[#E8852A]">ZURII</span></h2>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {reasons.map((r, i) => (
               <div
                 key={r.title}
-                className="group relative overflow-hidden border border-[#E7E1D8] bg-white p-7 transition-all duration-500 hover:border-[#fd6f93]/30 hover:shadow-xl hover:shadow-[#fd6f93]/5"
+                className="group relative overflow-hidden border border-[#E7E1D8] bg-white p-7 transition-all duration-500 hover:border-[#E8852A]/30 hover:shadow-xl hover:shadow-[#E8852A]/5"
               >
                 {/* Number accent */}
-                <div className="absolute right-2 top-0 font-serif text-[80px] font-bold leading-none text-[#E7E1D8]/40 transition-colors duration-500 group-hover:text-[#fd6f93]/10">
+                <div className="absolute right-2 top-0 font-serif text-[80px] font-bold leading-none text-[#E7E1D8]/40 transition-colors duration-500 group-hover:text-[#E8852A]/10">
                   {String(i + 1).padStart(2, "0")}
                 </div>
 
                 <div className="relative">
-                  <div className="inline-flex items-center justify-center border border-[#fd6f93]/20 bg-[#fd6f93]/5 p-3 text-[#fd6f93] transition-all duration-500 group-hover:border-[#fd6f93]/40 group-hover:bg-[#fd6f93]/10">
+                  <div className="inline-flex items-center justify-center border border-[#E8852A]/20 bg-[#E8852A]/5 p-3 text-[#E8852A] transition-all duration-500 group-hover:border-[#E8852A]/40 group-hover:bg-[#E8852A]/10">
                     {r.icon}
                   </div>
                   <h3 className="mt-5 font-serif text-lg font-medium text-[#171412]">{r.title}</h3>
-                  <div className="mt-2 h-px w-8 bg-[#fd6f93]/40 transition-all duration-500 group-hover:w-12 group-hover:bg-[#fd6f93]" />
+                  <div className="mt-2 h-px w-8 bg-[#E8852A]/40 transition-all duration-500 group-hover:w-12 group-hover:bg-[#E8852A]" />
                   <p className="mt-3 text-sm leading-relaxed text-[#6B6560]">{r.desc}</p>
                 </div>
               </div>
@@ -162,13 +162,13 @@ export default function WhyChooseUsPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#171412]/50 via-transparent to-transparent opacity-60" />
               {/* Badge */}
               <div className="absolute bottom-6 left-6 border border-white/20 bg-[#171412]/80 px-5 py-3 backdrop-blur-sm">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#fd6f93]">Since 2018</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E8852A]">Since 2018</p>
                 <p className="text-xs text-white/70">Dhaka, Bangladesh</p>
               </div>
               {/* Corner pink accent */}
               <div className="absolute right-0 top-0 h-16 w-16">
                 <svg viewBox="0 0 64 64" fill="none" className="h-full w-full">
-                  <path d="M64,0 L64,64 L0,0 Z" fill="#fd6f93" opacity="0.15" />
+                  <path d="M64,0 L64,64 L0,0 Z" fill="#E8852A" opacity="0.15" />
                 </svg>
               </div>
             </div>
@@ -179,11 +179,11 @@ export default function WhyChooseUsPage() {
               <div className="pointer-events-none absolute right-6 top-6 font-serif text-[120px] leading-none text-[#E7E1D8]/40">&ldquo;</div>
 
               <div className="relative">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Our Promise</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">Our Promise</p>
                 <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">Quality Without<br />Compromise</h2>
                 <div className="mt-4 flex items-center gap-2">
-                  <div className="h-px w-8 bg-[#fd6f93]" />
-                  <div className="h-1 w-1 rounded-full bg-[#fd6f93]" />
+                  <div className="h-px w-8 bg-[#E8852A]" />
+                  <div className="h-1 w-1 rounded-full bg-[#E8852A]" />
                 </div>
                 <p className="mt-5 text-sm leading-relaxed text-[#6B6560]">
                   We believe luxury is defined by what you <em>don&apos;t</em> compromise on. That&apos;s why every ZURII
@@ -193,8 +193,8 @@ export default function WhyChooseUsPage() {
                 <div className="mt-6 space-y-3.5">
                   {["Hand-selected premium materials", "47-point quality inspection", "Master artisan craftsmanship", "Sustainable production methods"].map((item, i) => (
                     <div key={item} className="group/check flex items-center gap-3">
-                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#fd6f93]/10 transition-colors duration-300 group-hover/check:bg-[#fd6f93]/20">
-                        <svg className="h-3.5 w-3.5 text-[#fd6f93]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#E8852A]/10 transition-colors duration-300 group-hover/check:bg-[#E8852A]/20">
+                        <svg className="h-3.5 w-3.5 text-[#E8852A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                         </svg>
                       </div>
@@ -206,7 +206,7 @@ export default function WhyChooseUsPage() {
                 <div className="mt-8">
                   <Link
                     href="/shop"
-                    className="inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
                   >
                     Explore Quality
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -228,11 +228,11 @@ export default function WhyChooseUsPage() {
             <div className="relative flex flex-col justify-center p-8 sm:p-10 lg:p-12 order-2 lg:order-1">
               <div className="pointer-events-none absolute left-6 top-6 font-serif text-[120px] leading-none text-[#E7E1D8]/40">&ldquo;</div>
               <div className="relative">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">The Experience</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">The Experience</p>
                 <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">More Than a<br />Purchase</h2>
                 <div className="mt-4 flex items-center gap-2">
-                  <div className="h-px w-8 bg-[#fd6f93]" />
-                  <div className="h-1 w-1 rounded-full bg-[#fd6f93]" />
+                  <div className="h-px w-8 bg-[#E8852A]" />
+                  <div className="h-1 w-1 rounded-full bg-[#E8852A]" />
                 </div>
                 <p className="mt-5 text-sm leading-relaxed text-[#6B6560]">
                   Buying a ZURII product isn&apos;t just a transaction — it&apos;s the beginning of a relationship.
@@ -240,7 +240,7 @@ export default function WhyChooseUsPage() {
                   its unique patina, we&apos;re with you every step of the way.
                 </p>
                 {/* Testimonial */}
-                <div className="mt-6 border-l-2 border-[#fd6f93] pl-6 py-2">
+                <div className="mt-6 border-l-2 border-[#E8852A] pl-6 py-2">
                   <p className="font-serif text-sm italic leading-relaxed text-[#171412]">
                     &ldquo;The attention to detail is unlike anything I&apos;ve experienced. My ZURII wallet is
                     three years old and looks better than the day I bought it.&rdquo;
@@ -248,12 +248,12 @@ export default function WhyChooseUsPage() {
                   <div className="mt-3 flex items-center gap-2">
                     <div className="flex gap-0.5">
                       {[1,2,3,4,5].map((s) => (
-                        <svg key={s} className="h-3 w-3 text-[#fd6f93]" fill="currentColor" viewBox="0 0 20 20">
+                        <svg key={s} className="h-3 w-3 text-[#E8852A]" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                     </div>
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#fd6f93]">— Customer Review</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#E8852A]">— Customer Review</span>
                   </div>
                 </div>
               </div>
@@ -272,13 +272,13 @@ export default function WhyChooseUsPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#171412]/50 via-transparent to-transparent opacity-60" />
               {/* Badge */}
               <div className="absolute bottom-6 right-6 border border-white/20 bg-[#171412]/80 px-5 py-3 text-right backdrop-blur-sm">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#fd6f93]">4.9/5</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E8852A]">4.9/5</p>
                 <p className="text-xs text-white/70">Customer Rating</p>
               </div>
               {/* Corner pink accent */}
               <div className="absolute bottom-0 left-0 h-16 w-16">
                 <svg viewBox="0 0 64 64" fill="none" className="h-full w-full">
-                  <path d="M0,64 L0,0 L64,64 Z" fill="#fd6f93" opacity="0.15" />
+                  <path d="M0,64 L0,0 L64,64 Z" fill="#E8852A" opacity="0.15" />
                 </svg>
               </div>
             </div>
@@ -290,12 +290,12 @@ export default function WhyChooseUsPage() {
       <section className="bg-[#171412] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">Your Protection</p>
-            <h2 className="mt-3 font-serif text-2xl font-medium text-white sm:text-3xl">Our <span className="text-[#fd6f93]">Guarantees</span></h2>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E8852A] sm:text-xs">Your Protection</p>
+            <h2 className="mt-3 font-serif text-2xl font-medium text-white sm:text-3xl">Our <span className="text-[#E8852A]">Guarantees</span></h2>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {guarantees.map((g) => (
-              <div key={g.title} className="group border border-white/10 bg-white/5 p-6 text-center transition-all duration-500 hover:border-[#fd6f93]/40 hover:bg-[#fd6f93]/5 hover:shadow-lg hover:shadow-[#fd6f93]/5">
+              <div key={g.title} className="group border border-white/10 bg-white/5 p-6 text-center transition-all duration-500 hover:border-[#E8852A]/40 hover:bg-[#E8852A]/5 hover:shadow-lg hover:shadow-[#E8852A]/5">
                 <div className="text-3xl">{g.icon}</div>
                 <h3 className="mt-4 text-sm font-semibold text-white">{g.title}</h3>
                 <p className="mt-2 text-xs leading-relaxed text-white/50">{g.desc}</p>
@@ -309,8 +309,8 @@ export default function WhyChooseUsPage() {
       <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#fd6f93] sm:text-xs">How It Works</p>
-            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">From Selection to <span className="text-[#fd6f93]">Doorstep</span></h2>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E8852A] sm:text-xs">How It Works</p>
+            <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412] sm:text-3xl">From Selection to <span className="text-[#E8852A]">Doorstep</span></h2>
             <p className="mx-auto mt-3 max-w-lg text-sm text-[#6B6560]">Four simple steps from choosing your piece to having it in your hands.</p>
           </div>
 
@@ -318,10 +318,10 @@ export default function WhyChooseUsPage() {
           <div className="relative mt-14 hidden md:block">
             {/* Connecting arrow line */}
             <div className="absolute left-[12%] right-[12%] top-[52px] h-px">
-              <div className="h-full bg-gradient-to-r from-[#E7E1D8] via-[#fd6f93]/30 to-[#E7E1D8]" />
+              <div className="h-full bg-gradient-to-r from-[#E7E1D8] via-[#E8852A]/30 to-[#E7E1D8]" />
               {/* Arrow tips */}
               <svg className="absolute -left-1 -top-1.5 h-4 w-4 text-[#E7E1D8]" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 8h8m0 0l-3-3m3 3l-3 3" /></svg>
-              <svg className="absolute -right-1 -top-1.5 h-4 w-4 text-[#fd6f93]" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 8h8m0 0l-3-3m3 3l-3 3" /></svg>
+              <svg className="absolute -right-1 -top-1.5 h-4 w-4 text-[#E8852A]" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 8h8m0 0l-3-3m3 3l-3 3" /></svg>
             </div>
 
             <div className="grid grid-cols-4 gap-6">
@@ -342,18 +342,18 @@ export default function WhyChooseUsPage() {
                 <div key={s.step} className="group relative overflow-hidden text-center">
                   <div className="relative">
                     {/* Large faded number background */}
-                    <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-center font-serif text-[70px] font-bold leading-none text-[#E7E1D8]/30 transition-colors duration-500 group-hover:text-[#fd6f93]/10">
+                    <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-center font-serif text-[70px] font-bold leading-none text-[#E7E1D8]/30 transition-colors duration-500 group-hover:text-[#E8852A]/10">
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     {/* Step circle */}
-                    <div className="relative mx-auto mb-6 flex h-[104px] w-[104px] items-center justify-center rounded-full border-2 border-[#E7E1D8] bg-white transition-all duration-500 group-hover:border-[#fd6f93] group-hover:shadow-lg group-hover:shadow-[#fd6f93]/10">
-                      <div className="text-[#6B6560] transition-colors duration-500 group-hover:text-[#fd6f93]">{s.icon}</div>
+                    <div className="relative mx-auto mb-6 flex h-[104px] w-[104px] items-center justify-center rounded-full border-2 border-[#E7E1D8] bg-white transition-all duration-500 group-hover:border-[#E8852A] group-hover:shadow-lg group-hover:shadow-[#E8852A]/10">
+                      <div className="text-[#6B6560] transition-colors duration-500 group-hover:text-[#E8852A]">{s.icon}</div>
                       {/* Number badge */}
                       <div className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#171412] text-[10px] font-bold text-white">
                         {s.step}
                       </div>
                     </div>
-                    <h3 className="font-serif text-base font-medium text-[#171412] transition-colors duration-300 group-hover:text-[#fd6f93]">{s.title}</h3>
+                    <h3 className="font-serif text-base font-medium text-[#171412] transition-colors duration-300 group-hover:text-[#E8852A]">{s.title}</h3>
                     <p className="mt-2 text-xs leading-relaxed text-[#6B6560]">{s.desc}</p>
                   </div>
                 </div>
@@ -365,7 +365,7 @@ export default function WhyChooseUsPage() {
           <div className="mt-12 md:hidden">
             <div className="relative space-y-8">
               {/* Vertical line */}
-              <div className="absolute left-[27px] top-0 h-full w-px bg-gradient-to-b from-[#E7E1D8] via-[#fd6f93]/30 to-[#E7E1D8]" />
+              <div className="absolute left-[27px] top-0 h-full w-px bg-gradient-to-b from-[#E7E1D8] via-[#E8852A]/30 to-[#E7E1D8]" />
 
               {[
                 { step: "01", title: "Choose Your Product", desc: "Browse our curated collections and find the perfect piece that speaks to you.", icon: (
@@ -383,19 +383,19 @@ export default function WhyChooseUsPage() {
               ].map((s, i) => (
                 <div key={s.step} className="group relative flex items-start gap-5">
                   {/* Step circle */}
-                  <div className="relative flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-full border-2 border-[#E7E1D8] bg-white transition-all duration-500 group-hover:border-[#fd6f93] group-hover:shadow-lg group-hover:shadow-[#fd6f93]/10">
-                    <div className="text-[#6B6560] transition-colors duration-500 group-hover:text-[#fd6f93]">{s.icon}</div>
+                  <div className="relative flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-full border-2 border-[#E7E1D8] bg-white transition-all duration-500 group-hover:border-[#E8852A] group-hover:shadow-lg group-hover:shadow-[#E8852A]/10">
+                    <div className="text-[#6B6560] transition-colors duration-500 group-hover:text-[#E8852A]">{s.icon}</div>
                     <div className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#171412] text-[8px] font-bold text-white">
                       {s.step}
                     </div>
                   </div>
-                  <div className="group/card relative flex-1 overflow-hidden border border-[#E7E1D8] bg-white p-4 transition-all duration-300 hover:border-[#fd6f93]/30">
+                  <div className="group/card relative flex-1 overflow-hidden border border-[#E7E1D8] bg-white p-4 transition-all duration-300 hover:border-[#E8852A]/30">
                     {/* Large faded number */}
-                    <div className="pointer-events-none absolute right-1 top-1 font-serif text-[50px] font-bold leading-none text-[#E7E1D8]/40 transition-colors duration-500 group-hover/card:text-[#fd6f93]/10">
+                    <div className="pointer-events-none absolute right-1 top-1 font-serif text-[50px] font-bold leading-none text-[#E7E1D8]/40 transition-colors duration-500 group-hover/card:text-[#E8852A]/10">
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     <div className="relative">
-                      <h3 className="font-serif text-sm font-medium text-[#171412] transition-colors duration-300 group-hover:text-[#fd6f93]">{s.title}</h3>
+                      <h3 className="font-serif text-sm font-medium text-[#171412] transition-colors duration-300 group-hover:text-[#E8852A]">{s.title}</h3>
                       <p className="mt-1 text-xs leading-relaxed text-[#6B6560]">{s.desc}</p>
                     </div>
                   </div>
@@ -420,22 +420,22 @@ export default function WhyChooseUsPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#171412]/10" />
             </div>
             <div className="flex flex-col items-start justify-center p-8 sm:p-10">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#fd6f93]">Ready to Experience the Difference?</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E8852A]">Ready to Experience the Difference?</p>
               <h2 className="mt-3 font-serif text-2xl font-medium text-[#171412]">Shop ZURII Today</h2>
-              <div className="mt-3 h-px w-8 bg-[#fd6f93]" />
+              <div className="mt-3 h-px w-8 bg-[#E8852A]" />
               <p className="mt-4 text-sm leading-relaxed text-[#6B6560]">
                 Join 50,000+ customers who&apos;ve discovered what luxury truly feels like.
               </p>
               <div className="mt-6 flex gap-3">
                 <Link
                   href="/shop"
-                  className="inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
                 >
                   Shop Collection
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 border border-[#E7E1D8] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
                 >
                   Contact Us
                 </Link>

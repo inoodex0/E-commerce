@@ -23,7 +23,7 @@ export default function CartPage() {
        
 
         <div className="mt-6 border-b border-[#E7E1D8] pb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fd6f93]">Shopping Bag</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8852A]">Shopping Bag</p>
           <div className="mt-1 flex items-center justify-between">
             <h1 className="font-serif text-3xl font-medium tracking-tight text-[#171412] sm:text-4xl">
               Your Cart
@@ -36,12 +36,12 @@ export default function CartPage() {
 
         {cart.length === 0 ? (
           <div className="mt-8 border border-[#E7E1D8] bg-white p-12 text-center shadow-sm">
-            <ShoppingBag className="mx-auto text-[#fd6f93]" size={48} strokeWidth={1.5} />
+            <ShoppingBag className="mx-auto text-[#E8852A]" size={48} strokeWidth={1.5} />
             <h3 className="mt-4 font-serif text-xl font-medium text-[#171412]">Your Cart is Currently Empty</h3>
             <p className="mt-2 text-sm text-[#6B6560]">Explore our signature collection to add luxury accessories.</p>
             <Link
               href="/shop"
-              className="mt-6 inline-flex items-center gap-2 border border-[#171412] bg-[#171412] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#171412] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
             >
               Shop Collection
             </Link>
@@ -67,7 +67,7 @@ export default function CartPage() {
 
                   <div className="flex flex-1 flex-col justify-between">
                     <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-widest text-[#fd6f93]">
+                      <p className="text-[10px] font-semibold uppercase tracking-widest text-[#E8852A]">
                         {item.product.category}
                       </p>
                       <h3 className="mt-0.5 font-serif text-sm font-medium text-[#171412] sm:text-base">
@@ -104,7 +104,7 @@ export default function CartPage() {
                         </span>
                         <button
                           onClick={() => removeFromCart(index)}
-                          className="text-[#6B6560] transition-colors hover:text-[#fd6f93]"
+                          className="text-[#6B6560] transition-colors hover:text-[#E8852A]"
                         >
                           <Trash2 size={14} />
                         </button>
@@ -128,7 +128,7 @@ export default function CartPage() {
                   <span className="text-[#6B6560]">Shipping</span>
                   <span className="font-medium text-[#171412]">
                     {shipping === 0 ? (
-                      <span className="text-[#fd6f93]">Free</span>
+                      <span className="text-[#E8852A]">Free</span>
                     ) : (
                       `৳${shipping}`
                     )}
@@ -146,25 +146,25 @@ export default function CartPage() {
 
               <Link
                 href="/checkout"
-                className="block w-full border border-[#171412] bg-[#171412] py-3.5 text-center text-xs font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#fd6f93] hover:border-[#fd6f93]"
+                className="block w-full rounded-full border border-[#171412] bg-white py-3.5 text-center text-xs font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
               >
                 Proceed to Checkout
               </Link>
 
               <button
                 onClick={clearCart}
-                className="mt-3 w-full border border-[#E7E1D8] py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6B6560] transition-colors hover:border-[#fd6f93] hover:text-[#fd6f93]"
+                className="mt-3 w-full rounded-full border border-[#171412] bg-white py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#171412] transition-all duration-300 hover:bg-[#E8852A] hover:border-[#E8852A] hover:text-white"
               >
                 Clear Cart
               </button>
 
               <div className="mt-4 border-t border-[#E7E1D8] pt-4">
                 <div className="flex items-center gap-2 text-[10px] text-[#6B6560]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#fd6f93]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#E8852A]" />
                   14-day hassle-free returns
                 </div>
                 <div className="mt-1.5 flex items-center gap-2 text-[10px] text-[#6B6560]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#fd6f93]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#E8852A]" />
                   Secure checkout with SSL encryption
                 </div>
               </div>

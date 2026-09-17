@@ -2,124 +2,144 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Eye, Heart } from "lucide-react";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const categories = [
-  {
-    name: "Watches",
-    image: "/images/a1.jpg",
-    href: "/categories/watches",
-  },
-  {
-    name: "Bags",
-    image: "/images/a2.avif",
-    href: "/categories/bags",
-  },
-  {
-    name: "Wallets",
-    image: "/images/a3avif.avif",
-    href: "/categories/wallets",
-  },
-  {
-    name: "Sunglasses",
-    image: "/images/a4.avif",
-    href: "/categories/sunglasses",
-  },
-  {
-    name: "Jewelry",
-    image: "/images/a5.avif",
-    href: "/categories/jewelry",
-  },
-  {
-    name: "Belts",
-    image: "/images/a6.avif",
-    href: "/categories/belts",
-  },
-  {
-    name: "Perfumes",
-    image: "/images/a1.jpg",
-    href: "/categories/perfumes",
-  },
-  {
-    name: "Tech Accessories",
-    image: "/images/a2.avif",
-    href: "/categories/tech-accessories",
-  },
+  { name: "Watches", image: "/images/a1.jpg", href: "/categories/watches" },
+  { name: "Bags", image: "/images/a2.avif", href: "/categories/bags" },
+  { name: "Wallets", image: "/images/a3avif.avif", href: "/categories/wallets" },
+  { name: "Sunglasses", image: "/images/a4.avif", href: "/categories/sunglasses" },
+  { name: "Jewelry", image: "/images/a5.avif", href: "/categories/jewelry" },
+  { name: "Belts", image: "/images/a6.avif", href: "/categories/belts" },
+  { name: "Perfumes", image: "/images/a1.jpg", href: "/categories/perfumes" },
+  { name: "Tech Accessories", image: "/images/a2.avif", href: "/categories/tech-accessories" },
 ];
 
 export default function ShopByCategory() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const pausedRef = useRef(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener("scroll", checkScroll, { passive: true });
+    window.addEventListener("resize", checkScroll);
+    return () => {
+      el.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, []);
+
+  const startAutoScroll = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      const el = scrollRef.current;
+      if (!el || pausedRef.current) return;
+      const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 10;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        el.scrollBy({ left: 180, behavior: "smooth" });
+      }
+    }, 2500);
+  }, []);
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [startAutoScroll]);
+
+  const pause = () => { pausedRef.current = true; };
+  const resume = () => { pausedRef.current = false; };
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.6;
+    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+  };
+
   return (
-    <section className="bg-[#FBF8F3] mt-0 py-12 sm:py-16 md:py-20 lg:py-24">
+    <section className="bg-[#FBF8F3] py-12 sm:py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-6 xl:px-8">
 
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-
-        <div className="relative mb-8 text-center sm:mb-12 md:mb-14">
-          <span className="block font-[family-name:var(--font-dancing-script)] text-[2rem] leading-none text-[#fd6f93]/50 sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
-            crafted for you
-          </span>
-          <h2 className="mt-3 font-serif text-2xl font-medium tracking-[0.08em] text-[#171412] sm:text-3xl md:text-4xl lg:text-[42px]">
-            SHOP BY CATEGORY
+        {/* Header */}
+        <div className="mb-10 text-center sm:mb-14">
+          <h2 className="font-serif text-2xl font-medium tracking-wide text-[#171412] sm:text-3xl md:text-4xl">
+            Featured Categories
           </h2>
-          <p className="mx-auto mt-3 max-w-[340px] text-xs leading-5 text-[#6B6560] sm:max-w-[400px] sm:text-sm sm:leading-7">
-            Explore our carefully curated collections designed to complement your unique style.
-          </p>
         </div>
 
-        {/* =====================================================
-            GRID
-        ====================================================== */}
-
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-7">
-
-          {categories.map((category) => (
-            <Link
-              key={category.name}
-              href={category.href}
-              className="group"
+        {/* Carousel */}
+        <div className="relative overflow-visible">
+          {/* Left Arrow */}
+          {canScrollLeft && (
+            <button
+              onClick={() => { scroll("left"); pause(); setTimeout(resume, 4000); }}
+              className="absolute -left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#E7E1D8] bg-white text-[#171412] shadow-md transition-all duration-300 hover:border-[#E8852A] hover:text-[#E8852A] sm:-left-5"
             >
-              {/* Image Container */}
-              <div className="relative aspect-[3/4] overflow-hidden bg-[#F5F3EE]">
+              <ChevronLeft size={18} />
+            </button>
+          )}
 
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                />
+          {/* Right Arrow */}
+          {canScrollRight && (
+            <button
+              onClick={() => { scroll("right"); pause(); setTimeout(resume, 4000); }}
+              className="absolute -right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#E7E1D8] bg-white text-[#171412] shadow-md transition-all duration-300 hover:border-[#E8852A] hover:text-[#E8852A] sm:-right-5"
+            >
+              <ChevronRight size={18} />
+            </button>
+          )}
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/0 transition-all duration-300 group-hover:bg-black/10 sm:gap-3">
-
-                  <span className="flex h-8 w-8 items-center justify-center border border-white bg-white/90 text-[#171412] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 sm:h-10 sm:w-10">
-                    <Eye size={14} strokeWidth={1.5} className="sm:hidden" />
-                    <Eye size={16} strokeWidth={1.5} className="hidden sm:block" />
-                  </span>
-
-                  <span className="flex h-8 w-8 items-center justify-center border border-white bg-white/90 text-[#171412] opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 sm:h-10 sm:w-10">
-                    <Heart size={14} strokeWidth={1.5} className="sm:hidden" />
-                    <Heart size={16} strokeWidth={1.5} className="hidden sm:block" />
-                  </span>
-
+          {/* Scrollable Row */}
+          <div
+            ref={scrollRef}
+            onMouseEnter={pause}
+            onMouseLeave={resume}
+            onTouchStart={pause}
+            onTouchEnd={() => setTimeout(resume, 1000)}
+            className="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth px-2 py-2 sm:gap-8 sm:px-6"
+          >
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                href={category.href}
+                className="group flex shrink-0 flex-col items-center gap-3"
+              >
+                {/* Rounded Square Image */}
+                <div className="flex h-[100px] w-[100px] items-center justify-center overflow-hidden rounded-2xl border border-[#E7E1D8] bg-white shadow-sm transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#E8852A]/10 sm:h-[130px] sm:w-[130px] md:h-[150px] md:w-[150px]">
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    width={150}
+                    height={150}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
-
-              </div>
-
-              {/* Text */}
-              <div className="mt-2.5 text-center sm:mt-4 md:mt-5">
-                <h3 className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#171412] transition-colors duration-300 group-hover:text-[#fd6f93] sm:text-xs md:text-sm">
+                {/* Name */}
+                <span className="text-xs font-medium text-[#171412] transition-colors duration-300 group-hover:text-[#E8852A] sm:text-sm">
                   {category.name}
-                </h3>
-                <span className="mt-1 block h-px w-0 bg-[#fd6f93] transition-all duration-500 group-hover:mx-auto group-hover:w-8 sm:group-hover:w-10" />
-              </div>
-
-            </Link>
-          ))}
-
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   );

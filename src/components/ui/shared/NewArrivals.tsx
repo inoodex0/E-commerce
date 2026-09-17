@@ -160,8 +160,8 @@ export default function NewArrivals() {
               text-neutral-900
               transition-all
               duration-300
-              hover:border-[#fd6f93]
-              hover:bg-[#fd6f93]
+              hover:border-[#E8852A]
+              hover:bg-[#E8852A]
               hover:text-white
             "
           >
@@ -343,7 +343,7 @@ export default function NewArrivals() {
                       strokeWidth={1.5}
                       className={
                         wishlisted
-                          ? "fill-[#fd6f93] text-[#fd6f93]"
+                          ? "fill-[#E8852A] text-[#E8852A]"
                           : "text-neutral-800"
                       }
                     />
@@ -502,8 +502,8 @@ export default function NewArrivals() {
                       text-neutral-900
                       transition-all
                       duration-300
-                      hover:border-[#fd6f93]
-                      hover:bg-[#fd6f93]
+                      hover:border-[#E8852A]
+                      hover:bg-[#E8852A]
                       hover:text-white
                     "
                   >
@@ -545,8 +545,8 @@ export default function NewArrivals() {
               tracking-[0.16em]
               transition-all
               duration-300
-              hover:border-[#fd6f93]
-              hover:bg-[#fd6f93]
+              hover:border-[#E8852A]
+              hover:bg-[#E8852A]
               hover:text-white
             "
           >
